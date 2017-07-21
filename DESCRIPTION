@@ -3,7 +3,7 @@ Title: Miscellaneous utility scripts for personal use (one line, title case)
 Version: 0.0.0.9000
 Authors@R: person("Apoorva", "Lal", email = "lal.apoorva@gmail.com", role = c("aut", "cre"))
 Description: Utility functions for personal use in data cleaning and management.
-Depends: R (>= 3.3.2)
+Depends: R (>= 3.0)
 License: MIT
 Encoding: UTF-8
 LazyData: true
