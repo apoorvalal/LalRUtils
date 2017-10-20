@@ -30,5 +30,6 @@ read_all_files <- function(extension,location){
             assign(paste0(objs[n]),haven::read_sav(obj[n]),envir = .GlobalEnv)
         }
     }
+    return(objs)
 }
 
