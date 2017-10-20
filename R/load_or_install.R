@@ -12,6 +12,7 @@ load_or_install <- function(wants) {
     # sample use :
     # load_or_install(c('tidyverse','glmnet','HMisc'))
     has <- wants %in% rownames(installed.packages())
-    if(any(!has)) install.packages(wants[!has],repos='https://cloud.r-project.org/',dependencies=TRUE)
+    if(any(!has)) install.packages(wants[!has],
+        repos='https://cloud.r-project.org/',dependencies=TRUE)
     lapply(wants,require,character.only=TRUE)
 }
