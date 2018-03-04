@@ -14,5 +14,5 @@ load_or_install <- function(wants) {
     has <- wants %in% rownames(installed.packages())
     if(any(!has)) install.packages(wants[!has],
         repos='https://cloud.r-project.org/',dependencies=TRUE)
-    lapply(wants,require,character.only=TRUE)
+    suppressMessages(lapply(wants,require,character.only=TRUE))
 }
