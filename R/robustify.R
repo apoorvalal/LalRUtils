@@ -1,5 +1,5 @@
 ####################################################
-#' Replaces the standard errors in FELM model object with robust
+#' Replaces the standard errors (t and p vals)in FELM model object with robust
 #' so that passing it on to stargazer spits out correct SEs
 #' Only necessary for non-clustered SE; FELM automatically calculates
 #' clustered standard errors if Y ~ X | FE | IV | Cluster specified
@@ -11,6 +11,8 @@
 
 # returns lm summary object with cluster-robust standard errors
 robustify <- function(model){
-    model$se = model$rse
+    model$se    = model$rse
+    model$tval  = model$rtval
+    model$pval  = model$rpval
     return(model)
 }
