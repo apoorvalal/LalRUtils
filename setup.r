@@ -7,9 +7,10 @@ if (require('LalRUtils')==F) {
 load_or_install(c('devtools','roxygen2'))
 sessionInfo()
 ####################################################
+#%%
 home = "/home/alal/Desktop/code/"
 setwd(home)
 # create('LalRUtils')
+#%%
 setwd(paste0(home,'LalRUtils'))
 document()
-# install('LalRUtils')

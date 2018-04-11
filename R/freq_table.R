@@ -5,6 +5,6 @@
 #' @examples
 #' freq_table(dataframe, 'categorical_var')
 freq_table = function(df, var) {
-    df %>% count_(var) %>%
-        mutate(prop=prop.table(n))
+    ft = df %>% count_(var) %>% mutate(prop=prop.table(n))
+    return(ft)
 }
