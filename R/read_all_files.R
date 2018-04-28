@@ -11,7 +11,7 @@
 ##########################################################################
 
 read_all_files <- function(extension,location){
-    require(haven)
+    suppressMessages(library(haven))
     setwd(location)
     file_pattern = paste0("\\.",extension,"$")
     obj          = list.files(pattern=file_pattern)
@@ -32,4 +32,3 @@ read_all_files <- function(extension,location){
     }
     return(objs)
 }
-
