@@ -2,8 +2,6 @@
 
 export(binscatter)
 export(convert_all_to_csv)
-export(dataframe)
-export(detachAllPackages)
 export(drop_missing_vars)
 export(formula_stitcher)
 export(freq_table)
