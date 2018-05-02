@@ -11,5 +11,5 @@ sessionInfo()
 home = "/home/alal/Desktop/code/"
 setwd(paste0(home,'LalRUtils'))
 # create('LalRUtils')
-#%%
 document()
+# install('LalRUtils')

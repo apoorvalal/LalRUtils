@@ -1,6 +1,7 @@
 #' fuzzy matches 2 character vectors, and returns most similar pairs
 #' @param character vectors a and b
 #' @keywords fuzzy match string
+#' @export
 #' @examples
 #' fuzzy_match(keys_A, keys_B)
 fuzzy_match <- function(a,b) {
