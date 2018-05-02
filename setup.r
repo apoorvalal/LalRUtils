@@ -9,8 +9,7 @@ sessionInfo()
 ####################################################
 #%%
 home = "/home/alal/Desktop/code/"
-setwd(home)
+setwd(paste0(home,'LalRUtils'))
 # create('LalRUtils')
 #%%
-setwd(paste0(home,'LalRUtils'))
 document()
