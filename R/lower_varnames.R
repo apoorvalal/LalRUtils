@@ -8,4 +8,5 @@
 # Converts all varnames into lowercase - designed for shouty SAS datasets
 lower_varnames <- function(df) {
     names(df)=tolower(names(df))
+    return(df)
 }
