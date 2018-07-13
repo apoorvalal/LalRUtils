@@ -8,6 +8,6 @@ freq_table = function(df, var) {
     suppressMessages(library(tidyverse))
     ft = df %>% count_(var) %>%
       mutate(prop=prop.table(n)) %>%
-      arrange(desc(var))
+      arrange(desc(prop))
     return(ft)
 }
