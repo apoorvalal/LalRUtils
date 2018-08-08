@@ -6,7 +6,8 @@ require(LalRUtils)
 load_or_install(c('devtools','roxygen2'))
 ####################################################
 #%%
-home = "C:/Users/alal/Desktop/code/LalRUtils/"
+# home = "C:/Users/alal/Desktop/code/LalRUtils/"
+home = "~/Desktop/code/LalRUtils/"
 setwd(paste0(home))
 # create('LalRUtils')
 document()
