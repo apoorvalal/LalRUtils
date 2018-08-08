@@ -4,11 +4,10 @@
 #' @export
 #' @examples
 #' map_ggp_object + lal_map_theme()
-lal_map_theme <- function(...) {
-  library(ggthemes)
-  theme_fivethirtyeight() +
+lal_map_theme <- function(fontfam="Roboto Condensed", ...) {
+  theme_bw() +
   theme(
-    text = element_text(family = "Liberation Sans", color = "#22211d"),
+    text = element_text(family = fontfam, color = "#22211d"),
     legend.position='bottom',
     axis.line = element_blank(),
     axis.text.x = element_blank(),
@@ -16,7 +15,6 @@ lal_map_theme <- function(...) {
     axis.ticks = element_blank(),
     axis.title.x = element_blank(),
     axis.title.y = element_blank(),
-    # panel.grid.minor = element_line(color = "#ebebe5", size = 0.2),
     panel.grid.major = element_line(color = "#ebebe5", size = 0.2),
     panel.grid.minor = element_blank(),
     plot.background = element_rect(fill = "#f5f5f2", color = NA),

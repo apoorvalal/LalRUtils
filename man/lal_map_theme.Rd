@@ -4,7 +4,7 @@
 \alias{lal_map_theme}
 \title{Theme for maps}
 \usage{
-lal_map_theme(...)
+lal_map_theme(fontfam = "Roboto Condensed", ...)
 }
 \arguments{
 \item{ggplot}{object}
