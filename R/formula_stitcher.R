@@ -11,15 +11,20 @@
 
 formula_stitcher <- function(depvar,
                             rhs_vars,
-                            factors=NULL){
-    if (!is.null((factors))) {
-        lapply(factors,as.factor)
-        fml <- as.formula(paste0(depvar,'~',
-                        paste((rhs_vars),collapse='+'),'+',
-                        paste('factor(',factors,')',collapse='+',sep = '')))
+                            factors=NULL,
+                            felm=F){
+    if (felm == T){
+
     } else {
-        fml <- as.formula(paste0(depvar,'~',
-                        paste((rhs_vars),collapse='+')))
+      if (!is.null((factors))) {
+          lapply(factors,as.factor)
+          fml <- as.formula(paste0(depvar,'~',
+                          paste((rhs_vars),collapse='+'),'+',
+                          paste('factor(',factors,')',collapse='+',sep = '')))
+      } else {
+          fml <- as.formula(paste0(depvar,'~',
+                          paste((rhs_vars),collapse='+')))
+      }
     }
     return(fml)
 }

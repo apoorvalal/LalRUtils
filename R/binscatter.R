@@ -9,7 +9,7 @@
 #' @keywords cef bins scatterplot
 #' @examples
 #' data("Guns", package = "AER")
-#' binscatter(formula="violent ~ prisoners", key_var = "ln_prisoners",
+#' binscatter(formula="violent ~ prisoners", key_var = "prisoners",
 #'           data=Guns, bins=10, partial=FALSE)
 
 binscatter <- function(formula, key_var, data,

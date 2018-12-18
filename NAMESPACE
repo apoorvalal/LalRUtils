@@ -3,6 +3,7 @@
 export(binscatter)
 export(convert_all_to_csv)
 export(drop_missing_vars)
+export(formula_lfe)
 export(formula_stitcher)
 export(freq_table)
 export(fuzzy_match)

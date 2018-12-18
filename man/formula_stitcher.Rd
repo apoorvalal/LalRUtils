@@ -4,7 +4,7 @@
 \alias{formula_stitcher}
 \title{Stitches together formula for use in lm/glm}
 \usage{
-formula_stitcher(depvar, rhs_vars, factors = NULL)
+formula_stitcher(depvar, rhs_vars, factors = NULL, felm = F)
 }
 \arguments{
 \item{depvar}{The dependent variable}

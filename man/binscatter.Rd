@@ -23,7 +23,7 @@ customised later
 }
 \examples{
 data("Guns", package = "AER")
-binscatter(formula="violent ~ prisoners", key_var = "ln_prisoners",
+binscatter(formula="violent ~ prisoners", key_var = "prisoners",
           data=Guns, bins=10, partial=FALSE)
 }
 \keyword{bins}
