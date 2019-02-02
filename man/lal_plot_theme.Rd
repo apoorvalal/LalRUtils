@@ -4,7 +4,7 @@
 \alias{lal_plot_theme}
 \title{Theme for nice looking plots}
 \usage{
-lal_plot_theme(fontfam = "Roboto Condensed", ...)
+lal_plot_theme(fontfam = "Roboto Condensed", textangle = 0, ...)
 }
 \arguments{
 \item{ggplot}{object}
