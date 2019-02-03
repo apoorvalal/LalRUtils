@@ -2,7 +2,7 @@
 % Please edit documentation in R/balance_table.R
 \name{balance_table}
 \alias{balance_table}
-\title{Balance Check}
+\title{Balance Check for observational studies}
 \usage{
 balance_table(df, treatvar, bal_vars)
 }
@@ -14,10 +14,9 @@ balance_table(df, treatvar, bal_vars)
 \item{bal_vars}{covariates to check balance in}
 }
 \description{
-Balance Check
+Balance Check for observational studies
 }
 \examples{
-formula_lfe(y='mpg', X = c('hp', 'drat'), D = c('wt', 'vs'))
 balance_table(nsw_psid, 'nsw', c('age', 'black', 'u75'))
 }
 \keyword{balance}

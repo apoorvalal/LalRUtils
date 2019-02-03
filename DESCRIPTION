@@ -1,8 +1,8 @@
 Package: LalRUtils
-Title: Miscellaneous utility scripts for personal use (one line, title case)
+Title: Lal's utility scripts for personal use 
 Version: 0.0.0.9000
 Authors@R: person("Apoorva", "Lal", email = "lal.apoorva@gmail.com", role = c("aut", "cre"))
-Description: Utility functions for personal use in data cleaning and management.
+Description: Utility functions for personal use in research tasks (estimation/visualisation/munging). 
 Depends: R (>= 3.0)
 License: MIT
 Encoding: UTF-8

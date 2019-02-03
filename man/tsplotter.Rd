@@ -15,7 +15,7 @@ tsplotter(df, timevar = "year")
 Canned subroutine to plot time series for several variables
 }
 \examples{
-    overall_ineq = tsplotter(overall) + labs(title='Overall Inequality')
+overall_ineq = tsplotter(overall) + labs(title='Overall Inequality')
 }
 \keyword{categorical}
 \keyword{dataframe}

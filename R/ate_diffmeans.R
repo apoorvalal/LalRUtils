@@ -22,5 +22,6 @@ ate_diffmeans <- function(df, outcome, treatment){
   se_hat = sqrt(
     sumcalc$sigma_2[1] / sumcalc$nobs[1] +
     sumcalc$sigma_2[2] / sumcalc$nobs[2])
+  # report estimates and ingredients (in case order is flipped etc)
   return(list(te = mu_diff, std_err = se_hat, sumstats = sumcalc))
 }

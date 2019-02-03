@@ -7,7 +7,9 @@
 convert_all_to_csv(dataframes, path)
 }
 \arguments{
-\item{list}{of dataframes, path of file/s}
+\item{dataframes}{= list of dataframes,}
+
+\item{path}{= path of file/s}
 }
 \description{
 Writes all dataframes to csv

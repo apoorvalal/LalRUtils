@@ -1,11 +1,10 @@
-#' Balance Check
+#' Balance Check for observational studies
 #' @param df dataframe to check balance
 #' @param treatvar dummy for treatment
 #' @param bal_vars covariates to check balance in
 #' @keywords regression linear model balance check
 #' @export
 #' @examples
-#' formula_lfe(y='mpg', X = c('hp', 'drat'), D = c('wt', 'vs'))
 #' balance_table(nsw_psid, 'nsw', c('age', 'black', 'u75'))
 balance_table = function(df,
     treatvar, bal_vars){

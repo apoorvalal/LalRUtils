@@ -9,10 +9,20 @@ and added some options, made it return object so labels can be
 customised later}
 \usage{
 binscatter(formula, key_var, data, plotraw = TRUE, bins = 20,
-  partial = FALSE)
+  partial = T)
 }
 \arguments{
-\item{formula}{, key_var, dataframe, number of bins, option for partials}
+\item{formula}{FELM formula}
+
+\item{key_var}{W variable for CEF}
+
+\item{data}{dataframe}
+
+\item{plotraw}{T if underlying scatterplot should be plotted}
+
+\item{bins}{= number of bins}
+
+\item{partial}{T if Y and W should be residualised on other Xs first}
 }
 \description{
 R translation of Michael Stepner's binscatter for Stata
@@ -24,7 +34,7 @@ customised later
 \examples{
 data("Guns", package = "AER")
 binscatter(formula="violent ~ prisoners", key_var = "prisoners",
-          data=Guns, bins=10, partial=FALSE)
+          data=Guns, bins=10, partial=F)
 }
 \keyword{bins}
 \keyword{cef}

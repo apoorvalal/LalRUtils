@@ -1,15 +1,18 @@
 ####################################################
 rm(list=ls())
-user_name = Sys.info()['user']
-temp_path = Sys.getenv()['TMP']
-if (require('LalRUtils')==F) {
-    library(devtools)
-    devtools::install_github("apoorvalal/LalRUtils")
-}
-load_or_install(c('tidyverse','Hmisc','AER')) #, "lib2")
-sessionInfo()
+library(LalRUtils)
+load_or_install(c('tidyverse','Hmisc','AER', 'lfe', 'stargazer')) #, "lib2")
 ####################################################
+#%%
 data("CPS1985")
-fml1 = formula_stitcher('wage',c('age','experience','married'),c('ethnicity','sector'))
+# formula stitcher
+fml1 = formula_stitcher('wage',c('age','experience','married'),
+                        c('ethnicity','sector'))
 lm1 <- lm(fml1,data=CPS1985)
-summary(lm1)
+
+# lfe stitcher
+fml2 = formula_lfe('wage', c('age', 'experience', 'married'),
+                   D = c('ethnicity', 'sector'))
+
+lm2 <- robustify(felm(fml2,data=CPS1985))
+stargazer(lm1, lm2, type = 'text') # should be the same point estimates

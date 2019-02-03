@@ -1,6 +1,7 @@
 ####################################
 #' Writes all dataframes to csv
-#' @param list of dataframes, path of file/s
+#' @param dataframes = list of dataframes,
+#' @param path = path of file/s
 #' @export
 #' @keywords write save bulk
 #' @examples

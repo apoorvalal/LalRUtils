@@ -4,27 +4,33 @@
 #' https://github.com/timlrx/binscatter/blob/master/binscatter.R
 #' and added some options, made it return object so labels can be
 #' customised later
-#' @param formula , key_var, dataframe, number of bins, option for partials
+#' @param formula FELM formula
+#' @param key_var W variable for CEF
+#' @param data dataframe
+#' @param plotraw T if underlying scatterplot should be plotted
+#' @param bins = number of bins
+#' @param partial T if Y and W should be residualised on other Xs first
+#' @param
 #' @export
 #' @keywords cef bins scatterplot
 #' @examples
 #' data("Guns", package = "AER")
 #' binscatter(formula="violent ~ prisoners", key_var = "prisoners",
-#'           data=Guns, bins=10, partial=FALSE)
+#'           data=Guns, bins=10, partial=F)
 
 binscatter <- function(formula, key_var, data,
-                      plotraw=TRUE, bins=20, partial=FALSE){
+                      plotraw=TRUE, bins=20, partial=T){
   require(lfe)
   require(ggplot2)
   # partial out other covariates  - FWL magic
   if(partial==TRUE){
     y <- unlist(strsplit(formula, "~"))[1]
     x <- unlist(strsplit(formula, "~"))[2]
-    controls <- gsub(paste("[[:punct:]]*",key_var,"[[:space:]]*[[:punct:]]*",sep=""),
-                     "",x)
+    controls <- gsub(paste("[[:punct:]]*",key_var,
+                    "[[:space:]]*[[:punct:]]*",sep=""), "",x)
     reg_all <- felm(formula(formula),data=data)
-    reg_y <- felm(formula(paste(y, "~", controls, sep="")), data=data)
-    reg_x <- felm(formula(paste(key_var, "~", controls, sep="")), data=data)
+    reg_y <- felm(formula(paste0(y, "~", controls)), data=data)
+    reg_x <- felm(formula(paste0(key_var, "~", controls)), data=data)
     resid_all <- resid(reg_all)
     resid_y <- resid(reg_y)
     resid_x <- resid(reg_x)

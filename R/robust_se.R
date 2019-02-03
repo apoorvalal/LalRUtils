@@ -6,7 +6,7 @@
 #' @examples
 #' robust_se(lm(y~x,data=df))
 
-# returns lm summary object with cluster-robust standard errors
+# returns vector of robust standard errors
 robust_se <- function(model){
     suppressPackageStartupMessages(library(sandwich))
     s <- sqrt(diag(vcovHC(model)))
