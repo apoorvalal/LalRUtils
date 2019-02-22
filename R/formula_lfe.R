@@ -27,7 +27,7 @@ formula_lfe <- function(y, X, w = NULL, D = NULL, Z = NULL, C = NULL){
   }
   # clusters
   if (!is.null(C)){
-    clusts = paste(D, collapse = "+")
+    clusts = paste(C, collapse = "+")
   } else {
     clusts = "0"
   }
