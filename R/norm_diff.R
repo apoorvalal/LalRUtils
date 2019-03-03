@@ -10,7 +10,7 @@ norm_diff <- function(df, treat, value){
   suppressPackageStartupMessages(library(tidyverse))
   value = enquo(value); treat = enquo(treat)
   df %>% group_by(!! treat) %>%
-    summarise(mean=mean(!! value), sd=sd(!! value))
+    summarise(mean=mean(!! value), sd=sd(!! value)) -> summ
   m_t = summ %>% filter(!! treat == 1) %>% .$mean
   s_t = summ %>% filter(!! treat == 1) %>% .$sd
   m_c = summ %>% filter(!! treat == 0) %>% .$mean
