@@ -10,7 +10,6 @@
 #' @param plotraw T if underlying scatterplot should be plotted
 #' @param bins = number of bins
 #' @param partial T if Y and W should be residualised on other Xs first
-#' @param
 #' @export
 #' @keywords cef bins scatterplot
 #' @examples
