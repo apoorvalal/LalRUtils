@@ -10,6 +10,7 @@ lal_plot_theme <- function(fontfam="Roboto Condensed", textangle = 0,...) {
   theme(
     text = element_text(family = fontfam),
     axis.text.x = element_text(angle = textangle),
+    legend.title = element_blank(),
     legend.position='bottom',
     panel.border = element_blank(),
     ...
