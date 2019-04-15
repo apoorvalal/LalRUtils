@@ -2,7 +2,7 @@
 % Please edit documentation in R/balance_table.R
 \name{balance_table}
 \alias{balance_table}
-\title{Balance Check for observational studies}
+\title{Balance Check for observational studies; includes SD and Normalised Difference}
 \usage{
 balance_table(df, treatvar, bal_vars)
 }
@@ -14,7 +14,7 @@ balance_table(df, treatvar, bal_vars)
 \item{bal_vars}{covariates to check balance in}
 }
 \description{
-Balance Check for observational studies
+Balance Check for observational studies; includes SD and Normalised Difference
 }
 \examples{
 balance_table(nsw_psid, 'nsw', c('age', 'black', 'u75'))
