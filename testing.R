@@ -16,3 +16,5 @@ fml2 = formula_lfe('wage', c('age', 'experience', 'married'),
 
 lm2 <- robustify(felm(fml2,data=CPS1985))
 stargazer(lm1, lm2, type = 'text') # should be the same point estimates
+#%%
+nmiss_nun(CPS1985)
