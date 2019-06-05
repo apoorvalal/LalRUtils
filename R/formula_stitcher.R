@@ -1,6 +1,6 @@
 #' Stitches together formula for use in lm/glm
-#' @param depvar The dependent variable
-#' @param rhs_vars List of independent variables (continuous/dummy variables)
+#' @param Y The dependent variable
+#' @param X List of independent variables (continuous/dummy variables)
 #' @param factors List of factor variables (NULL by default)
 #' @keywords dataframe variable name
 #' @export
@@ -9,22 +9,15 @@
 #' lm1 <- lm(fml1,data=CPS1985)
 
 
-formula_stitcher <- function(depvar,
-                            rhs_vars,
-                            factors=NULL,
-                            felm=F){
-    if (felm == T){
-
+formula_stitcher <- function(Y, X, factors=NULL){
+    if (!is.null((factors))) {
+        lapply(factors,as.factor)
+        fml <- as.formula(paste0(Y,'~',
+                        paste((X),collapse='+'),'+',
+                        paste('factor(',factors,')',collapse='+',sep = '')))
     } else {
-      if (!is.null((factors))) {
-          lapply(factors,as.factor)
-          fml <- as.formula(paste0(depvar,'~',
-                          paste((rhs_vars),collapse='+'),'+',
-                          paste('factor(',factors,')',collapse='+',sep = '')))
-      } else {
-          fml <- as.formula(paste0(depvar,'~',
-                          paste((rhs_vars),collapse='+')))
-      }
+        fml <- as.formula(paste0(Y,'~',
+                        paste((X),collapse='+')))
     }
     return(fml)
 }
