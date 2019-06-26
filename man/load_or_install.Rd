@@ -4,10 +4,12 @@
 \alias{load_or_install}
 \title{Loads a list of libraries, installs when necessary}
 \usage{
-load_or_install(wants)
+load_or_install(wants, repo = "https://cloud.r-project.org/")
 }
 \arguments{
 \item{wants}{A list of R modules available on CRAN}
+
+\item{repo}{string containing repo to be passed to install.packages}
 }
 \description{
 Loads a list of libraries, installs when necessary

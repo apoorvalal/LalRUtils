@@ -4,12 +4,12 @@
 \alias{formula_stitcher}
 \title{Stitches together formula for use in lm/glm}
 \usage{
-formula_stitcher(depvar, rhs_vars, factors = NULL, felm = F)
+formula_stitcher(Y, X, factors = NULL)
 }
 \arguments{
-\item{depvar}{The dependent variable}
+\item{Y}{The dependent variable}
 
-\item{rhs_vars}{List of independent variables (continuous/dummy variables)}
+\item{X}{List of independent variables (continuous/dummy variables)}
 
 \item{factors}{List of factor variables (NULL by default)}
 }
