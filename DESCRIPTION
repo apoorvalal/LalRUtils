@@ -4,6 +4,16 @@ Version: 0.0.0.9000
 Authors@R: person("Apoorva", "Lal", email = "lal.apoorva@gmail.com", role = c("aut", "cre"))
 Description: Utility functions for personal use in research tasks (estimation/visualisation/munging). 
 Depends: R (>= 3.0)
+Imports:
+  tidyverse,
+  data.table,
+  lfe,
+  haven,
+  rio,
+  ggplot2,
+  tools,
+  grid,
+  stringdist
 License: MIT
 Encoding: UTF-8
 LazyData: true
