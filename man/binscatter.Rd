@@ -2,39 +2,48 @@
 % Please edit documentation in R/binscatter.R
 \name{binscatter}
 \alias{binscatter}
-\title{R translation of Michael Stepner's binscatter for Stata
-forked from timlrx -
-https://github.com/timlrx/binscatter/blob/master/binscatter.R
-and added some options, made it return object so labels can be
-customised later}
+\title{R implementation of binned scatterplot and CEF plotter, with added options for cluster variance}
 \usage{
-binscatter(formula, key_var, data, plotraw = TRUE, bins = 20,
-  partial = T)
+binscatter(fmla, key_var, data, plotraw = TRUE, bins = 20,
+  rawdata_colour = "black", rawdata_alpha = 0.2, rawdata_size = 0.5,
+  linfit_width = 0.6, linfit_colour = "blue", cef_point_size = 1,
+  cef_point_colour = "red", ci_colour = "gray", ci_alpha = 0.3)
 }
 \arguments{
-\item{formula}{FELM formula}
+\item{fmla}{FELM formula *as a string*}
 
-\item{key_var}{W variable for CEF}
+\item{key_var}{X axis variable for CEF}
 
 \item{data}{dataframe}
 
 \item{plotraw}{T if underlying scatterplot should be plotted}
 
-\item{bins}{= number of bins}
+\item{bins}{number of bins}
 
-\item{partial}{T if Y and W should be residualised on other Xs first}
+\item{rawdata_colour}{Colour of Rawdata}
+
+\item{rawdata_alpha}{Alpha of Rawdata}
+
+\item{rawdata_size}{Size of Rawdata}
+
+\item{linfit_width}{width of linear fit}
+
+\item{linfit_colour}{colour of linear fit}
+
+\item{cef_point_size}{Size of binscatter points}
+
+\item{cef_point_colour}{Colour of binscatter points}
+
+\item{ci_colour}{Colour of CI ribbon}
+
+\item{ci_alpha}{Alpha of CI ribbon}
 }
 \description{
-R translation of Michael Stepner's binscatter for Stata
-forked from timlrx -
-https://github.com/timlrx/binscatter/blob/master/binscatter.R
-and added some options, made it return object so labels can be
-customised later
+R implementation of binned scatterplot and CEF plotter, with added options for cluster variance
 }
 \examples{
 data("Guns", package = "AER")
-binscatter(formula="violent ~ prisoners", key_var = "prisoners",
-          data=Guns, bins=10, partial=F)
+binscatter('Sepal.Length ~ Petal.Length + Petal.Width|Species', key_var = 'Petal.Width', iris)
 }
 \keyword{bins}
 \keyword{cef}
