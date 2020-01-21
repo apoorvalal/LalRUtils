@@ -5,7 +5,7 @@ load_or_install(c('devtools','roxygen2'))
 
 ####################################################
 #%% Run this to document new functions and populate namespace
-home = "~/dsk/code/LalRUtils/"
+home = "~/Desktop/code/LalRUtils/"
 setwd(home)
 # create('LalRUtils') # only run once
 document()

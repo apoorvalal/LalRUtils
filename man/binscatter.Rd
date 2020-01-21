@@ -4,10 +4,22 @@
 \alias{binscatter}
 \title{R implementation of binned scatterplot and CEF plotter, with added options for cluster variance}
 \usage{
-binscatter(fmla, key_var, data, plotraw = TRUE, bins = 20,
-  rawdata_colour = "black", rawdata_alpha = 0.2, rawdata_size = 0.5,
-  linfit_width = 0.6, linfit_colour = "blue", cef_point_size = 1,
-  cef_point_colour = "red", ci_colour = "gray", ci_alpha = 0.3)
+binscatter(
+  fmla,
+  key_var,
+  data,
+  plotraw = TRUE,
+  bins = 20,
+  rawdata_colour = "black",
+  rawdata_alpha = 0.2,
+  rawdata_size = 0.5,
+  linfit_width = 0.6,
+  linfit_colour = "blue",
+  cef_point_size = 1,
+  cef_point_colour = "red",
+  ci_colour = "gray",
+  ci_alpha = 0.3
+)
 }
 \arguments{
 \item{fmla}{FELM formula *as a string*}

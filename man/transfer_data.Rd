@@ -4,9 +4,12 @@
 \alias{transfer_data}
 \title{Populates a stat-transfer script to convert files to CSV}
 \usage{
-transfer_data(path,
+transfer_data(
+  path,
   stat.transfer.path = "\\"C:\\\\Program Files\\\\StatTransfer12-64\\\\st.exe\\"",
-  out.ext = "csv", outpath)
+  out.ext = "csv",
+  outpath
+)
 }
 \arguments{
 \item{path}{of file/s}
