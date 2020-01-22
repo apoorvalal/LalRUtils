@@ -10,7 +10,7 @@ fuzzy_match <- function(a,b) {
   distance <- stringdistmatrix(a,b,method = 'jaccard')
   # find the closest match for each
   match <- apply(distance, 1, which.min)
-  key = a
   values = b[match] # slice b using match index
-  return(as.data.frame(cbind(key, values)))
+  df = tibble(key = as.character(a), values = as.character(values))
+  return(df)
 }

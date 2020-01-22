@@ -1,7 +1,7 @@
 ####################################################
 rm(list=ls())
 # Run this to install new version after pushing to github
-load_or_install(c('devtools','roxygen2'))
+libreq(devtools,roxygen2)
 
 ####################################################
 #%% Run this to document new functions and populate namespace
