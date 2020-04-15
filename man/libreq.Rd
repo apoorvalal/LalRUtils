@@ -13,7 +13,7 @@ libreq(..., repo = "https://cloud.r-project.org/")
 Loads a list of libraries, installs when necessary - Take 2
 }
 \examples{
-libreq(tidyverse, lfe, estimatr))
+libreq(tidyverse, lfe, estimatr)
 }
 \keyword{install}
 \keyword{libraries}

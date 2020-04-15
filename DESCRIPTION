@@ -11,6 +11,7 @@ Imports:
   haven,
   rio,
   ggplot2,
+  hrbrthemes,
   tools,
   grid,
   stringdist

@@ -6,7 +6,7 @@
 #' plot_ggp_object + lal_plot_theme_d()
 
 lal_plot_theme_d <- function(fontfam = "IBM Plex Sans Condensed", fsize = 15, textangle = 0,...) {
-  require(hrbrthemes)
+  suppressMessages(library(hrbrthemes))
   theme_ft_rc() +
   theme(
     text = element_text(family = fontfam, size = fsize),
