@@ -1,10 +1,9 @@
 #' Loads a list of libraries, installs when necessary - Take 2
-#' @param
 #' @param repo string containing repo to be passed to install.packages
 #' @keywords libraries install
 #' @export
 #' @examples
-#' libreq(tidyverse, lfe, estimatr))
+#' libreq(tidyverse, lfe, estimatr)
 
 libreq <- function(..., repo='https://cloud.r-project.org/') {
     wants = as.character(match.call(expand.dots = FALSE)[[2]])

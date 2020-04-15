@@ -1,6 +1,7 @@
 ####################################################
 rm(list=ls())
 # Run this to install new version after pushing to github
+library(LalRUtils)
 libreq(devtools,roxygen2)
 
 ####################################################

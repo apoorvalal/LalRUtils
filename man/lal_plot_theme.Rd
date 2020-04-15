@@ -2,15 +2,20 @@
 % Please edit documentation in R/lal_plot_theme.R
 \name{lal_plot_theme}
 \alias{lal_plot_theme}
-\title{Theme for nice looking plots}
+\title{Dark theme for nice looking plots with sensible defaults (no legend title, legend at the bottom)}
 \usage{
-lal_plot_theme(fontfam = "Roboto Condensed", textangle = 0, ...)
+lal_plot_theme(
+  fontfam = "IBM Plex Sans Condensed",
+  fsize = 15,
+  textangle = 0,
+  ...
+)
 }
 \arguments{
 \item{ggplot}{object}
 }
 \description{
-Theme for nice looking plots
+Dark theme for nice looking plots with sensible defaults (no legend title, legend at the bottom)
 }
 \examples{
 plot_ggp_object + lal_plot_theme()
