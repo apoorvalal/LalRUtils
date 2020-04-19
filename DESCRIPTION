@@ -1,9 +1,9 @@
 Package: LalRUtils
-Title: Lal's utility scripts for personal use 
-Version: 0.0.0.9000
+Title: Lal's utility scripts for personal use
+Version: 0.0.0.9999
 Authors@R: person("Apoorva", "Lal", email = "lal.apoorva@gmail.com", role = c("aut", "cre"))
-Description: Utility functions for personal use in research tasks (estimation/visualisation/munging). 
-Depends: R (>= 3.0)
+Description: Utility functions for personal use in research tasks (estimation/visualisation/munging).
+Depends: R (>= 3.5)
 Imports:
   tidyverse,
   data.table,

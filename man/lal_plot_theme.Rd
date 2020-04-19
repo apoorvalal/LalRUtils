@@ -2,7 +2,7 @@
 % Please edit documentation in R/lal_plot_theme.R
 \name{lal_plot_theme}
 \alias{lal_plot_theme}
-\title{Dark theme for nice looking plots with sensible defaults (no legend title, legend at the bottom)}
+\title{theme for nice looking plots with sensible defaults (no legend title, legend at the bottom)}
 \usage{
 lal_plot_theme(
   fontfam = "IBM Plex Sans Condensed",
@@ -15,7 +15,7 @@ lal_plot_theme(
 \item{ggplot}{object}
 }
 \description{
-Dark theme for nice looking plots with sensible defaults (no legend title, legend at the bottom)
+theme for nice looking plots with sensible defaults (no legend title, legend at the bottom)
 }
 \examples{
 plot_ggp_object + lal_plot_theme()

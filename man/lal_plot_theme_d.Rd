@@ -2,11 +2,12 @@
 % Please edit documentation in R/lal_plot_theme_d.R
 \name{lal_plot_theme_d}
 \alias{lal_plot_theme_d}
-\title{Fork of hrbrthemes::theme_ft_rc() with altered legend options and dots}
+\title{Wrapper for hrbrthemes::theme_ft_rc() with bigger font, altered legend options and dots}
 \usage{
 lal_plot_theme_d(
   fontfam = "IBM Plex Sans Condensed",
   fsize = 15,
+  axsize = 13,
   textangle = 0,
   ...
 )
@@ -15,7 +16,7 @@ lal_plot_theme_d(
 \item{ggplot}{object}
 }
 \description{
-Fork of hrbrthemes::theme_ft_rc() with altered legend options and dots
+Wrapper for hrbrthemes::theme_ft_rc() with bigger font, altered legend options and dots
 }
 \examples{
 plot_ggp_object + lal_plot_theme_d()
