@@ -17,7 +17,6 @@
 #' @export
 #' @keywords cef bins scatterplot
 #' @examples
-#' data("Guns", package = "AER")
 #' binscatter('Sepal.Length ~ Petal.Length + Petal.Width|Species', key_var = 'Petal.Width', iris)
 
 binscatter = function(fmla, key_var, data, plotraw = TRUE, bins = 20,
