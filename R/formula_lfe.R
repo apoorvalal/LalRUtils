@@ -19,7 +19,7 @@ formula_lfe= function (y, X, W = NULL, D = NULL, Z = NULL, C = NULL) {
     }
     # first stage
     if (!is.null(Z)) {
-        felm_fs = paste(c("(", paste(c(w, paste(Z, collapse = "+")),
+        felm_fs = paste(c("(", paste(c(W, paste(Z, collapse = "+")),
             collapse = "~"), ")"), collapse = "")
     } else { # no instrument
         felm_fs = "0"
