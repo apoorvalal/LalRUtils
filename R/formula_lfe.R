@@ -12,7 +12,7 @@
 #' formula_lfe(y='mpg', X = c('hp', 'drat'), W = 'gear', Z = c('cyl', 'carb'), D = c('wt', 'vs'), C = c('cyl', 'wt'))
 formula_lfe= function (y, X, W = NULL, D = NULL, Z = NULL, C = NULL) {
     # 'second stage' step
-    if (!is.null(w) & is.null(Z)) { # separate treatment dummy only
+    if (!is.null(W) & is.null(Z)) { # separate treatment dummy only
       felm_ss = paste(c(y, paste(c(W, X), collapse = "+")), collapse = "~")
     } else { # no instrumented variable
       felm_ss = paste(c(y, paste(X, collapse = "+")), collapse = "~")
