@@ -54,7 +54,6 @@ binscatter(
 R implementation of binned scatterplot and CEF plotter, with added options for cluster variance
 }
 \examples{
-data("Guns", package = "AER")
 binscatter('Sepal.Length ~ Petal.Length + Petal.Width|Species', key_var = 'Petal.Width', iris)
 }
 \keyword{bins}

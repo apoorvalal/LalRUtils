@@ -4,27 +4,27 @@
 \alias{formula_lfe}
 \title{Stitches together formula for use in felm}
 \usage{
-formula_lfe(y, X, w = NULL, D = NULL, Z = NULL, C = NULL)
+formula_lfe(y, X, W = NULL, D = NULL, Z = NULL, C = NULL)
 }
 \arguments{
 \item{y}{The dependent variable}
 
-\item{X}{vector of Xs}
+\item{X}{vector of controls}
 
-\item{w}{endogenous variable (only included if first stage is specified)}
+\item{W}{treatment variable}
 
 \item{D}{vector of factor variables to be partialed out}
 
 \item{Z}{vector of instruments}
 
-\item{C}{vector of variables cluster standard errors}
+\item{C}{vector of variables cluster standard errors (multi-way permitted by LFE)}
 }
 \description{
 Stitches together formula for use in felm
 }
 \examples{
 formula_lfe(y='mpg', X = c('hp', 'drat'), D = c('wt', 'vs'))
-formula_lfe(y='mpg', X = c('hp', 'drat'), w = 'gear', Z = c('cyl', 'carb'), D = c('wt', 'vs'), C = c('cyl', 'wt'))
+formula_lfe(y='mpg', X = c('hp', 'drat'), W = 'gear', Z = c('cyl', 'carb'), D = c('wt', 'vs'), C = c('cyl', 'wt'))
 }
 \keyword{linear}
 \keyword{model}

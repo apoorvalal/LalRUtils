@@ -1,9 +1,10 @@
-#' Fork of inborutils::csv_to_sqlite to save a delimited text table into a single table sqlite database that can then be munged w dbplyr / sqldf
+#' Fork of inborutils::csv_to_sqlite to save a delimited text table into a single table
+#' sqlite database that can then be munged w dplyr/ dbplyr / sqldf
 #'
 #' The table can be a comma separated (csv) or a tab separated (tsv) or any
 #' other delimited text file. The file is read in chunks. Each chunk is copied
 #' in the same sqlite table database before the next chunk is loaded into
-#' memory. See the INBO tutorial \href{https://github.com/inbo/tutorials/blob/master/source/data-handling/large-files-R.Rmd}{Handling large files in R}
+#' memory. See the INBO tutorial \href{https://inbo.github.io/tutorials/tutorials/r_large_data_files_handling/#convertsqlite}{Handling large files in R}
 #' to learn more.
 #'
 #' @section Remark:
