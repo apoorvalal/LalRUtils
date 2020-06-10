@@ -8,7 +8,6 @@
 #' @export
 #' @keywords seaborn Scatterplot
 #' @importFrom ggExtra ggMarginal
-#' read_all_files(extension='dta',path='C:/alal/data/')
 regplot_dens = function(df, xvar, yvar, zvar, title = ""){
   require(ggExtra); require(ggplot2)
   p0 = ggplot(df, aes(x = {{xvar}}, y = {{yvar}})) +
