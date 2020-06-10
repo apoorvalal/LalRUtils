@@ -1,17 +1,15 @@
 ####################################################
 rm(list=ls())
-# Run this to install new version after pushing to github
-library(LalRUtils)
-libreq(devtools,roxygen2)
-
+# library(LalRUtils)
+library(devtools); library(roxygen2)
 ####################################################
-#%% Run this to document new functions and populate namespace
+# %% Run this to document new functions and populate namespace
 home = "~/Desktop/code/LalRUtils/"
 setwd(home)
 # create('LalRUtils') # only run once
 document()
-
-#%%
+# %%
 # reinstall after pushing updates
+# Run this to install new version after pushing to github
 library(devtools)
 devtools::install_github("apoorvalal/LalRUtils")
