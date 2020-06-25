@@ -31,7 +31,7 @@ rdr_export <- function(rdr_out, prec = 4){
   Nobs = paste0('(', out$N_h[1], ',', out$N_h[2], ')')
   poly_order = rdr_out$p
   res = rbind(conventional, robust, poly_order, bw, Nobs)
-  res2 = data.frame('Q' = row.names(res), res) %>%  setDT
+  res2 = setDT(data.frame('Q' = row.names(res), res))
   res2[1:4, est := "Local-Linear"]
   res2[5:8, est := "Robust"]
   res2[9:11,est := "--"]
