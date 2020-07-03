@@ -10,17 +10,19 @@ Imports:
   lfe,
   haven,
   rio,
+  readr,
+  lubridate,
   ggplot2,
+  hrbrthemes,
+  ggExtra,
   rlang,
   glue,
-  hrbrthemes,
   tools,
   grid,
   stringdist,
   R.utils,
   DBI,
   RSQLite,
-  readr,
   tictoc
 License: MIT
 Encoding: UTF-8
