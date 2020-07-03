@@ -8,20 +8,19 @@
 #' rdre %>% kable(, format = "latex", booktabs = T) %>% collapse_rows(columns = 1, latex_hline = "major", valign = "middle") %>% cat(., file = "table.tex")
 
 rdr_export <- function(rdr_out, prec = 4){
-  suppressPackageStartupMessages(require(glue))
   outrows = c('coef', 'se', 'z', 'ci', 'bws', 'N_h', 'N_b')
   out = rdr_out[outrows]
   # convential local-linear results
   ids = 1
-  CI = glue('(', as.numeric(round(out$ci[ids, ][1], prec)), ',',
-                 as.numeric(round(out$ci[ids, ][2], prec)), ')')
+  CI = paste0('(', as.numeric(round(out$ci[ids, ][1], prec)), ',',
+                   as.numeric(round(out$ci[ids, ][2], prec)), ')')
   conventional = rbind('Coef'   = round(out$coef[ids], prec),
                        'SE'     = round(out$se[ids], prec),
                        't-stat' = round(out$z[ids], prec), CI)
   # robust rows
   ids = 3
-  CI = glue('(', as.numeric(round(out$ci[ids, ][1], prec)), ',',
-                 as.numeric(round(out$ci[ids, ][2], prec)), ')')
+  CI = paste0('(', as.numeric(round(out$ci[ids, ][1], prec)), ',',
+                   as.numeric(round(out$ci[ids, ][2], prec)), ')')
   robust = rbind('Coef'   = round(out$coef[ids], prec),
                  'SE'     = round(out$se[ids], prec),
                  't-stat' = round(out$z[ids], prec), CI)

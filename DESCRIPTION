@@ -5,12 +5,14 @@ Authors@R: person("Apoorva", "Lal", email = "lal.apoorva@gmail.com", role = c("a
 Description: Utility functions for personal use in research tasks (estimation/visualisation/munging).
 Depends: R (>= 3.5)
 Imports:
-  tidyverse,
+  dplyr,
   data.table,
   lfe,
   haven,
   rio,
   ggplot2,
+  rlang,
+  glue,
   hrbrthemes,
   tools,
   grid,
