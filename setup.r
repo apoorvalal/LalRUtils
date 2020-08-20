@@ -9,6 +9,9 @@ setwd(home)
 # create('LalRUtils') # only run once
 document()
 # %%
+library(usethis)
+library(pkgdown)
+pkgdown::build_site()
 # commit and push changes here
 # %%
 # reinstall after pushing updates
