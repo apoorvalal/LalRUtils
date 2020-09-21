@@ -18,7 +18,6 @@ Stitches together formula for use in lm/glm
 }
 \examples{
 fml1 = formula_stitcher('wage',c('age','experience','married'),c('ethnicity','sector'))
-lm1 <- lm(fml1,data=CPS1985)
 }
 \keyword{dataframe}
 \keyword{name}

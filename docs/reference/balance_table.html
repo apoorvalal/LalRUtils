@@ -133,7 +133,14 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>balance_table</span>(<span class='no'>nsw_psid</span>, <span class='st'>'nsw'</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'age'</span>, <span class='st'>'black'</span>, <span class='st'>'u75'</span>))</div><div class='output co'>#&gt; <span class='error'>Error in balance_table(nsw_psid, "nsw", c("age", "black", "u75")): object 'nsw_psid' not found</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>balance_table</span>(<span class='no'>mtcars</span>, <span class='kw'>treatvar</span> <span class='kw'>=</span> <span class='st'>'vs'</span>, <span class='kw'>bal_vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'mpg'</span>, <span class='st'>'cyl'</span>, <span class='st'>'disp'</span>))</div><div class='output co'>#&gt;      Control Mean Control SE Treatment\n      Mean Treatment SE
+#&gt; mpg       16.6167     1.4376               24.5571       1.4376
+#&gt; cyl        7.4444     0.2506                4.5714       0.2506
+#&gt; disp     307.1500    15.2054              132.4571      15.2054
+#&gt;      Difference in Means p-value Normalised Difference
+#&gt; mpg               7.9405   1e-04                0.5219
+#&gt; cyl              -2.8730   0e+00               -1.0833
+#&gt; disp           -174.6929   0e+00               -1.0856</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

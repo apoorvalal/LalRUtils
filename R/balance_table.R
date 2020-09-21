@@ -5,7 +5,7 @@
 #' @keywords regression linear model balance check
 #' @export
 #' @examples
-#' balance_table(nsw_psid, 'nsw', c('age', 'black', 'u75'))
+#' balance_table(mtcars, treatvar = 'vs', bal_vars = c('mpg', 'cyl', 'disp'))
 balance_table <- function (df, treatvar, bal_vars)  {
     treat_all   = df[which(df[, treatvar] == 1), bal_vars]
     control_all = df[which(df[, treatvar] == 1), bal_vars]

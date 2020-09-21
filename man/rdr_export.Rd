@@ -4,7 +4,7 @@
 \alias{rdr_export}
 \title{Summary table for Rdrobust estimates to export using kableExtra}
 \usage{
-rdr_export(rdr_out, prec = 4)
+rdr_export(rdr_out, prec = 3)
 }
 \arguments{
 \item{rdr_out}{Rdrobust object}

@@ -13,7 +13,7 @@ freq_table(df, var)
 Summary table with percentages for categorical variables
 }
 \examples{
-freq_table(dataframe, 'categorical_var')
+freq_table(mtcars, 'as.factor(cyl)')
 }
 \keyword{categorical}
 \keyword{dataframe}

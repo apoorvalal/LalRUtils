@@ -3,7 +3,7 @@
 #' @keywords dataframe variable name categorical
 #' @export
 #' @examples
-#' freq_table(dataframe, 'categorical_var')
+#' freq_table(mtcars, 'as.factor(cyl)')
 freq_table = function(df, var) {
     suppressMessages(library(tidyverse))
     ft = df %>% count_(var) %>%

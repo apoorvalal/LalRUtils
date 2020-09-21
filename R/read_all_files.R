@@ -4,7 +4,7 @@
 #' @export
 #' @keywords read stata sas spss
 #' @examples
-#' read_all_files(extension='dta',path='C:/alal/data/')
+#' read_all_files(extension='dta',path='~/data/')
 
 ##########################################################################
 # loads all the datasets in a location to memory - only for small datasets

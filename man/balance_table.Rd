@@ -17,7 +17,7 @@ balance_table(df, treatvar, bal_vars)
 Balance Check for observational studies; includes SD and Normalised Difference
 }
 \examples{
-balance_table(nsw_psid, 'nsw', c('age', 'black', 'u75'))
+balance_table(mtcars, treatvar = 'vs', bal_vars = c('mpg', 'cyl', 'disp'))
 }
 \keyword{balance}
 \keyword{check}

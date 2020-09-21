@@ -8,6 +8,8 @@
 #' @export
 #' @keywords seaborn Scatterplot
 #' @importFrom ggExtra ggMarginal
+#' @examples
+#' regplot_dens(mtcars, wt, mpg, am)
 regplot_dens = function(df, xvar, yvar, zvar, title = ""){
   require(ggExtra); require(ggplot2)
   p0 = ggplot(df, aes(x = {{xvar}}, y = {{yvar}})) +

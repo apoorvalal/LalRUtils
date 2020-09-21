@@ -5,7 +5,7 @@
 #' @keywords Treatment Effect ATE
 #' @export
 #' @examples
-#' nsw_te = ate_diffmeans(nsw_exper, re78, nsw)
+#' nsw_te = ate_diffmeans(mtcars, outcome = mpg, treatment = vs)
 
 ate_diffmeans <- function(df, outcome, treatment){
   # general function to calculate treatment effect

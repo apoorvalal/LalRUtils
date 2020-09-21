@@ -5,7 +5,7 @@
 #' @keywords regression linear model balance check
 #' @export
 #' @examples
-#' norm_diff(nsw_psid, nsw, age)
+#' norm_diff(mtcars, vs, gear)
 norm_diff <- function(df, treat, value){
   suppressPackageStartupMessages(library(tidyverse))
   value = enquo(value); treat = enquo(treat)

@@ -125,7 +125,14 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>freq_table</span>(<span class='no'>dataframe</span>, <span class='st'>'categorical_var'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in eval(lhs, parent, parent): object 'dataframe' not found</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>freq_table</span>(<span class='no'>mtcars</span>, <span class='st'>'as.factor(cyl)'</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `count_()` is deprecated as of dplyr 0.7.0.</span>
+#&gt; <span class='warning'>Please use `count()` instead.</span>
+#&gt; <span class='warning'>See vignette('programming') for more help</span>
+#&gt; <span class='warning'><span style='color: #555555;'>This warning is displayed once every 8 hours.</span><span></span>
+#&gt; <span class='warning'></span><span style='color: #555555;'>Call `lifecycle::last_warnings()` to see where this warning was generated.</span><span></span></div><div class='output co'>#&gt;   as.factor(cyl)  n    prop
+#&gt; 1              8 14 0.43750
+#&gt; 2              4 11 0.34375
+#&gt; 3              6  7 0.21875</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

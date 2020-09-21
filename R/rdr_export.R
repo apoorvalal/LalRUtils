@@ -7,37 +7,32 @@
 #' rdrobust(df$vote, df$margin, all = T) %>% rdr_export -> rdre
 #' rdre %>% kable(, format = "latex", booktabs = T) %>% collapse_rows(columns = 1, latex_hline = "major", valign = "middle") %>% cat(., file = "table.tex")
 
-rdr_export <- function(rdr_out, prec = 4){
-  outrows = c('coef', 'se', 'z', 'ci', 'bws', 'N_h', 'N_b')
-  out = rdr_out[outrows]
-  # convential local-linear results
-  ids = 1
-  CI = paste0('(', as.numeric(round(out$ci[ids, ][1], prec)), ',',
-                   as.numeric(round(out$ci[ids, ][2], prec)), ')')
-  conventional = rbind('Coef'   = round(out$coef[ids], prec),
-                       'SE'     = round(out$se[ids], prec),
-                       't-stat' = round(out$z[ids], prec), CI)
-  # robust rows
-  ids = 3
-  CI = paste0('(', as.numeric(round(out$ci[ids, ][1], prec)), ',',
-                   as.numeric(round(out$ci[ids, ][2], prec)), ')')
-  robust = rbind('Coef'   = round(out$coef[ids], prec),
-                 'SE'     = round(out$se[ids], prec),
-                 't-stat' = round(out$z[ids], prec), CI)
-  # common rows
-  common_rows = rbind(
-    'bw'          = paste0('(',  round(out$bws[1, 1], prec), ',',
-                                 round(out$bws[1, 2], prec), ')'),
-    'Nobs'       = paste0('(', out$N_h[1], ',', out$N_h[2], ')'),
-    'poly_order' = rdr_out$p)
-  res = rbind(conventional, robust, common_rows)
-  res2 = data.table(res, keep.rownames = TRUE)
-  res2[1:4, est := "Local-Linear"]
-  res2[5:8, est := "Robust"]
-  res2[9:11,est := "--"]
-  res2[rn == "poly_order", rn := "Polynomial Order"]
-  res2[rn == "bw",         rn := "Bandwidth"]
-  res2[rn == "Nobs",       rn := "Number of Observations"]
-  setcolorder(res2, c("est", "rn", "V1"))
-  return(res2)
+rdr_export <- function(rdr_out, prec = 3){
+    outrows = c("coef", "se", "z", "ci", "bws", "N_h", "N_b")
+    out = rdr_out[outrows]
+    # conventional
+    ids = 1
+    CI = paste0("(", as.numeric(round(out$ci[ids, ][1], prec)),
+        ",", as.numeric(round(out$ci[ids, ][2], prec)), ")")
+    conventional = rbind(Coef = round(out$coef[ids], prec), SE = round(out$se[ids],
+        prec), `t-stat` = round(out$z[ids], prec), CI)
+    # robust
+    ids = 3
+    CI = paste0("(", as.numeric(round(out$ci[ids, ][1], prec)),
+        ",", as.numeric(round(out$ci[ids, ][2], prec)), ")")
+    robust = rbind(Coef = round(out$coef[ids], prec), SE = round(out$se[ids],
+        prec), `t-stat` = round(out$z[ids], prec), CI)
+    common_rows = rbind(bw = paste0("(", round(out$bws[1, 1],
+        prec), ",", round(out$bws[1, 2], prec), ")"), Nobs = paste0("(",
+        out$N_h[1], ",", out$N_h[2], ")"), poly_order = rdr_out$p)
+    # prep output table
+    resout = cbind(c(rep("Local-Linear", 4), rep("Robust", 4), rep("--", 3)),
+                  rbind(conventional, robust, common_rows)) %>%
+                  data.frame(rowname = row.names(.), .)
+    rownames(resout) <- NULL
+    names(resout) = c('stat', 'type', 'val')
+    resout$stat = gsub("poly_order", "Polynomial Order", resout$stat)
+    resout$stat = gsub("bw", "Bandwidth", resout$stat)
+    resout$stat = gsub("nobs", "Obs", resout$stat)
+    return(resout[, c(2, 1, 3)])
 }

@@ -10,7 +10,6 @@ lal_plot_theme <- function(fontfam = "IBM Plex Sans Condensed", fsize = 15, text
   theme(
     text = element_text(family = fontfam, size = fsize),
     axis.text.x = element_text(angle = textangle),
-    # legend.title = element_blank(),
     legend.position='bottom',
     panel.border = element_blank(),
     ...

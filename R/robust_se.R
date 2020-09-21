@@ -4,7 +4,7 @@
 #' @export
 #' @keywords hc0 robust heteroskedasticity
 #' @examples
-#' robust_se(lm(y~x,data=df))
+#' robust_se(lm(mpg ~ wt, mtcars))
 
 # returns vector of robust standard errors
 robust_se <- function(model){

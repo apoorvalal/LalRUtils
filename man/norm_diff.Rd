@@ -17,7 +17,7 @@ norm_diff(df, treat, value)
 Normalised Difference (Imbens, Rubin 2015) for observational studies
 }
 \examples{
-norm_diff(nsw_psid, nsw, age)
+norm_diff(mtcars, vs, gear)
 }
 \keyword{balance}
 \keyword{check}

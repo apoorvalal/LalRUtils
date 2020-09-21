@@ -13,7 +13,7 @@ robust_se(model)
 Returns summary for lm object with robust standard errors
 }
 \examples{
-robust_se(lm(y~x,data=df))
+robust_se(lm(mpg ~ wt, mtcars))
 }
 \keyword{hc0}
 \keyword{heteroskedasticity}

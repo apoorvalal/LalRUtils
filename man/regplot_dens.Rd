@@ -20,5 +20,8 @@ regplot_dens(df, xvar, yvar, zvar, title = "")
 \description{
 Scatterplot with regression line and densites by grouping variable. Use this to evaluate overlap.
 }
+\examples{
+regplot_dens(mtcars, wt, mpg, am)
+}
 \keyword{Scatterplot}
 \keyword{seaborn}
