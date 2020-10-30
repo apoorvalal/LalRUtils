@@ -2,10 +2,10 @@
 % Please edit documentation in R/oneliners.R
 \name{nunique}
 \alias{nunique}
-\title{Oneliners for piping}
+\title{Oneliners for piping etc}
 \usage{
 nunique(x)
 }
 \description{
-Oneliners for piping
+Oneliners for piping etc
 }

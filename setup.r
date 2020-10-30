@@ -5,13 +5,16 @@ library(devtools); library(roxygen2)
 
 root = "/home/alal/Desktop/code/LalRUtils/"
 ####################################################
-# %% Run this for local testing
-install.packages(root, repos = NULL, type = 'source')
 # %% Run this to document new functions and populate namespace
 setwd(root)
 # create('LalRUtils') # only run once
 document()
-# %%
+
+# %% Run this for local testing
+install.packages(root, repos = NULL, type = 'source')
+
+# %% website documentation
+
 library(usethis); library(pkgdown)
 pkgdown::build_site()
 # commit and push changes here

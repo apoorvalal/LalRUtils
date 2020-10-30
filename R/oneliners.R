@@ -1,4 +1,4 @@
-#' Oneliners for piping
+#' Oneliners for piping etc
 #' @export
 nunique = function(x) length(unique(x))
 
@@ -31,3 +31,6 @@ checkmark <- function(name, yesno, format = 'latex') {
     return(c(name, ifelse(yesno, "$\\checkmark$", "")))
   }
 }
+
+#' @export
+datapkg = function(pkg) data(package = pkg)$results[, 3:4]
