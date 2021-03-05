@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -112,22 +112,22 @@
     <p>R implementation of binned scatterplot and CEF plotter, with added options for cluster variance</p>
     </div>
 
-    <pre class="usage"><span class='fu'>binscatter</span>(
-  <span class='no'>fmla</span>,
-  <span class='no'>key_var</span>,
-  <span class='no'>data</span>,
-  <span class='kw'>plotraw</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>20</span>,
-  <span class='kw'>rawdata_colour</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>rawdata_alpha</span> <span class='kw'>=</span> <span class='fl'>0.2</span>,
-  <span class='kw'>rawdata_size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>linfit_width</span> <span class='kw'>=</span> <span class='fl'>0.6</span>,
-  <span class='kw'>linfit_colour</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
-  <span class='kw'>cef_point_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>cef_point_colour</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
-  <span class='kw'>ci_colour</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
-  <span class='kw'>ci_alpha</span> <span class='kw'>=</span> <span class='fl'>0.3</span>
-)</pre>
+    <pre class="usage"><span class='fu'>binscatter</span><span class='op'>(</span>
+  <span class='va'>fmla</span>,
+  <span class='va'>key_var</span>,
+  <span class='va'>data</span>,
+  plotraw <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  bins <span class='op'>=</span> <span class='fl'>20</span>,
+  rawdata_colour <span class='op'>=</span> <span class='st'>"black"</span>,
+  rawdata_alpha <span class='op'>=</span> <span class='fl'>0.2</span>,
+  rawdata_size <span class='op'>=</span> <span class='fl'>0.5</span>,
+  linfit_width <span class='op'>=</span> <span class='fl'>0.6</span>,
+  linfit_colour <span class='op'>=</span> <span class='st'>"blue"</span>,
+  cef_point_size <span class='op'>=</span> <span class='fl'>1</span>,
+  cef_point_colour <span class='op'>=</span> <span class='st'>"red"</span>,
+  ci_colour <span class='op'>=</span> <span class='st'>"gray"</span>,
+  ci_alpha <span class='op'>=</span> <span class='fl'>0.3</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -192,7 +192,8 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>binscatter</span>(<span class='st'>'Sepal.Length ~ Petal.Length + Petal.Width|Species'</span>, <span class='kw'>key_var</span> <span class='kw'>=</span> <span class='st'>'Petal.Width'</span>, <span class='no'>iris</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: lfe</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: Matrix</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: stringr</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: ggplot2</span></div><div class='img'><img src='binscatter-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>binscatter</span><span class='op'>(</span><span class='st'>'Sepal.Length ~ Petal.Length + Petal.Width|Species'</span>, key_var <span class='op'>=</span> <span class='st'>'Petal.Width'</span>, <span class='va'>iris</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Loading required package: lfe</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: Matrix</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: stringr</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: ggplot2</span></div><div class='img'><img src='binscatter-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -208,7 +209,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

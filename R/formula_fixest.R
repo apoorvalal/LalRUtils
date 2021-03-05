@@ -21,8 +21,8 @@ formula_fixest = function (y, X, W = NULL, D = NULL, Z = NULL) {
     if (!is.null(D)) facs = paste(D, collapse = "+") else  facs = "0"
     # first stage
     if (!is.null(Z)) {
-        fixest_fs = paste(c("(", paste(c(W, paste(Z, collapse = "+")),
-            collapse = "~"), ")"), collapse = "")
+        fixest_fs = paste(c(paste(c(W, paste(Z, collapse = "+")),
+            collapse = "~")), collapse = "")
       # return formula
       as.formula(paste(c(fixest_ss, facs, fixest_fs), collapse = "|"))
     } else {

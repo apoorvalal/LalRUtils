@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -112,7 +112,7 @@
     <p>Balance Check for observational studies; includes SD and Normalised Difference</p>
     </div>
 
-    <pre class="usage"><span class='fu'>balance_table</span>(<span class='no'>df</span>, <span class='no'>treatvar</span>, <span class='no'>bal_vars</span>)</pre>
+    <pre class="usage"><span class='fu'>balance_table</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>treatvar</span>, <span class='va'>bal_vars</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -133,7 +133,8 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>balance_table</span>(<span class='no'>mtcars</span>, <span class='kw'>treatvar</span> <span class='kw'>=</span> <span class='st'>'vs'</span>, <span class='kw'>bal_vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'mpg'</span>, <span class='st'>'cyl'</span>, <span class='st'>'disp'</span>))</div><div class='output co'>#&gt;      Control Mean Control SE Treatment\n      Mean Treatment SE
+    <pre class="examples"><div class='input'><span class='fu'>balance_table</span><span class='op'>(</span><span class='va'>mtcars</span>, treatvar <span class='op'>=</span> <span class='st'>'vs'</span>, bal_vars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'mpg'</span>, <span class='st'>'cyl'</span>, <span class='st'>'disp'</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Control Mean Control SE Treatment\n      Mean Treatment SE
 #&gt; mpg       16.6167     1.4376               24.5571       1.4376
 #&gt; cyl        7.4444     0.2506                4.5714       0.2506
 #&gt; disp     307.1500    15.2054              132.4571      15.2054
@@ -156,7 +157,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -12,7 +12,6 @@ document()
 # %%
 # %% Run this for local testing
 install.packages(root, repos = NULL, type = 'source')
-
 # %% website documentation
 
 # %%
