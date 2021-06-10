@@ -13,7 +13,9 @@ se_maker(vcovmat)
 Returns summary for lm object with robust standard errors
 }
 \examples{
+\dontrun{
 se_maker(vcovCL(m, cluster = df$clustervar))
+}
 }
 \keyword{cluster}
 \keyword{hc0}

@@ -13,7 +13,9 @@ lower_varnames(df)
 Lower variable names in a dataframe
 }
 \examples{
+\dontrun{
 lower_varnames(dataframe_with_bad_varnames)
+}
 }
 \keyword{dataframe}
 \keyword{name}

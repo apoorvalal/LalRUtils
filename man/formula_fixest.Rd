@@ -2,7 +2,7 @@
 % Please edit documentation in R/formula_fixest.R
 \name{formula_fixest}
 \alias{formula_fixest}
-\title{Stitches together formula for use in fixest}
+\title{Stitches together formula for use in fixest::feols}
 \usage{
 formula_fixest(y, X, W = NULL, D = NULL, Z = NULL)
 }
@@ -18,7 +18,7 @@ formula_fixest(y, X, W = NULL, D = NULL, Z = NULL)
 \item{Z}{vector of instruments}
 }
 \description{
-Stitches together formula for use in fixest
+Stitches together formula for use in fixest::feols
 }
 \examples{
 formula_fixest(y='mpg', X = c('hp', 'drat'), D = c('wt', 'vs'))

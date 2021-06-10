@@ -13,7 +13,9 @@ lal_map_theme(fontfam = "Roboto Condensed", ...)
 Theme for maps
 }
 \examples{
+\dontrun{
 map_ggp_object + lal_map_theme()
+}
 }
 \keyword{ggplot}
 \keyword{maps}

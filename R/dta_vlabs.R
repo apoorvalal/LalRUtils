@@ -3,7 +3,9 @@
 #' @keywords stata summary labels dataframe
 #' @export
 #' @examples
+#' \dontrun{
 #' dta_vlabs(df)
+#' }
 dta_vlabs <- function(dta) {
     labels <- sapply(dta, function(x) attr(x, "label"))
     tibble(name = names(labels),

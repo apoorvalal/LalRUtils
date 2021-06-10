@@ -13,7 +13,9 @@ fuzzy_match(a, b)
 fuzzy matches 2 character vectors, and returns most similar pairs
 }
 \examples{
+\dontrun{
 fuzzy_match(keys_A, keys_B)
+}
 }
 \keyword{fuzzy}
 \keyword{match}

@@ -13,7 +13,9 @@ label_extractor(df, colnames = c("names", "var.labels"))
 extracts variable labels and returns a dataframe with varname-varlabel for DTA files
 }
 \examples{
+\dontrun{
 label_extractor(df)
+}
 }
 \keyword{data}
 \keyword{labels}

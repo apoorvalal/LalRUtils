@@ -3,7 +3,9 @@
 #' @keywords libraries install
 #' @export
 #' @examples
+#' \dontrun{
 #' libreq(tidyverse, lfe, estimatr)
+#' }
 
 libreq <- function(..., repo='https://cloud.r-project.org/') {
     wants = as.character(match.call(expand.dots = FALSE)[[2]])

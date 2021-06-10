@@ -3,13 +3,15 @@
 #' @export
 #' @keywords stat_transfer convert reader
 #' @examples
-#' transfer_data(path='C:/data/data1.sas7bdat',outpath='C:/working/')
+#' \dontrun{
+#' stat_transfer_data(path='C:/data/data1.sas7bdat',outpath='C:/working/')
+#' }
 
 ############################################
 # runs stat-transfer from R - tested on Windows 10
 ############################################
 # alternative to the package readr when files are very large + you have access to stat-transfer
-transfer_data <- function(path,
+stat_transfer_data <- function(path,
               stat.transfer.path = '\"C:\\Program Files\\StatTransfer12-64\\st.exe\"',
               out.ext='csv',
               outpath)

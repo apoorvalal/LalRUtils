@@ -35,10 +35,3 @@ checkmark <- function(name, yesno, format = 'latex') {
 #' @export
 datapkg = function(pkg) data(package = pkg)$results[, 3:4]
 
-#' @export
-residualise = function(y, a, x = "1", d = "0", df){
-  require(fixest)
-  y_tilde = feols(formula_fixest(y, X = x, D = d), df)$residuals
-  a_tilde = feols(formula_fixest(a, X = x, D = d), df)$residuals
-  data.frame(y_tilde, a_tilde)
-}

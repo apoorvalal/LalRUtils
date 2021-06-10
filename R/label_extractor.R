@@ -3,7 +3,9 @@
 #' @keywords stata data labels
 #' @export
 #' @examples
+#' \dontrun{
 #' label_extractor(df)
+#' }
 
 label_extractor = function(df, colnames = c('names', 'var.labels')){
   info = data.frame(attributes(df)[colnames])

@@ -3,7 +3,9 @@
 #' @keywords dataframe variable name
 #' @export
 #' @examples
+#' \dontrun{
 #' lower_varnames(dataframe_with_bad_varnames)
+#' }
 
 # Converts all varnames into lowercase - designed for shouty SAS datasets
 lower_varnames <- function(df) {

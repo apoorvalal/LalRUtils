@@ -19,7 +19,9 @@ lal_plot_theme_d(
 Wrapper for hrbrthemes::theme_ft_rc() with bigger font, altered legend options and dots
 }
 \examples{
+\dontrun{
 plot_ggp_object + lal_plot_theme_d()
+}
 }
 \keyword{ggplot}
 \keyword{plots}

@@ -15,7 +15,9 @@ load_or_install(wants, repo = "https://cloud.r-project.org/")
 Loads a list of libraries, installs when necessary
 }
 \examples{
+\dontrun{
 load_or_install(c('tidyverse','Hmisc','glmnet'))
+}
 }
 \keyword{install}
 \keyword{libraries}

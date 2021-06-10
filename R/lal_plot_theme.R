@@ -3,7 +3,9 @@
 #' @keywords ggplot plots
 #' @export
 #' @examples
+#' \dontrun{
 #' plot_ggp_object + lal_plot_theme()
+#' }
 
 lal_plot_theme = function (fontfam = "IBM Plex Sans Condensed",
       fsize = 14, textangle = 0, ...) {

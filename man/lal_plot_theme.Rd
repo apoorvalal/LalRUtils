@@ -6,7 +6,7 @@
 \usage{
 lal_plot_theme(
   fontfam = "IBM Plex Sans Condensed",
-  fsize = 15,
+  fsize = 14,
   textangle = 0,
   ...
 )
@@ -18,7 +18,9 @@ lal_plot_theme(
 theme for nice looking plots with sensible defaults (no legend title, legend at the bottom)
 }
 \examples{
+\dontrun{
 plot_ggp_object + lal_plot_theme()
+}
 }
 \keyword{ggplot}
 \keyword{plots}

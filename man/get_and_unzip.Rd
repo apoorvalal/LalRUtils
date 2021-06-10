@@ -13,6 +13,8 @@ get_and_unzip(url, filename)
 downloads and unzips file if it is not found in current wdir
 }
 \examples{
-get_and_unzip('link_to_angrist_site','qob.txt')
+\dontrun{
+get_and_unzip('url','qob.txt')
+}
 }
 \keyword{download}

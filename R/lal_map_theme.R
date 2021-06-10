@@ -3,7 +3,9 @@
 #' @keywords maps ggplot spatial
 #' @export
 #' @examples
+#' \dontrun{
 #' map_ggp_object + lal_map_theme()
+#' }
 lal_map_theme <- function(fontfam="Roboto Condensed", ...) {
   theme_bw() +
   theme(

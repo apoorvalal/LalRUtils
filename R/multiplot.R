@@ -1,11 +1,13 @@
 #' Stitches together multiple ggplot objects for export-ready graphs
-#' @param ggplot objects
+#' @param ... ggplot objects
 #' @keywords graphs plots
 #' @export
 #' @examples
+#' \dontrun{
 #' plot1 = ggplot(data,aes(xvar1,yvar)) + geom_point()
 #' plot2 = ggplot(data,aes(xvar2,yvar)) + geom_point()
 #' multiplot(plot1,plot2,cols=2)
+#' }
 
 #######################################################################
 # Multiple plot function - stitches together multiple ggplot objects

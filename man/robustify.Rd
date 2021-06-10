@@ -2,10 +2,7 @@
 % Please edit documentation in R/robustify.R
 \name{robustify}
 \alias{robustify}
-\title{Replaces the standard errors (t and p vals)in FELM model object with robust
-so that passing it on to stargazer spits out correct SEs
-Only necessary for non-clustered SE; FELM automatically calculates
-clustered standard errors if Y ~ X | FE | IV | Cluster specified}
+\title{Replaces the standard errors (t and p vals)in FELM model object with robust SE}
 \usage{
 robustify(model)
 }
@@ -13,13 +10,12 @@ robustify(model)
 \item{felm}{object}
 }
 \description{
-Replaces the standard errors (t and p vals)in FELM model object with robust
-so that passing it on to stargazer spits out correct SEs
-Only necessary for non-clustered SE; FELM automatically calculates
-clustered standard errors if Y ~ X | FE | IV | Cluster specified
+Replaces the standard errors (t and p vals)in FELM model object with robust SE
 }
 \examples{
+\dontrun{
 robustify(felm(y~x,data=df))
+}
 }
 \keyword{hc0}
 \keyword{heteroskedasticity}

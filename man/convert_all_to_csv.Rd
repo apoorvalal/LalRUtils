@@ -15,7 +15,9 @@ convert_all_to_csv(dataframes, path)
 Writes all dataframes to csv
 }
 \examples{
+\dontrun{
 convert_all_to_csv(dataframes, path)
+}
 }
 \keyword{bulk}
 \keyword{save}

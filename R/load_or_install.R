@@ -4,7 +4,9 @@
 #' @keywords libraries install
 #' @export
 #' @examples
+#' \dontrun{
 #' load_or_install(c('tidyverse','Hmisc','glmnet'))
+#' }
 
 load_or_install <- function(wants, repo='https://cloud.r-project.org/') {
     # sample use :

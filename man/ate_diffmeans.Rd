@@ -17,7 +17,7 @@ ate_diffmeans(df, outcome, treatment)
 Simple Difference in Means estimator for binary treatment (for HW etc)
 }
 \examples{
-nsw_te = ate_diffmeans(mtcars, outcome = mpg, treatment = vs)
+ate_diffmeans(mtcars, outcome = mpg, treatment = vs)
 }
 \keyword{ATE}
 \keyword{Effect}

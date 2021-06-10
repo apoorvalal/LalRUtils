@@ -5,7 +5,7 @@
 #' @keywords dataframe variable name
 #' @export
 #' @examples
-#' fml1 = formula_stitcher('wage',c('age','experience','married'),c('ethnicity','sector'))
+#' formula_stitcher('wage',c('age','experience','married'),c('ethnicity','sector'))
 
 formula_stitcher <- function(Y, X, factors=NULL){
     if (!is.null((factors))) {

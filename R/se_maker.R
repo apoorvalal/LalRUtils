@@ -4,7 +4,9 @@
 #' @export
 #' @keywords hc0 cluster robust heteroskedasticity
 #' @examples
+#' \dontrun{
 #' se_maker(vcovCL(m, cluster = df$clustervar))
+#' }
 
 # converts complicated (multi/clustered) variance covariance matrices
 # into standard errors to be attached to lm objects

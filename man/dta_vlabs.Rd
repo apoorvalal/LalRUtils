@@ -13,7 +13,9 @@ dta_vlabs(dta)
 Small summary table with stata variable labels from DTA file
 }
 \examples{
+\dontrun{
 dta_vlabs(df)
+}
 }
 \keyword{dataframe}
 \keyword{labels}

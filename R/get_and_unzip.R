@@ -4,10 +4,12 @@
 #' @export
 #' @keywords download
 #' @examples
-#' get_and_unzip('link_to_angrist_site','qob.txt')
-get_and_unzip <- function(url,filename){
+#' \dontrun{
+#' get_and_unzip('url','qob.txt')
+#' }
+get_and_unzip <- function(url, filename){
     if (!file.exists(filename)) {
-        download.file(url,"zipped.zip",mode="wb")
+        download.file(url, "zipped.zip", mode="wb")
         unzip(zipfile="zipped.zip",files=filename)
     }
 }

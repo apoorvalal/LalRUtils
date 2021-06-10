@@ -3,7 +3,9 @@
 #' @keywords fuzzy match string
 #' @export
 #' @examples
+#' \dontrun{
 #' fuzzy_match(keys_A, keys_B)
+#' }
 fuzzy_match <- function(a,b) {
   require(stringdist)
   # calculate a jaccard dissimilarity matrix

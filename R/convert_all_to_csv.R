@@ -5,7 +5,9 @@
 #' @export
 #' @keywords write save bulk
 #' @examples
+#' \dontrun{
 #' convert_all_to_csv(dataframes, path)
+#' }
 
 ####################################
 # writes all dataframes to csv

@@ -13,7 +13,9 @@ read_all_files(extension, location)
 Reads in all datasets in given location
 }
 \examples{
+\dontrun{
 read_all_files(extension='dta',path='~/data/')
+}
 }
 \keyword{read}
 \keyword{sas}

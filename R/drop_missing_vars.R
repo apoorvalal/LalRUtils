@@ -4,7 +4,9 @@
 #' @export
 #' @keywords dataframe variable
 #' @examples
+#' \dontrun{
 #' clean_dataframe = drop_missing_vars(dataframe_with_empty_vars)
+#' }
 
 ########################################################
 ## Drop variables with all missing values from dataframe

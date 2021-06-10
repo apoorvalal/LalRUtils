@@ -4,7 +4,9 @@
 #' @export
 #' @keywords read stata sas spss
 #' @examples
+#' \dontrun{
 #' read_all_files(extension='dta',path='~/data/')
+#' }
 
 ##########################################################################
 # loads all the datasets in a location to memory - only for small datasets

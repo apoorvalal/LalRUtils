@@ -3,7 +3,9 @@
 #' @keywords ggplot plots
 #' @export
 #' @examples
+#' \dontrun{
 #' plot_ggp_object + lal_plot_theme_d()
+#' }
 
 lal_plot_theme_d <- function(fontfam = "IBM Plex Sans Condensed", fsize = 15, axsize = 13, textangle = 0, ...) {
   suppressMessages(library(hrbrthemes))

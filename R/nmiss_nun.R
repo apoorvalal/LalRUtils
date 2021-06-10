@@ -5,7 +5,7 @@
 #' @examples
 #' nmiss_nun(mtcars)
 nmiss_nun <- function(df) {
-    suppressMessages(library(purrr))
+    require(purrr)
     cat('-------------------------\n')
     cat('--- Missing Values ------\n')
     print(map(df, ~sum(is.na(.))))

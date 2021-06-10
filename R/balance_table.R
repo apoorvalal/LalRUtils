@@ -5,7 +5,10 @@
 #' @keywords regression linear model balance check
 #' @export
 #' @examples
+#' \dontrun{
 #' balance_table(mtcars, treatvar = 'vs', bal_vars = c('mpg', 'cyl', 'disp'))
+#' }
+
 balance_table <- function (df, treatvar, bal_vars)  {
     treat_all   = df[which(df[, treatvar] == 1), bal_vars]
     control_all = df[which(df[, treatvar] == 1), bal_vars]

@@ -1,4 +1,4 @@
-#' Stitches together formula for use in fixest
+#' Stitches together formula for use in fixest::feols
 #' @param y The dependent variable
 #' @param X vector of controls
 #' @param W treatment variable

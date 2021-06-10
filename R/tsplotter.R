@@ -4,9 +4,11 @@
 #' @keywords dataframe variable name categorical
 #' @export
 #' @examples
+#'\dontrun{
 #' overall_ineq = tsplotter(overall) + labs(title='Overall Inequality')
+#'}
 tsplotter = function(df, timevar='year') {
-    suppressMessages(library(tidyverse))
+    library(reshape2); library(ggplot2)
     meltdf <- reshape2::melt(df,id=timevar)
     variable='variable'
     value='value'

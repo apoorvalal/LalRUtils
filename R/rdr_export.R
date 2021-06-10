@@ -4,9 +4,12 @@
 #' @keywords regression-discontinuity export
 #' @export
 #' @examples
+#' \dontrun{
 #' rdrobust(df$vote, df$margin, all = T) %>% rdr_export -> rdre
-#' rdre %>% kable(, format = "latex", booktabs = T) %>% collapse_rows(columns = 1, latex_hline = "major", valign = "middle") %>% cat(., file = "table.tex")
-
+#' rdre %>% kable(, format = "latex", booktabs = T) %>%
+#'      collapse_rows(columns = 1, latex_hline = "major", valign = "middle") %>%
+#'      cat(., file = "table.tex")
+#' }
 rdr_export <- function(rdr_out, prec = 3){
     outrows = c("coef", "se", "z", "ci", "bws", "N_h", "N_b")
     out = rdr_out[outrows]
