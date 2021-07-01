@@ -17,7 +17,9 @@ balance_table(df, treatvar, bal_vars)
 Balance Check for observational studies; includes SD and Normalised Difference
 }
 \examples{
+\dontrun{
 balance_table(mtcars, treatvar = 'vs', bal_vars = c('mpg', 'cyl', 'disp'))
+}
 }
 \keyword{balance}
 \keyword{check}

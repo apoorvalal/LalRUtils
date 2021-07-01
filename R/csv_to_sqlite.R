@@ -33,6 +33,7 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
                           delimiter = ",",
                           pre_process_size = 1000, chunk_size = 50000,
                           show_progress_bar = TRUE, ...) {
+    require(dplyr); require(DBI); require(lubridate)
     # init connection
     con <- dbConnect(SQLite(), dbname = sqlite_file)
     # read a first chunk of data to extract the colnames and types

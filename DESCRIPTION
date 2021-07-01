@@ -5,22 +5,14 @@ Authors@R: person("Apoorva", "Lal", email = "lal.apoorva@gmail.com", role = c("a
 Description: Utility functions for personal use in research tasks (estimation/visualisation/munging).
 Depends: R (>= 3.5)
 Imports:
-  dplyr,
   data.table,
   lfe,
-  lubridate,
-  ggplot2,
-  hrbrthemes,
+  fixest,
   ggExtra,
-  rlang,
-  glue,
-  tools,
-  grid,
   stringdist,
   R.utils,
   DBI,
-  RSQLite,
-  tictoc
+  RSQLite
 License: MIT
 Encoding: UTF-8
 LazyData: true

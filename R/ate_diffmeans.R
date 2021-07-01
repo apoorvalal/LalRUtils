@@ -5,7 +5,9 @@
 #' @keywords Treatment Effect ATE
 #' @export
 #' @examples
+#' \dontrun{
 #' ate_diffmeans(mtcars, outcome = mpg, treatment = vs)
+#' }
 
 ate_diffmeans <- function(df, outcome, treatment){
   # general function to calculate treatment effect
