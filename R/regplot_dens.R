@@ -7,7 +7,6 @@
 #' @param title plot title
 #' @export
 #' @keywords seaborn Scatterplot
-#' @importFrom ggExtra ggMarginal
 #' @examples
 #' regplot_dens(mtcars, wt, mpg, am)
 regplot_dens = function(df, xvar, yvar, zvar, title = ""){
