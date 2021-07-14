@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">LalRUtils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9999</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0</span>
       </span>
     </div>
 
@@ -147,9 +147,9 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>formula_lfe</span><span class='op'>(</span>y<span class='op'>=</span><span class='st'>'mpg'</span>, X <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'hp'</span>, <span class='st'>'drat'</span><span class='op'>)</span>, D <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'wt'</span>, <span class='st'>'vs'</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; mpg ~ hp + drat | wt + vs | 0 | 0
-#&gt; &lt;environment: 0x5602c862ef88&gt;</div><div class='input'><span class='fu'>formula_lfe</span><span class='op'>(</span>y<span class='op'>=</span><span class='st'>'mpg'</span>, X <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'hp'</span>, <span class='st'>'drat'</span><span class='op'>)</span>, W <span class='op'>=</span> <span class='st'>'gear'</span>, Z <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'cyl'</span>, <span class='st'>'carb'</span><span class='op'>)</span>, D <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'wt'</span>, <span class='st'>'vs'</span><span class='op'>)</span>, C <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'cyl'</span>, <span class='st'>'wt'</span><span class='op'>)</span><span class='op'>)</span>
+#&gt; &lt;environment: 0x5580d44b00f0&gt;</div><div class='input'><span class='fu'>formula_lfe</span><span class='op'>(</span>y<span class='op'>=</span><span class='st'>'mpg'</span>, X <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'hp'</span>, <span class='st'>'drat'</span><span class='op'>)</span>, W <span class='op'>=</span> <span class='st'>'gear'</span>, Z <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'cyl'</span>, <span class='st'>'carb'</span><span class='op'>)</span>, D <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'wt'</span>, <span class='st'>'vs'</span><span class='op'>)</span>, C <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'cyl'</span>, <span class='st'>'wt'</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; mpg ~ hp + drat | wt + vs | (gear ~ cyl + carb) | cyl + wt
-#&gt; &lt;environment: 0x5602c859d168&gt;</div></pre>
+#&gt; &lt;environment: 0x5580d450cb28&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
