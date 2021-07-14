@@ -7,9 +7,9 @@
 #' @keywords Frisch-Waugh-Lovell partial out
 #' @export
 #' @examples
-#' \dontrun{
+#'\dontrun{
 #' residualise('mpg', 'wt', 'cyl', mtcars)
-#' }
+#'}
 residualise = function(y, a, x = "1", d = "0", df){
   require(fixest)
   y_tilde = feols(formula_fixest(y, X = x, D = d), df)$residuals

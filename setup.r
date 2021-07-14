@@ -15,7 +15,11 @@ install.packages(root, repos = NULL, type = 'source')
 
 # %%
 library(usethis); library(pkgdown)
-pkgdown::build_site()
+
+# %%
+pkgdown::build_site(
+  # lazy = TRUE
+)
 # commit and push changes here
 # %%
 # reinstall after pushing updates
