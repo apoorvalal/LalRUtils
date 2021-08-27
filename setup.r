@@ -15,8 +15,6 @@ install.packages(root, repos = NULL, type = 'source')
 
 # %%
 library(usethis); library(pkgdown)
-
-# %%
 pkgdown::build_site(
   # lazy = TRUE
 )
@@ -27,5 +25,4 @@ pkgdown::build_site(
 library(devtools)
 devtools::install_github("apoorvalal/LalRUtils")
 library(LalRUtils)
-
 # %%

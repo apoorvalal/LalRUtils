@@ -33,5 +33,26 @@ checkmark <- function(name, yesno, format = 'latex') {
 }
 
 #' @export
-datapkg = function(pkg) data(package = pkg)$results[, 3:4]
+dataPkg = function(pkg) data(package = pkg)$results[, 3:4]
 
+# "not.in" function
+#' @export
+'%!in%' <- function(x,y)!('%in%'(x,y))
+
+# Omit NA entries in list
+#' @export
+naOmitList <- function(y) { return(y[!sapply(y, function(x) all(is.na(x)))]) }
+
+# Omit element if it contains "contains"
+#' @export
+listOmitIf <- function(lst, contains) {lst[lapply(lst, function(x) length(grep(contains,x,value=FALSE))) == 0]}
+
+# Get n'th element in list of lists
+#' @export
+getNthElement <- function(list.of.lists, nth.element){
+  sapply(list.of.lists, `[`, nth.element)
+}
+
+# render html output in atom / jupyter notebooks
+#' @export
+chr_nb = function(...) as.character(...) %>% IRdisplay::display_html()
