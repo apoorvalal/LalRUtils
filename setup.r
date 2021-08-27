@@ -8,21 +8,13 @@ root = "/home/alal/Desktop/code/LalRUtils/"
 setwd(root)
 # create('LalRUtils') # only run once
 document()
-
 # %% Run this for local testing
 install.packages(root, repos = NULL, type = 'source')
-# %% website documentation
 
-# %%
-library(usethis); library(pkgdown)
-pkgdown::build_site(
-  # lazy = TRUE
-)
-# commit and push changes here
 # %%
 # reinstall after pushing updates
 # Run this to install new version after pushing to github
-library(devtools)
-devtools::install_github("apoorvalal/LalRUtils")
-library(LalRUtils)
+# library(devtools)
+# devtools::install_github("apoorvalal/LalRUtils")
+# library(LalRUtils)
 # %%
