@@ -11,18 +11,17 @@
 #' }
 
 subclassify = function(df, x, y = 're78', w = 'treat', debug = F){
-  df = as.data.table(df)
-  # denominators
-  N = nrow(df); N1=sum(df[[w]])
-  # aggregate by group
-  grpmeans = df[, .(grpmean = mean(get(y)), N = .N), by= c(x, w)]
-  # reshape needs formula - more general to accommodate multiple Xs
+  require(data.table)
+  if (!data.table::is.data.table(df)) {
+    df <- data.table::as.data.table(df)
+  }
+  N = nrow(df); N1 = sum(df[[w]])
+  grpmeans = df[, list(grpmean = mean(get(y)), N = .N), by = c(x, w)]
   fml = as.formula(paste0(paste(x, collapse = "+"), "~", w))
-  # reshape to wide
   strata_level = dcast(grpmeans, fml, value.var = c("grpmean", "N"))
-  strata_level[,  `:=`(DiM = grpmean_1 - grpmean_0, N_k = N_1 + N_0)]
-  ATE = strata_level[, sum(DiM * (N_k/N))]
-  ATT = strata_level[, sum(DiM * (N_1/N1))]
-  if(debug){ return(list(est = data.frame(ATE = ATE, ATT = ATT), table = strata_level)) }
-  else{ return(data.frame(ATE = ATE, ATT = ATT))}
+  strata_level[, `:=`(DiM = grpmean_1 - grpmean_0, N_k = N_1 + N_0)]
+  ATE = strata_level[, sum(DiM * (N_k/N))]; ATT = strata_level[, sum(DiM * (N_1/N1))]
+  return(list(est = data.frame(ATE = ATE, ATT = ATT), table = strata_level))
 }
+
+# %%
