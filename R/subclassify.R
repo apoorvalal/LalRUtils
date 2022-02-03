@@ -4,7 +4,13 @@
 #' @param y outcome
 #' @param w treatment
 #' @param debug boolean to return strata-specific estimates
-subclass_est = function(df, x, y = 're78', w = 'treat', debug = F){
+#' @export
+#' @examples
+#' \dontrun{
+#' subclassify(mtcars, x = "cyl", y = "mpg", w = "foreign")
+#' }
+
+subclassify = function(df, x, y = 're78', w = 'treat', debug = F){
   df = as.data.table(df)
   # denominators
   N = nrow(df); N1=sum(df[[w]])
