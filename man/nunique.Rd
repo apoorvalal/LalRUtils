@@ -2,10 +2,16 @@
 % Please edit documentation in R/oneliners.R
 \name{nunique}
 \alias{nunique}
-\title{Oneliners for piping etc}
+\title{number of unique values in vector}
 \usage{
 nunique(x)
 }
+\arguments{
+\item{x}{vector}
+}
+\value{
+scalar with number of unique values
+}
 \description{
-Oneliners for piping etc
+number of unique values in vector
 }

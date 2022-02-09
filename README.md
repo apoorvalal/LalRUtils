@@ -1,5 +1,7 @@
 # LalRUtils
-Misc utility functions in R for personal use. 
+Misc utility functions in R for personal use.
+
+[Function reference](https://apoorvalal.github.io/LalRUtils/reference/index.html)
 
 To install:
 ```R
