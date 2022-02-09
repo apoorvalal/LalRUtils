@@ -1,3 +1,23 @@
+# %%
+#' Summary table
+#' @param df A dataframe , var A column in said dataframe
+#' @return table with summary statistics
+#' @export
+#' @examples
+#' summar(mtcars)
+summar = function(df){
+  col1 = apply(df, 2, function(x) sum(is.na(x)))
+  col2 = apply(df, 2, function(x) length(unique(x)))
+  col3 = apply(df, 2, min) |> round(2)
+  col4 = apply(df, 2, max) |> round(2)
+  col5 = apply(df, 2, mean) |> round(2)
+  col6 = apply(df, 2, var) |> round(2)
+  col7plus = apply(df, 2, function(x) quantile(x, c(0.25, 0.5, 0.75)))  |> t() |> round(2)
+  data.frame(n_missing = col1, n_unique = col2, minimum = col3,
+    col7plus, avg = col5, variance = col6, maximum = col4)
+}
+
+# %%
 #' Summary table with percentages for categorical variables
 #' @param df A dataframe , var A column in said dataframe
 #' @keywords dataframe variable name categorical
@@ -5,7 +25,7 @@
 #' @examples
 #' freq_table(mtcars, 'as.factor(cyl)')
 freq_table = function(df, var) {
-    suppressMessages(library(tidyverse))
+    suppressMessages(library(dplyr))
     ft = df %>% count_(var) %>%
       mutate(prop=prop.table(n)) %>%
       arrange(desc(prop))

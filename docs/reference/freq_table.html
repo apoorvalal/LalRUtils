@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">LalRUtils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1</span>
       </span>
     </div>
 
@@ -130,8 +130,13 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='fu'>freq_table</span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>'as.factor(cyl)'</span><span class='op'>)</span>
-</pre>
+    <pre class="examples"><div class='input'><span class='fu'>freq_table</span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>'as.factor(cyl)'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: `count_()` was deprecated in dplyr 0.7.0.</span>
+#&gt; <span class='warning'>Please use `count()` instead.</span>
+#&gt; <span class='warning'>See vignette('programming') for more help</span></div><div class='output co'>#&gt;   as.factor(cyl)  n    prop
+#&gt; 1              8 14 0.43750
+#&gt; 2              4 11 0.34375
+#&gt; 3              6  7 0.21875</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
