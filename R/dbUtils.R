@@ -93,31 +93,11 @@ append_to_sqlite <- function(con, table_name,
 # writes all dataframes to csv
 ####################################
 
-convert_all_to_csv <- function(dataframes,path) {
+convert_all_to_csv <- function(dataframes, path) {
     for (file in dataframes){
         write.csv(mget(file, .GlobalEnv), paste0(path,'/',file,'.csv'))
     }
 }
-
-# %%
-
-#' Drop variables with all NAs in dataframe
-#' @param dataframe A dataframe
-#' @return dataframe with empty variables dropped
-#' @export
-#' @keywords dataframe variable
-#' @examples
-#' \dontrun{
-#' clean_dataframe = drop_missing_vars(dataframe_with_empty_vars)
-#' }
-
-drop_missing_vars <- function(df){
-    missing_list <- sapply(df, function(x)all(is.na(x)))
-    table(missing_list)
-    clean_df <- df[!missing_list]
-    return(clean_df)
-}
-
 
 # %%
 #' Small summary table with stata variable labels from DTA file
@@ -150,24 +130,6 @@ label_extractor = function(df, colnames = c('names', 'var.labels')){
   return(info)
 }
 
-# %%
-
-#' Lower variable names in a dataframe
-#' @param df A dataframe
-#' @keywords dataframe variable name
-#' @export
-#' @examples
-#' \dontrun{
-#' lower_varnames(dataframe_with_bad_varnames)
-#' }
-
-# Converts all varnames into lowercase - designed for shouty SAS datasets
-lower_varnames <- function(df) {
-    names(df)=tolower(names(df))
-    return(df)
-}
-
-# %%
 
 ####################################################
 #' Reads in all datasets in given location
@@ -179,11 +141,9 @@ lower_varnames <- function(df) {
 #' read_all_files(extension='dta',path='~/data/')
 #' }
 
-##########################################################################
-# loads all the datasets in a location to memory - only for small datasets
-##########################################################################
 
 read_all_files <- function(extension,location){
+    suppressMessages(library(fread))
     suppressMessages(library(haven))
     setwd(location)
     file_pattern = paste0("\\.",extension,"$")
@@ -192,8 +152,9 @@ read_all_files <- function(extension,location){
     objs         = substr(obj,1,pos-2)
     if(extension=='Rdata'){
         df=lapply(obj,load,envir=.GlobalEnv)
-    }
-    else if(extension=='dta'){
+    } else if(extension=='csv'){
+        df=lapply(obj,fread,envir=.GlobalEnv)
+    } else if(extension=='dta'){
         for (n in 1:length(objs)){
             assign(paste0(objs[n]),haven::read_dta(obj[n]),envir = .GlobalEnv)
         }
@@ -205,8 +166,6 @@ read_all_files <- function(extension,location){
     }
     return(objs)
 }
-
-# %%
 
 
 # %%
@@ -226,25 +185,6 @@ get_and_unzip <- function(url, filename){
         unzip(zipfile="zipped.zip",files=filename)
     }
 }
-
-
-#' Table of missing value counts and number of unique values
-#' @param df A dataframe
-#' @keywords dataframe variable name missing
-#' @export
-#' @examples
-#' nmiss_nun(mtcars)
-nmiss_nun <- function(df) {
-    require(purrr)
-    cat('-------------------------\n')
-    cat('--- Missing Values ------\n')
-    print(map(df, ~sum(is.na(.))))
-    cat('-------------------------\n')
-    cat('---- Unique Values ------\n')
-    print(map(df, ~length(unique(.))))
-}
-
-
 
 
 #' Populates a stat-transfer script to convert files to CSV
@@ -284,7 +224,6 @@ stat_transfer_data <- function(path,
     cat('quit \n')
     cat('\n')
     sink()
-
     command = readlines(target_full)
     print(command)
     transfer_command = paste0(stat.transfer.path,

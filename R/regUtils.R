@@ -1,38 +1,4 @@
 ####################################################
-#' Returns summary for lm object with robust standard errors
-#' @param vcov matrix from sandwich library
-#' @export
-#' @keywords hc0 cluster robust heteroskedasticity
-#' @examples
-#' \dontrun{
-#' se_maker(vcovCL(m, cluster = df$clustervar))
-#' }
-
-# converts complicated (multi/clustered) variance covariance matrices
-# into standard errors to be attached to lm objects
-se_maker <- function(vcovmat) {
-    s = sqrt(diag(vcovmat))
-    return(s)
-}
-
-
-####################################################
-#' Returns summary for lm object with robust standard errors
-#' @param lm object
-#' @export
-#' @keywords hc0 robust heteroskedasticity
-#' @examples
-#' robust_se(lm(mpg ~ wt, mtcars))
-
-# returns vector of robust standard errors
-robust_se <- function(model){
-    suppressPackageStartupMessages(library(sandwich))
-    s <- sqrt(diag(vcovHC(model)))
-    return(s)
-}
-
-
-####################################################
 #' Replaces the standard errors (t and p vals)in FELM model object with robust SE
 #' @param felm object
 #' @export

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Stitches together formula for use in fixest::feols — formula_fixest • LalRUtils</title>
+<title>Summary table — summar • LalRUtils</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Stitches together formula for use in fixest::feols — formula_fixest" />
-<meta property="og:description" content="Stitches together formula for use in fixest::feols" />
+<meta property="og:title" content="Summary table — summar" />
+<meta property="og:description" content="Summary table" />
 
 
 
@@ -108,49 +108,44 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Stitches together formula for use in fixest::feols</h1>
+    <h1>Summary table</h1>
     
-    <div class="hidden name"><code>formula_fixest.Rd</code></div>
+    <div class="hidden name"><code>summar.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Stitches together formula for use in fixest::feols</p>
+    <p>Summary table</p>
     </div>
 
-    <pre class="usage"><span class='fu'>formula_fixest</span><span class='op'>(</span><span class='va'>y</span>, <span class='va'>X</span>, W <span class='op'>=</span> <span class='cn'>NULL</span>, D <span class='op'>=</span> <span class='cn'>NULL</span>, Z <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>summar</span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>y</th>
-      <td><p>The dependent variable</p></td>
-    </tr>
-    <tr>
-      <th>X</th>
-      <td><p>vector of controls</p></td>
-    </tr>
-    <tr>
-      <th>W</th>
-      <td><p>treatment variable</p></td>
-    </tr>
-    <tr>
-      <th>D</th>
-      <td><p>vector of factor variables to be partialed out</p></td>
-    </tr>
-    <tr>
-      <th>Z</th>
-      <td><p>vector of instruments</p></td>
+      <th>df</th>
+      <td><p>A dataframe , var A column in said dataframe</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>table with summary statistics</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>formula_fixest</span><span class='op'>(</span>y<span class='op'>=</span><span class='st'>'mpg'</span>, X <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'hp'</span>, <span class='st'>'drat'</span><span class='op'>)</span>, D <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'wt'</span>, <span class='st'>'vs'</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; mpg ~ hp + drat | wt + vs
-#&gt; &lt;environment: 0x5620a286fd48&gt;</div><div class='input'><span class='fu'>formula_fixest</span><span class='op'>(</span>y<span class='op'>=</span><span class='st'>'mpg'</span>, X <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'hp'</span>, <span class='st'>'drat'</span><span class='op'>)</span>, W <span class='op'>=</span> <span class='st'>'gear'</span>, Z <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'cyl'</span>, <span class='st'>'carb'</span><span class='op'>)</span>, D <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'wt'</span>, <span class='st'>'vs'</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; mpg ~ hp + drat | wt + vs | gear ~ cyl + carb
-#&gt; &lt;environment: 0x5620a28d6268&gt;</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>summar</span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      n_missing n_unique minimum   X25.   X50.   X75.    avg variance maximum
+#&gt; mpg          0       25   10.40  15.43  19.20  22.80  20.09    36.32   33.90
+#&gt; cyl          0        3    4.00   4.00   6.00   8.00   6.19     3.19    8.00
+#&gt; disp         0       27   71.10 120.83 196.30 326.00 230.72 15360.80  472.00
+#&gt; hp           0       22   52.00  96.50 123.00 180.00 146.69  4700.87  335.00
+#&gt; drat         0       22    2.76   3.08   3.70   3.92   3.60     0.29    4.93
+#&gt; wt           0       29    1.51   2.58   3.33   3.61   3.22     0.96    5.42
+#&gt; qsec         0       30   14.50  16.89  17.71  18.90  17.85     3.19   22.90
+#&gt; vs           0        2    0.00   0.00   0.00   1.00   0.44     0.25    1.00
+#&gt; am           0        2    0.00   0.00   0.00   1.00   0.41     0.25    1.00
+#&gt; gear         0        3    3.00   3.00   4.00   4.00   3.69     0.54    5.00
+#&gt; carb         0        6    1.00   2.00   2.00   4.00   2.81     2.61    8.00</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
