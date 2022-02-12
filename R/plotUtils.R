@@ -1,3 +1,29 @@
+# %% ####################################################
+#' Histogram of pscore distributions in treatment and control groups
+#' @param w treatment vector
+#' @param ps propensity score vector
+#' @return figure with overlap
+#' @import ggplot2
+#' @export
+#' @examples
+#' data(lalonde.exp)
+#' pscore = glm(treat ~ .-re78, lalonde.exp, family = binomial)$fitted.values
+#' overlap_histogram(lalonde.exp$treat, pscore) + lal_plot_theme()
+
+overlap_histogram = function(w, ps){
+  require(ggplot2)
+  d = data.frame(w, ps)
+  ggplot(d) +
+      geom_histogram(data = d[d$w == 1,], aes(x = ps,y = ..density.. , fill = 'treated')) +
+      geom_histogram(data = d[d$w == 0,], aes(x = ps,y =-..density.. , fill = 'control')) +
+      theme(
+        axis.text.y=element_blank(),  #remove y axis labels
+        axis.ticks.y=element_blank()  #remove y axis ticks
+      ) +
+    labs(fill = "", x = "Propensity Score")
+}
+
+
 #' Stitches together multiple ggplot objects for export-ready graphs
 #' @param ... ggplot objects
 #' @keywords graphs plots

@@ -64,3 +64,41 @@ DMLReg <- function(x, d, y, dreg, yreg, nfold=5) {
   effect_se = summary(rfit)$coefficients[2, 1:2]
   return( list(res = effect_se, dtil=dtil, ytil=ytil) )
 }
+
+
+# %% ####################################################
+#' Regression Adjustment estimation of ATE or ATT
+#' @param df dataframe
+#' @param y outcome name
+#' @param w treatment name
+#' @param xs vector of covariate names
+#' @param estimand : runs Lin regression when "ATE" and Oaxaca-Blinder-Kitagawa when "ATT"
+#' @return fixest model object with robust standard errors (can be summarised again with different clusters)
+#' @import fixest
+#' @export
+#' @examples
+#' data(lalonde.psid); data(lalonde.exp);
+#' y = "re78"; w = "treat"; xs = setdiff(colnames(lalonde.psid), c(y, w))
+#' cat("ATE in experimental sample \n")
+#' reg_adjust(lalonde.exp, 'treat', 're78', xs, "ATE")
+#' cat(" --------------------------- \n")
+#' cat("ATT in obs sample \n")
+#' reg_adjust(lalonde.psid, 'treat', 're78', xs, "ATT")
+#' cat(" --------------------------- \n")
+
+reg_adjust = function(df, w, y, xs, estimand = "ATT"){
+  # for ATE, sweep out overall means, else sweep out treatment means
+  if(estimand == "ATE"){ d = df[, xs] } else {d = df[df[[w]] == 1, xs]}
+  # take out means
+  Xbar = apply(d[, xs], 2, mean); Xdemeaned = sweep(df[, xs], 2, Xbar)
+  colnames(Xdemeaned) = paste0(colnames(Xdemeaned), "_dem")
+  # concat columns
+  regdf = cbind(df[, c(y, w)], df[, xs], Xdemeaned)
+  # interacted regression
+  f = as.formula(paste0(y, "~", w, "+",
+      paste(xs, collapse = "+"), "+",                           # controls effects
+      w, ":(", paste(colnames(Xdemeaned), collapse = "+"), ")"  # treat effects
+      ))
+  m = fixest::feols(f, data = regdf, vcov = 'hc1')
+  m
+}

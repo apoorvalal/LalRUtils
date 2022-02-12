@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Stitches together formula for use in lm/glm — formula_stitcher • LalRUtils</title>
+<title>Histogram of pscore distributions in treatment and control groups — overlap_histogram • LalRUtils</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Stitches together formula for use in lm/glm — formula_stitcher" />
-<meta property="og:description" content="Stitches together formula for use in lm/glm" />
+<meta property="og:title" content="Histogram of pscore distributions in treatment and control groups — overlap_histogram" />
+<meta property="og:description" content="Histogram of pscore distributions in treatment and control groups" />
 
 
 
@@ -108,39 +108,39 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Stitches together formula for use in lm/glm</h1>
+    <h1>Histogram of pscore distributions in treatment and control groups</h1>
     
-    <div class="hidden name"><code>formula_stitcher.Rd</code></div>
+    <div class="hidden name"><code>overlap_histogram.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Stitches together formula for use in lm/glm</p>
+    <p>Histogram of pscore distributions in treatment and control groups</p>
     </div>
 
-    <pre class="usage"><span class='fu'>formula_stitcher</span><span class='op'>(</span><span class='va'>Y</span>, <span class='va'>X</span>, factors <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>overlap_histogram</span><span class='op'>(</span><span class='va'>w</span>, <span class='va'>ps</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>Y</th>
-      <td><p>The dependent variable</p></td>
+      <th>w</th>
+      <td><p>treatment vector</p></td>
     </tr>
     <tr>
-      <th>X</th>
-      <td><p>List of independent variables (continuous/dummy variables)</p></td>
-    </tr>
-    <tr>
-      <th>factors</th>
-      <td><p>List of factor variables (NULL by default)</p></td>
+      <th>ps</th>
+      <td><p>propensity score vector</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>figure with overlap</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>formula_stitcher</span><span class='op'>(</span><span class='st'>'wage'</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'age'</span>,<span class='st'>'experience'</span>,<span class='st'>'married'</span><span class='op'>)</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'ethnicity'</span>,<span class='st'>'sector'</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; wage ~ age + experience + married + factor(ethnicity) + factor(sector)
-#&gt; &lt;environment: 0x55850b5ab998&gt;</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>lalonde.exp</span><span class='op'>)</span>
+<span class='va'>pscore</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/glm.html'>glm</a></span><span class='op'>(</span><span class='va'>treat</span> <span class='op'>~</span> <span class='va'>.</span><span class='op'>-</span><span class='va'>re78</span>, <span class='va'>lalonde.exp</span>, family <span class='op'>=</span> <span class='va'>binomial</span><span class='op'>)</span><span class='op'>$</span><span class='va'>fitted.values</span>
+<span class='fu'>overlap_histogram</span><span class='op'>(</span><span class='va'>lalonde.exp</span><span class='op'>$</span><span class='va'>treat</span>, <span class='va'>pscore</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='lal_plot_theme.html'>lal_plot_theme</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='output co'>#&gt; <span class='message'>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></div><div class='img'><img src='overlap_histogram-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
