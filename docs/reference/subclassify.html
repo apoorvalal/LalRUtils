@@ -144,12 +144,87 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>list with ATE and ATT estimate in est and strata level averages in table</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'>subclassify</span><span class='op'>(</span><span class='va'>mtcars</span>, x <span class='op'>=</span> <span class='st'>"cyl"</span>, y <span class='op'>=</span> <span class='st'>"mpg"</span>, w <span class='op'>=</span> <span class='st'>"foreign"</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>lalonde.psid</span><span class='op'>)</span>; <span class='fu'>setDT</span><span class='op'>(</span><span class='va'>lalonde.psid</span><span class='op'>)</span>
+<span class='fu'>subclassify</span><span class='op'>(</span><span class='va'>lalonde.psid</span>, x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"u74"</span>, <span class='st'>"u75"</span><span class='op'>)</span>,
+  y <span class='op'>=</span> <span class='st'>"re78"</span>, w <span class='op'>=</span> <span class='st'>"treat"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $est
+#&gt;         ATE       ATT
+#&gt; 1 -15157.89 -4286.105
+#&gt; 
+#&gt; $table
+#&gt; Key: &lt;u74, u75&gt;
+#&gt;      u74   u75 grpmean_0 grpmean_1   N_0   N_1        DiM   N_k
+#&gt;    &lt;num&gt; &lt;num&gt;     &lt;num&gt;     &lt;num&gt; &lt;int&gt; &lt;int&gt;      &lt;num&gt; &lt;int&gt;
+#&gt; 1:     0     0 23366.499  5487.466  2188    52 -17879.032  2240
+#&gt; 2:     0     1 11523.244  4440.835    87     2  -7082.409    89
+#&gt; 3:     1     0 22497.160 10514.686    53    22 -11982.474    75
+#&gt; 4:     1     1  2151.187  5954.485   162   109   3803.298   271
+#&gt; </div><div class='input'><span class='fu'>subclassify</span><span class='op'>(</span><span class='va'>lalonde.psid</span>, x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"married"</span>, <span class='st'>"black"</span>, <span class='st'>"hispanic"</span>, <span class='st'>"u74"</span>, <span class='st'>"u75"</span><span class='op'>)</span>,
+  y <span class='op'>=</span> <span class='st'>"re78"</span>, w <span class='op'>=</span> <span class='st'>"treat"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $est
+#&gt;   ATE ATT
+#&gt; 1  NA  NA
+#&gt; 
+#&gt; $table
+#&gt; Key: &lt;married, black, hispanic, u74, u75&gt;
+#&gt;     married black hispanic   u74   u75  grpmean_0 grpmean_1   N_0   N_1
+#&gt;       &lt;num&gt; &lt;num&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt;      &lt;num&gt;     &lt;num&gt; &lt;int&gt; &lt;int&gt;
+#&gt;  1:       0     0        0     0     0 21328.9403  9823.470   170     3
+#&gt;  2:       0     0        0     0     1 13616.4292        NA     9    NA
+#&gt;  3:       0     0        0     1     0 14161.5464  9900.017     6     3
+#&gt;  4:       0     0        0     1     1   901.4132  7017.448    10     9
+#&gt;  5:       0     0        1     0     0 11821.8125  2709.584     3     3
+#&gt;  6:       0     0        1     0     1  8275.2686        NA     1    NA
+#&gt;  7:       0     0        1     1     0  3657.3733  5112.010     1     1
+#&gt;  8:       0     0        1     1     1     0.0000 11359.417     1     4
+#&gt;  9:       0     1        0     0     0 13003.9556  4206.355   116    33
+#&gt; 10:       0     1        0     0     1  4786.3565  8881.670     5     1
+#&gt; 11:       0     1        0     1     0  3960.3071 12512.077     2    12
+#&gt; 12:       0     1        0     1     1   984.8227  5236.514     9    81
+#&gt; 13:       1     0        0     0     0 26213.5951     0.000  1387     1
+#&gt; 14:       1     0        0     0     1 10265.8871        NA    49    NA
+#&gt; 15:       1     0        0     1     0 25904.1864  4232.310    41     1
+#&gt; 16:       1     0        0     1     1  2585.7861 12418.100   113     1
+#&gt; 17:       1     0        1     0     0 23948.4061  8440.630    64     2
+#&gt; 18:       1     0        1     0     1 29923.9629        NA     4    NA
+#&gt; 19:       1     0        1     1     1  1266.6228  2787.960     7     1
+#&gt; 20:       1     1        0     0     0 18002.4567  9205.812   448    10
+#&gt; 21:       1     1        0     0     1 11844.3673     0.000    19     1
+#&gt; 22:       1     1        0     1     0 11243.5292  8426.758     3     5
+#&gt; 23:       1     1        0     1     1  1343.3878  7775.420    22    13
+#&gt;     married black hispanic   u74   u75  grpmean_0 grpmean_1   N_0   N_1
+#&gt;            DiM   N_k
+#&gt;          &lt;num&gt; &lt;int&gt;
+#&gt;  1: -11505.470   173
+#&gt;  2:         NA    NA
+#&gt;  3:  -4261.530     9
+#&gt;  4:   6116.035    19
+#&gt;  5:  -9112.228     6
+#&gt;  6:         NA    NA
+#&gt;  7:   1454.637     2
+#&gt;  8:  11359.417     5
+#&gt;  9:  -8797.601   149
+#&gt; 10:   4095.314     6
+#&gt; 11:   8551.770    14
+#&gt; 12:   4251.692    90
+#&gt; 13: -26213.595  1388
+#&gt; 14:         NA    NA
+#&gt; 15: -21671.876    42
+#&gt; 16:   9832.314   114
+#&gt; 17: -15507.776    66
+#&gt; 18:         NA    NA
+#&gt; 19:   1521.337     8
+#&gt; 20:  -8796.645   458
+#&gt; 21: -11844.367    20
+#&gt; 22:  -2816.771     8
+#&gt; 23:   6432.032    35
+#&gt;            DiM   N_k
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

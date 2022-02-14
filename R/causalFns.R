@@ -4,14 +4,16 @@
 #' @param y outcome
 #' @param w treatment
 #' @param debug boolean to return strata-specific estimates
+#' @return list with ATE and ATT estimate in est and strata level averages in table
 #' @export
 #' @examples
-#' \dontrun{
-#' subclassify(mtcars, x = "cyl", y = "mpg", w = "foreign")
-#' }
+#' data(lalonde.psid); setDT(lalonde.psid)
+#' subclassify(lalonde.psid, x = c("u74", "u75"),
+#'   y = "re78", w = "treat")
+#' subclassify(lalonde.psid, x = c("married", "black", "hispanic", "u74", "u75"),
+#'   y = "re78", w = "treat")
 
 subclassify = function(df, x, y = 're78', w = 'treat', debug = F){
-  require(data.table)
   if (!data.table::is.data.table(df)) {
     df <- data.table::as.data.table(df)
   }

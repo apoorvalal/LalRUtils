@@ -17,11 +17,16 @@ subclassify(df, x, y = "re78", w = "treat", debug = F)
 
 \item{debug}{boolean to return strata-specific estimates}
 }
+\value{
+list with ATE and ATT estimate in est and strata level averages in table
+}
 \description{
 Compute subclassification ATT and ATE
 }
 \examples{
-\dontrun{
-subclassify(mtcars, x = "cyl", y = "mpg", w = "foreign")
-}
+data(lalonde.psid); setDT(lalonde.psid)
+subclassify(lalonde.psid, x = c("u74", "u75"),
+  y = "re78", w = "treat")
+subclassify(lalonde.psid, x = c("married", "black", "hispanic", "u74", "u75"),
+  y = "re78", w = "treat")
 }
