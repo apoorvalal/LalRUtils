@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Stitches together formula for use in lm/glm — formula_stitcher • LalRUtils</title>
+<title>Compute OLS with arbitrary vector of weights (possibly negative) — OLSw • LalRUtils</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Stitches together formula for use in lm/glm — formula_stitcher" />
-<meta property="og:description" content="Stitches together formula for use in lm/glm" />
+<meta property="og:title" content="Compute OLS with arbitrary vector of weights (possibly negative) — OLSw" />
+<meta property="og:description" content="Compute OLS with arbitrary vector of weights (possibly negative)" />
 
 
 
@@ -108,39 +108,38 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Stitches together formula for use in lm/glm</h1>
+    <h1>Compute OLS with arbitrary vector of weights (possibly negative)</h1>
     
-    <div class="hidden name"><code>formula_stitcher.Rd</code></div>
+    <div class="hidden name"><code>OLSw.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Stitches together formula for use in lm/glm</p>
+    <p>Compute OLS with arbitrary vector of weights (possibly negative)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>formula_stitcher</span><span class='op'>(</span><span class='va'>Y</span>, <span class='va'>X</span>, factors <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>OLSw</span><span class='op'>(</span><span class='va'>y</span>, <span class='va'>X</span>, <span class='va'>w</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>Y</th>
-      <td><p>The dependent variable</p></td>
+      <th>y</th>
+      <td><p>Response vector</p></td>
     </tr>
     <tr>
       <th>X</th>
-      <td><p>List of independent variables (continuous/dummy variables)</p></td>
+      <td><p>A numeric data matrix</p></td>
     </tr>
     <tr>
-      <th>factors</th>
-      <td><p>List of factor variables (NULL by default)</p></td>
+      <th>w</th>
+      <td><p>vector of weights (same length as y)</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>formula_stitcher</span><span class='op'>(</span><span class='st'>'wage'</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'age'</span>,<span class='st'>'experience'</span>,<span class='st'>'married'</span><span class='op'>)</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'ethnicity'</span>,<span class='st'>'sector'</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; wage ~ age + experience + married + factor(ethnicity) + factor(sector)
-#&gt; &lt;environment: 0x5568d3cae4a0&gt;</div></pre>
+    <p>Regression vector beta of length ncol(X).</p>
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

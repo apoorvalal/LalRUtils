@@ -67,6 +67,19 @@ DMLReg <- function(x, d, y, dreg, yreg, nfold=5) {
   return( list(res = effect_se, dtil=dtil, ytil=ytil) )
 }
 
+# %%
+#' Compute OLS with arbitrary vector of weights (possibly negative)
+#' @param y Response vector
+#' @param X A numeric data matrix
+#' @param w vector of weights (same length as y)
+#' @return Regression vector beta of length ncol(X).
+#' @export
+#' @import car
+OLSw = function(y, X, w){
+  XtWX = car::wcrossprod(X, w = w)
+  XtWy = car::wcrossprod(X, y, w = w)
+  solve(XtWX) %*% XtWy
+}
 
 # %% ####################################################
 #' Regression Adjustment estimation of ATE or ATT
