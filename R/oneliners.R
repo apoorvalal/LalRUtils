@@ -28,6 +28,17 @@ lv = function() .Last.value
 #' @export
 dataPkg = function(pkg) data(package = pkg)$results[, 3:4]
 
-# "not.in" function
+# %% ####################################################
+#' not.in function
 #' @export
 '%!in%' = function(x,y)!('%in%'(x,y))
+
+# %% ####################################################
+#' coerce to string
+#' @export
+chr = function(...) as.character(...)
+
+# %% ####################################################
+#' list methods for object
+#' @export
+mls = function(y) Map(function(x) methods(class = x), class(y))
