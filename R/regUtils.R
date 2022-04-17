@@ -1,4 +1,4 @@
-####################################################
+# %%
 #' Replaces the standard errors (t and p vals)in FELM model object with robust SE
 #' @param felm object
 #' @export
@@ -7,7 +7,6 @@
 #' \dontrun{
 #' robustify(felm(y~x,data=df))
 #' }
-
 # returns lm summary object with cluster-robust standard errors
 robustify <- function(model){
     model$se    = model$rse
@@ -16,7 +15,17 @@ robustify <- function(model){
     return(model)
 }
 
+# %% ####################################################
+#' return cross-fit predictions from glmnet object
+#' @param m glmnet model object fit with keep = T
+#' @return vector of cross-fit predictions
+#' @export
+fitGet = function(m){
+  m$fit.preval[, !is.na(colSums(m$fit.preval))][, # slice to nonmissing cols
+    m$lambda[!is.na(colSums(m$fit.preval))] == m$lambda.min] # match lambda
+}
 
+# %%
 #' Partial out controls and fixed effects and return residualised outcome and treatment
 #' @param y outcome
 #' @param a primary rhs variable
