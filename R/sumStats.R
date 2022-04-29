@@ -6,6 +6,7 @@
 #' @examples
 #' summar(mtcars)
 summar = function(df){
+  df = Filter(is.numeric, df) # subset to numeric columns
   col1 = apply(df, 2, function(x) sum(is.na(x)))
   col2 = apply(df, 2, function(x) length(unique(x)))
   col3 = apply(df, 2, min) |> round(2)

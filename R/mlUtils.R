@@ -10,7 +10,20 @@ ttsplit = function(df, k = 0.75){
   list(train = df[trainid,], test = df[-trainid,])
 }
 
+# %% ####################################################
+#' create folds for cross-fitting
+#' @param df dataframe - used to compute nrows
+#' @param nf Number of folds
+#' @return list with indices for each fold in first element, and fold assignment vector in second element
+#' @export
+createFolds = function(df, nf = 10){
+  n = nrow(df)
+  foldid = rep.int(1:nf, times = ceiling(n/nf))[sample.int(n)]
+  list(fold_assignments = split(1:n, foldid),
+       fold_indices = foldid)
+}
 
+# %% ####################################################
 #' min-max scale (maps continuous variable to [0, 1])
 #' @param X vector
 #' @export
