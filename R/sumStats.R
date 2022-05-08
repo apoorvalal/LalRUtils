@@ -5,17 +5,18 @@
 #' @export
 #' @examples
 #' summar(mtcars)
-summar = function(df){
-  df = Filter(is.numeric, df) # subset to numeric columns
-  col1 = apply(df, 2, function(x) sum(is.na(x)))
-  col2 = apply(df, 2, function(x) length(unique(x)))
-  col3 = apply(df, 2, min) |> round(2)
-  col4 = apply(df, 2, max) |> round(2)
-  col5 = apply(df, 2, mean) |> round(2)
-  col6 = apply(df, 2, var) |> round(2)
-  col7plus = apply(df, 2, function(x) quantile(x, c(0.25, 0.5, 0.75)))  |> t() |> round(2)
-  data.frame(n_missing = col1, n_unique = col2, minimum = col3,
-    col7plus, avg = col5, variance = col6, maximum = col4)
+summar = function(df, prec = 2){
+    df = Filter(is.numeric, df)
+    col1 = apply(df, 2, function(x) sum(is.na(x)))
+    col2 = apply(df, 2, function(x) length(unique(x)))
+    col3 = round(apply(df, 2, min), prec)
+    col4 = round(apply(df, 2, max), prec)
+    col5 = round(apply(df, 2, mean), prec)
+    col6 = round(apply(df, 2, var), prec)
+    col7plus = round(t(apply(df, 2, function(x) quantile(x, c(0.25,
+        0.5, 0.75)))), prec)
+    data.frame(n_missing = col1, n_unique = col2, minimum = col3,
+        col7plus, avg = col5, variance = col6, maximum = col4)
 }
 
 # %%

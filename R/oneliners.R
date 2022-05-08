@@ -7,6 +7,12 @@ nunique = function(x) length(unique(x))
 
 
 # %% ####################################################
+#' Timestamp with no spaces for filenames
+#' @return character with time stamp in format ff
+#' @export
+timeStamp = \(ff = "%d_%m_%Y__%H%M") format(Sys.time(), ff)
+
+# %% ####################################################
 #' inverse logit fn
 #' @param x vector
 #' @return vector with e(x)/[1+e(x)]

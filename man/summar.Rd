@@ -4,7 +4,7 @@
 \alias{summar}
 \title{Summary table}
 \usage{
-summar(df)
+summar(df, prec = 2)
 }
 \arguments{
 \item{df}{A dataframe , var A column in said dataframe}
