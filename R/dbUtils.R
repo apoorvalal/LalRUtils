@@ -110,7 +110,7 @@ convert_all_to_csv <- function(dataframes, path) {
 #' }
 dta_vlabs <- function(dta) {
     labels <- sapply(dta, function(x) attr(x, "label"))
-    tibble(name = names(labels),
+    data.frame(name = names(labels),
              label = labels)
 }
 
