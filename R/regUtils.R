@@ -79,9 +79,10 @@ prplot <- function(g,i) {
 #' @param dat              data table / dataframe
 #' @param dummies          Names of dummy vars
 #' @param continuouses     Names of continuous vars to modify fn form
-#' @param corr_cut         cutoff for correlation threshold to drop one of the vars (default = 0.98)
+#' @param corr_cut         cutoff for correlation threshold to drop one of the vars (default = 0.9)
 #' @param k                order of interactions: defaults to pairwise interactions
 #' @param m                order of functions: defaults to quadratic functions
+#' @param raw              raw or orthogonal bases
 #' @return data.frame with base terms and interactions + basis
 #' @export
 #' @examples
@@ -98,35 +99,32 @@ prplot <- function(g,i) {
 prepBMatrix = function(dat,
     continuouses,
     dummies = NULL,
-    corr_cut = 0.98, k = 2, m = 2) {
+    corr_cut = 0.90, k = 2, m = 2, raw = F) {
   dat = as.data.frame(dat)
   # concat names
   controls = c(dummies, continuouses)
-  #############################################
   # functional form changes for continuous vars
-  #############################################
-  # init list container
-  polynomial_dfs = list()
+  # polynomials (orthogonal by default)
+  polyfml = paste(paste0("poly(", continuouses,",", k, ", raw=", raw, ")"),
+          collapse = " + ")
+  powmat = model.matrix(as.formula(paste0("~ -1 + ", polyfml)), dat[, continuouses])
   # check for negative values in continuous vars before logging
   n_pos = apply(dat[, continuouses], 2, \(x) sum(x>0))
-  if (max(n_pos < nrow(dat)) == 0){
+  if (max(n_pos < nrow(dat)) == 0){ # log allowed
     logmat = log1p(dat[, continuouses])
-    names(logmat) = paste0("log_", continuouses)
-    polynomial_dfs  = c(polynomial_dfs, logmat)
+    names(logmat) = paste0("log", continuouses)
+    polynomials = cbind(logmat, powmat)
+  } else{ # no log
+    polynomials = powmat
   }
-  # construct polynomials
-  for (i in 2:m){
-    # raise all continuous columns to ith power (could do this by )
-    powmat = dat[, continuouses]^i
-    names(powmat) = paste0(continuouses, glue::glue("_p{i}"))
-    polynomial_dfs  = c(polynomial_dfs, powmat)
-  }
-  # cbind polynomials
-  polynomials = do.call("cbind", polynomial_dfs) %>% as.matrix()
   # cbind base terms with polynomials
   data = cbind(dat[, controls], polynomials)
-  # all n-way interactions with polynomials and dummies
-  X = model.matrix(as.formula(glue::glue("~.^{k} - 1")), data)
+  if (k > 1){
+    # all n-way interactions with polynomials and dummies
+    X = model.matrix(as.formula(glue::glue("~.^{k} - 1")), data)
+  } else {
+    X = as.matrix(data)
+  }
   # drop non-varying Xs
   varyvar = apply(X, 2, function(col) nunique(col) > 1)
   X = X[, varyvar]
@@ -136,3 +134,4 @@ prepBMatrix = function(dat,
   hc = sort(hc)
   X[,-c(hc)]
 }
+# %%

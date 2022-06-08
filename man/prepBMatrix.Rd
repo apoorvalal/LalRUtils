@@ -4,7 +4,15 @@
 \alias{prepBMatrix}
 \title{prepare X matrix with flexible interactions and polynomials}
 \usage{
-prepBMatrix(dat, continuouses, dummies = NULL, corr_cut = 0.98, k = 2, m = 2)
+prepBMatrix(
+  dat,
+  continuouses,
+  dummies = NULL,
+  corr_cut = 0.9,
+  k = 2,
+  m = 2,
+  raw = F
+)
 }
 \arguments{
 \item{dat}{data table / dataframe}
@@ -13,11 +21,13 @@ prepBMatrix(dat, continuouses, dummies = NULL, corr_cut = 0.98, k = 2, m = 2)
 
 \item{dummies}{Names of dummy vars}
 
-\item{corr_cut}{cutoff for correlation threshold to drop one of the vars (default = 0.98)}
+\item{corr_cut}{cutoff for correlation threshold to drop one of the vars (default = 0.9)}
 
 \item{k}{order of interactions: defaults to pairwise interactions}
 
 \item{m}{order of functions: defaults to quadratic functions}
+
+\item{raw}{raw or orthogonal bases}
 }
 \value{
 data.frame with base terms and interactions + basis
