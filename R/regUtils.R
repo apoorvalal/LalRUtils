@@ -89,14 +89,15 @@ prplot <- function(g,i) {
 #' xn = setdiff(colnames(lalonde.psid) , c("treat", "re78"))
 #' co = c("age", "education", "re74", "re75")
 #' bi = c("black", "hispanic", "married", "nodegree", "u74", "u75")
-#' Xx = prepBMatrix(lalonde.psid[, xn], bi, co)
+#' Xx = prepBMatrix(lalonde.psid[, xn], co, bi)
 #' colnames(lalonde.psid[, xn])  |> length()
 #' colnames(Xx)                  |> length()
 #' @importFrom glue glue
 #' @importFrom caret findCorrelation
 
 prepBMatrix = function(dat,
-    dummies, continuouses,
+    continuouses,
+    dummies = NULL,
     corr_cut = 0.98, k = 2, m = 2) {
   dat = as.data.frame(dat)
   # concat names
@@ -106,20 +107,25 @@ prepBMatrix = function(dat,
   #############################################
   # init list container
   polynomial_dfs = list()
-  # log(x+1) for all continuous columns
-  polynomial_dfs[[1]]        = log1p(dat[, continuouses])
-  names(polynomial_dfs[[1]]) = paste0("log_", continuouses)
+  # check for negative values in continuous vars before logging
+  n_pos = apply(dat[, continuouses], 2, \(x) sum(x>0))
+  if (max(n_pos < nrow(dat)) == 0){
+    logmat = log1p(dat[, continuouses])
+    names(logmat) = paste0("log_", continuouses)
+    polynomial_dfs  = c(polynomial_dfs, logmat)
+  }
   # construct polynomials
   for (i in 2:m){
-    # raise all continuous columns to ith power
-    polynomial_dfs[[i]] = dat[, continuouses]^i
-    names(polynomial_dfs[[i]]) = paste0(continuouses, glue::glue("_{i}"))
+    # raise all continuous columns to ith power (could do this by )
+    powmat = dat[, continuouses]^i
+    names(powmat) = paste0(continuouses, glue::glue("_p{i}"))
+    polynomial_dfs  = c(polynomial_dfs, powmat)
   }
   # cbind polynomials
   polynomials = do.call("cbind", polynomial_dfs) %>% as.matrix()
   # cbind base terms with polynomials
   data = cbind(dat[, controls], polynomials)
-  # all n-way interactions with polynomials
+  # all n-way interactions with polynomials and dummies
   X = model.matrix(as.formula(glue::glue("~.^{k} - 1")), data)
   # drop non-varying Xs
   varyvar = apply(X, 2, function(col) nunique(col) > 1)
@@ -128,6 +134,5 @@ prepBMatrix = function(dat,
   corm = cor(X)
   hc = caret::findCorrelation(corm, cutoff=corr_cut) # put any value as a "cutoff"
   hc = sort(hc)
-  X = X[,-c(hc)]
-  X
+  X[,-c(hc)]
 }

@@ -4,14 +4,14 @@
 \alias{prepBMatrix}
 \title{prepare X matrix with flexible interactions and polynomials}
 \usage{
-prepBMatrix(dat, dummies, continuouses, corr_cut = 0.98, k = 2, m = 2)
+prepBMatrix(dat, continuouses, dummies = NULL, corr_cut = 0.98, k = 2, m = 2)
 }
 \arguments{
 \item{dat}{data table / dataframe}
 
-\item{dummies}{Names of dummy vars}
-
 \item{continuouses}{Names of continuous vars to modify fn form}
+
+\item{dummies}{Names of dummy vars}
 
 \item{corr_cut}{cutoff for correlation threshold to drop one of the vars (default = 0.98)}
 
@@ -30,7 +30,7 @@ data(lalonde.psid)
 xn = setdiff(colnames(lalonde.psid) , c("treat", "re78"))
 co = c("age", "education", "re74", "re75")
 bi = c("black", "hispanic", "married", "nodegree", "u74", "u75")
-Xx = prepBMatrix(lalonde.psid[, xn], bi, co)
+Xx = prepBMatrix(lalonde.psid[, xn], co, bi)
 colnames(lalonde.psid[, xn])  |> length()
 colnames(Xx)                  |> length()
 }

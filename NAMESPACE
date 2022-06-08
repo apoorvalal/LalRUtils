@@ -3,6 +3,7 @@
 S3method(summary,bboot)
 export("%!in%")
 export(DMLReg)
+export(KS2007_dgp)
 export(OLSw)
 export(ate_diffmeans)
 export(balance_table)
