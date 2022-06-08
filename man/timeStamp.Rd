@@ -12,3 +12,6 @@ character with time stamp in format ff
 \description{
 Timestamp with no spaces for filenames
 }
+\examples{
+timeStamp()
+}

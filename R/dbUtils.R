@@ -108,11 +108,8 @@ convert_all_to_csv <- function(dataframes, path) {
 #' \dontrun{
 #' dta_vlabs(df)
 #' }
-dta_vlabs <- function(dta) {
-    labels <- sapply(dta, function(x) attr(x, "label"))
-    data.frame(name = names(labels),
-             label = labels)
-}
+
+dta_vlabs <- \(dta) sapply(dta, function(x) attr(x, "label"))
 
 # %%
 

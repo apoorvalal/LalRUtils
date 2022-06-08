@@ -46,83 +46,6 @@ residualise = function(y, a, x = "1", d = "0", df){
 }
 
 
-#' Abbreviated Regression Summary
-#' Generic summaries for lm, glm and mer objects
-#' This generic function provides an abbreviated regression output containing
-#' the more useful information. Users wanting to see more are advised to use
-#' \code{summary()}
-#'
-#' @name sumary
-#' @docType methods
-#' @aliases sumary sumary,lm-method sumary,glm-method sumary,merMod-method
-#' @param object An lm, glm or mer object returned from lm(), glm() or lmer()
-#' respectively
-#' @param ... further arguments passed to or from other methods.
-#' @return returns the same as \code{summary()}
-#' @author Julian Faraway
-#' @seealso \code{\link[base]{summary}}, \code{\link[stats]{lm}},
-#' \code{\link[stats]{glm}}, \code{\link[lme4]{lmer}}
-#' @keywords regression
-#' @examples
-#'
-#' data(stackloss)
-#' object <- lm(stack.loss ~ .,stackloss)
-#' sumary(object)
-#'
-#' @exportMethod  sumary
-if (!isGeneric("sumary")) {
-    setGeneric("sumary",
-               function(object, ...)
-               standardGeneric("sumary"))
-}
-
-#'
-#' @docType methods
-#' @rdname sumary-methods
-#' @export
-setMethod("sumary", signature(object = "lm"),
-  \(object) {
-    digits <- options()$digits
-    summ <- summary (object)
-    sigma.hat <- summ$sigma
-    r.squared <- summ$r.squared
-    coef <- summ$coef[,,drop=FALSE]
-    n <- summ$df[1] + summ$df[2]
-    p <- summ$df[1]
-    if (nsingular <- summ$df[3] - summ$df[1]) cat("\nCoefficients: (", nsingular, " not defined because of singularities)\n", sep = "")
-    printCoefmat(coef,signif.stars=FALSE)
-    cat("\n")
-    cat (paste ("n = ", n, ", p = ", p,
-      ", Residual SE = ", format(round(sigma.hat, digits-2),nsmall=digits-2),
-      ", R-Squared = ", format(round(r.squared, 2)), "\n", sep=""))
-    invisible(summ)
-  }
-)
-
-#' @docType methods
-#' @rdname sumary-methods
-#' @export
-setMethod("sumary", signature(object = "glm"),
-    \(object, dispersion=NULL) {
-        digits <- options()$digits
-        summ <- summary(object, dispersion = dispersion)
-        n <- summ$df[1] + summ$df[2]
-        p <- summ$df[1]
-        coef <- summ$coef[,,drop=FALSE]
-        printCoefmat(coef,signif.stars=FALSE)
-        cat("\n")
-        if (summ$dispersion != 1) {
-            cat(paste0("Dispersion parameter = ", fround(summ$dispersion,digits-2),"\n"))
-        }
-        cat(paste0("n = ", n, " p = ", p,"\n"))
-        cat(paste0("Deviance = ",fround(summ$deviance,digits-2),
-                   " Null Deviance = ", fround(summ$null.deviance,digits-2),
-                   " (Difference = ", fround(summ$null.deviance-summ$deviance,digits-2), ")"),"\n")
-    return(invisible(summ))
-  }
-)
-
-
 #' Partial Residual Plot
 #'
 #' Makes a Partial Residual plot
@@ -131,7 +54,6 @@ setMethod("sumary", signature(object = "glm"),
 #' @param g An object returned from lm()
 #' @param i index of predictor
 #' @return none
-#' @author Julian Faraway
 #' @keywords regression
 #' @examples
 #'
@@ -148,4 +70,64 @@ prplot <- function(g,i) {
   plot(x,g$coeff[i+1]*x+g$res,xlab=xl,ylab=yl)
   abline(0,g$coeff[i+1])
   invisible()
+}
+
+# %%
+#' prepare X matrix with flexible interactions and polynomials
+#' @description Prepare matrix with polynomial basis expansion and/or interactions
+#
+#' @param dat              data table / dataframe
+#' @param dummies          Names of dummy vars
+#' @param continuouses     Names of continuous vars to modify fn form
+#' @param corr_cut         cutoff for correlation threshold to drop one of the vars (default = 0.98)
+#' @param k                order of interactions: defaults to pairwise interactions
+#' @param m                order of functions: defaults to quadratic functions
+#' @return data.frame with base terms and interactions + basis
+#' @export
+#' @examples
+#' data(lalonde.psid)
+#' xn = setdiff(colnames(lalonde.psid) , c("treat", "re78"))
+#' co = c("age", "education", "re74", "re75")
+#' bi = c("black", "hispanic", "married", "nodegree", "u74", "u75")
+#' Xx = prepBMatrix(lalonde.psid[, xn], bi, co)
+#' colnames(lalonde.psid[, xn])  |> length()
+#' colnames(Xx)                  |> length()
+#' @importFrom glue glue
+#' @importFrom caret findCorrelation
+
+prepBMatrix = function(dat,
+    dummies, continuouses,
+    corr_cut = 0.98, k = 2, m = 2) {
+  dat = as.data.frame(dat)
+  # concat names
+  controls = c(dummies, continuouses)
+  #############################################
+  # functional form changes for continuous vars
+  #############################################
+  # init list container
+  polynomial_dfs = list()
+  # log(x+1) for all continuous columns
+  polynomial_dfs[[1]]        = log1p(dat[, continuouses])
+  names(polynomial_dfs[[1]]) = paste0("log_", continuouses)
+  # construct polynomials
+  for (i in 2:m){
+    # raise all continuous columns to ith power
+    polynomial_dfs[[i]] = dat[, continuouses]^i
+    names(polynomial_dfs[[i]]) = paste0(continuouses, glue::glue("_{i}"))
+  }
+  # cbind polynomials
+  polynomials = do.call("cbind", polynomial_dfs) %>% as.matrix()
+  # cbind base terms with polynomials
+  data = cbind(dat[, controls], polynomials)
+  # all n-way interactions with polynomials
+  X = model.matrix(as.formula(glue::glue("~.^{k} - 1")), data)
+  # drop non-varying Xs
+  varyvar = apply(X, 2, function(col) nunique(col) > 1)
+  X = X[, varyvar]
+  # drop highly correlated Xs - this drops polynomials of binary variables
+  corm = cor(X)
+  hc = caret::findCorrelation(corm, cutoff=corr_cut) # put any value as a "cutoff"
+  hc = sort(hc)
+  X = X[,-c(hc)]
+  X
 }

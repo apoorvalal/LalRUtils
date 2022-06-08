@@ -3,8 +3,8 @@ Title: Lal's utility scripts for personal use
 Version: 1.1
 Authors@R: person("Apoorva", "Lal", email = "lal.apoorva@gmail.com", role = c("aut", "cre"))
 Description: Utility functions for personal use in research tasks (estimation/visualisation/munging).
-Depends: 
-  R (>= 4.1),
+Depends:
+  R (>= 4.2),
   data.table
 Imports:
   data.table,
@@ -14,10 +14,11 @@ Imports:
   stringdist,
   stringr,
   ggplot2,
+  glue,
   R.utils,
   DBI,
   RSQLite
 License: MIT
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
