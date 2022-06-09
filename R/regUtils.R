@@ -105,7 +105,7 @@ prepBMatrix = function(dat,
   controls = c(dummies, continuouses)
   # functional form changes for continuous vars
   # polynomials (orthogonal by default)
-  polyfml = paste(paste0("poly(", continuouses,",", k, ", raw=", raw, ")"),
+  polyfml = paste(paste0("poly(", continuouses,",", m, ", raw=", raw, ")"),
           collapse = " + ")
   powmat = model.matrix(as.formula(paste0("~ -1 + ", polyfml)), dat[, continuouses])
   # check for negative values in continuous vars before logging
