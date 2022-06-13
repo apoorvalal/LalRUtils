@@ -71,10 +71,7 @@
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span> <span class="op">+</span> <span class="va">hp</span>, <span class="va">mtcars</span><span class="op">)</span> |&gt; <span class="fu">bboot</span><span class="op">(</span>reps <span class="op">=</span> <span class="fl">1e3</span><span class="op">)</span> |&gt; <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: fixest</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                    mean   conf.low  conf.upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 37.28486960 33.6327253 41.08121400</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> wt          -3.88562074 -5.0495017 -2.73467798</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> hp          -0.03249825 -0.0455138 -0.02086332</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in lm(mpg ~ wt + hp, mtcars):</span> could not find function "lm"</span>
 </code></pre></div>
     </div>
   </div>

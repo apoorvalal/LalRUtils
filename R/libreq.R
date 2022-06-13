@@ -1,3 +1,10 @@
+#' Loads specific function or list of functions f from library l
+#' @param l library name (needs to be installed)
+#' @param f function name 
+#' @export
+fromLimportF = \(l, f) library(l, include.only = f, character.only = TRUE)
+
+
 #' Loads a list of libraries, installs when necessary - Take 2
 #' @param repo string containing repo to be passed to install.packages
 #' @keywords libraries install

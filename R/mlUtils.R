@@ -33,3 +33,30 @@ mMscale = function(X){
   maxs = apply(X,2,max)
   return(scale(X, center=mins, scale=maxs-mins))
 }
+
+# %%
+#' Classification Evaluation
+#'
+#' @param actual vector of real labels
+#' @param predicted vector of predicted labels
+#' @return list of classification accuracy metrics
+#' @export
+classifEval = function(actual, predicted){
+  cm = as.matrix(table(Actual = actual, Predicted = predicted))
+  n       = sum(cm)           # number of instances
+  nc      = nrow(cm)          # number of classes
+  diag    = diag(cm)          # number of correctly classified instances per class
+
+  rowsums = apply(cm, 1, sum) # number of instances per class
+  colsums = apply(cm, 2, sum) # number of predictions per class
+  p       = rowsums / n       # distribution of instances over the actual classes
+  q       = colsums / n       # distribution of instances over the predicted classes
+
+  list(
+    accuracy  = sum(diag) / n,
+    precision = diag / colsums,
+    recall    = diag / rowsums,
+    f1        = 2 * precision * recall / (precision + recall)
+  )
+}
+# %%

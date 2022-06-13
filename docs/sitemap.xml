@@ -40,6 +40,9 @@
     <loc>/reference/chr.html</loc>
   </url>
   <url>
+    <loc>/reference/classifEval.html</loc>
+  </url>
+  <url>
     <loc>/reference/convert_all_to_csv.html</loc>
   </url>
   <url>
@@ -77,6 +80,9 @@
   </url>
   <url>
     <loc>/reference/freq_table.html</loc>
+  </url>
+  <url>
+    <loc>/reference/fromLimportF.html</loc>
   </url>
   <url>
     <loc>/reference/fuzzy_match.html</loc>
