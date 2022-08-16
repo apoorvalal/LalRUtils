@@ -50,38 +50,112 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">subclassify</span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span>, y <span class="op">=</span> <span class="st">"re78"</span>, w <span class="op">=</span> <span class="st">"treat"</span>, debug <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">subclassify</span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span>, y <span class="op">=</span> <span class="st">"re78"</span>, w <span class="op">=</span> <span class="st">"treat"</span>, debug <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>df</dt>
 <dd><p>data.table</p></dd>
+
+
 <dt>x</dt>
 <dd><p>character vector of discrete covariates</p></dd>
+
+
 <dt>y</dt>
 <dd><p>outcome</p></dd>
+
+
 <dt>w</dt>
 <dd><p>treatment</p></dd>
+
+
 <dt>debug</dt>
 <dd><p>boolean to return strata-specific estimates</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>list with ATE and ATT estimate in est and strata level averages in table</p>
+    
+
+<p>list with ATE and ATT estimate in est and strata level averages in table</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">lalonde.psid</span><span class="op">)</span>; <span class="fu">setDT</span><span class="op">(</span><span class="va">lalonde.psid</span><span class="op">)</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in data(lalonde.psid):</span> could not find function "data"</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in setDT(lalonde.psid):</span> Cannot convert 'lalonde.psid' to data.table by reference because binding is locked. It is very likely that 'lalonde.psid' resides within a package (or an environment) that is locked to prevent modifying its variable bindings. Try copying the object to your current environment, ex: var &lt;- copy(var) and then using setDT again.</span>
-<span class="r-in"><span class="fu">subclassify</span><span class="op">(</span><span class="va">lalonde.psid</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"u74"</span>, <span class="st">"u75"</span><span class="op">)</span>,</span>
-<span class="r-in">  y <span class="op">=</span> <span class="st">"re78"</span>, w <span class="op">=</span> <span class="st">"treat"</span><span class="op">)</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in as.formula(paste0(paste(x, collapse = "+"), "~", w)):</span> could not find function "as.formula"</span>
-<span class="r-in"><span class="fu">subclassify</span><span class="op">(</span><span class="va">lalonde.psid</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"married"</span>, <span class="st">"black"</span>, <span class="st">"hispanic"</span>, <span class="st">"u74"</span>, <span class="st">"u75"</span><span class="op">)</span>,</span>
-<span class="r-in">  y <span class="op">=</span> <span class="st">"re78"</span>, w <span class="op">=</span> <span class="st">"treat"</span><span class="op">)</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in as.formula(paste0(paste(x, collapse = "+"), "~", w)):</span> could not find function "as.formula"</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">lalonde.psid</span><span class="op">)</span>; <span class="fu">setDT</span><span class="op">(</span><span class="va">lalonde.psid</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">subclassify</span><span class="op">(</span><span class="va">lalonde.psid</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"u74"</span>, <span class="st">"u75"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  y <span class="op">=</span> <span class="st">"re78"</span>, w <span class="op">=</span> <span class="st">"treat"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $est</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         ATE       ATT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -15157.89 -4286.105</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $table</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    u74 u75 grpmean_0 grpmean_1  N_0 N_1        DiM  N_k</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:   0   0 23366.499  5487.466 2188  52 -17879.032 2240</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2:   0   1 11523.244  4440.835   87   2  -7082.409   89</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3:   1   0 22497.160 10514.686   53  22 -11982.474   75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4:   1   1  2151.187  5954.485  162 109   3803.298  271</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="fu">subclassify</span><span class="op">(</span><span class="va">lalonde.psid</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"married"</span>, <span class="st">"black"</span>, <span class="st">"hispanic"</span>, <span class="st">"u74"</span>, <span class="st">"u75"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  y <span class="op">=</span> <span class="st">"re78"</span>, w <span class="op">=</span> <span class="st">"treat"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $est</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ATE ATT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  NA  NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $table</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     married black hispanic u74 u75  grpmean_0 grpmean_1  N_0 N_1        DiM</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  1:       0     0        0   0   0 21328.9403  9823.470  170   3 -11505.470</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2:       0     0        0   0   1 13616.4292        NA    9  NA         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  3:       0     0        0   1   0 14161.5464  9900.017    6   3  -4261.530</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  4:       0     0        0   1   1   901.4132  7017.448   10   9   6116.035</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  5:       0     0        1   0   0 11821.8125  2709.584    3   3  -9112.228</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  6:       0     0        1   0   1  8275.2686        NA    1  NA         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  7:       0     0        1   1   0  3657.3733  5112.010    1   1   1454.637</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  8:       0     0        1   1   1     0.0000 11359.417    1   4  11359.417</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  9:       0     1        0   0   0 13003.9556  4206.355  116  33  -8797.601</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10:       0     1        0   0   1  4786.3565  8881.670    5   1   4095.314</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11:       0     1        0   1   0  3960.3071 12512.077    2  12   8551.770</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12:       0     1        0   1   1   984.8227  5236.514    9  81   4251.692</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13:       1     0        0   0   0 26213.5951     0.000 1387   1 -26213.595</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14:       1     0        0   0   1 10265.8871        NA   49  NA         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:       1     0        0   1   0 25904.1864  4232.310   41   1 -21671.876</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16:       1     0        0   1   1  2585.7861 12418.100  113   1   9832.314</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17:       1     0        1   0   0 23948.4061  8440.630   64   2 -15507.776</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18:       1     0        1   0   1 29923.9629        NA    4  NA         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19:       1     0        1   1   1  1266.6228  2787.960    7   1   1521.337</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20:       1     1        0   0   0 18002.4567  9205.812  448  10  -8796.645</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21:       1     1        0   0   1 11844.3673     0.000   19   1 -11844.367</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22:       1     1        0   1   0 11243.5292  8426.758    3   5  -2816.771</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23:       1     1        0   1   1  1343.3878  7775.420   22  13   6432.032</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     married black hispanic u74 u75  grpmean_0 grpmean_1  N_0 N_1        DiM</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      N_k</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  1:  173</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2:   NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  3:    9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  4:   19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  5:    6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  6:   NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  7:    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  8:    5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  9:  149</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10:    6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11:   14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12:   90</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13: 1388</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14:   NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:   42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16:  114</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17:   66</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18:   NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19:    8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20:  458</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21:   20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22:    8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23:   35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      N_k</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </div>
@@ -96,7 +170,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -50,24 +50,28 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">freq_table</span><span class="op">(</span><span class="va">df</span>, <span class="va">var</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">freq_table</span><span class="op">(</span><span class="va">df</span>, <span class="va">var</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>df</dt>
 <dd><p>A dataframe , var A column in said dataframe</p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">freq_table</span><span class="op">(</span><span class="va">mtcars</span>, <span class="st">'as.factor(cyl)'</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">freq_table</span><span class="op">(</span><span class="va">mtcars</span>, <span class="st">'as.factor(cyl)'</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`count_()` was deprecated in dplyr 0.7.0.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> Please use `count()` instead.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> See vignette('programming') for more help</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in count(x, !!!vars, wt = !!wt, sort = sort, .drop = .drop):</span> object 'mtcars' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   as.factor(cyl)  n    prop</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1              8 14 0.43750</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2              4 11 0.34375</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3              6  7 0.21875</span>
 </code></pre></div>
     </div>
   </div>
@@ -82,7 +86,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

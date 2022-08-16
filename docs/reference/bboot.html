@@ -50,28 +50,38 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">bboot</span><span class="op">(</span><span class="va">object</span>, reps <span class="op">=</span> <span class="fl">100L</span>, cluster <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">bboot</span><span class="op">(</span><span class="va">object</span>, reps <span class="op">=</span> <span class="fl">100L</span>, cluster <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>object</dt>
 <dd><p>model object of class lm or fixest</p></dd>
+
+
 <dt>reps</dt>
 <dd><p>number of replications</p></dd>
+
+
 <dt>cluster</dt>
 <dd><p>clustering variable passed as bare formula or char vector</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>bboot object</p>
+    
+
+<p>bboot object</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span> <span class="op">+</span> <span class="va">hp</span>, <span class="va">mtcars</span><span class="op">)</span> |&gt; <span class="fu">bboot</span><span class="op">(</span>reps <span class="op">=</span> <span class="fl">1e3</span><span class="op">)</span> |&gt; <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span> <span class="op">+</span> <span class="va">hp</span>, <span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">bboot</span><span class="op">(</span>reps <span class="op">=</span> <span class="fl">1e3</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: fixest</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in lm(mpg ~ wt + hp, mtcars):</span> could not find function "lm"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    mean   conf.low  conf.upper</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 37.24067242 33.4469177 41.05109195</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> wt          -3.86640291 -5.1388178 -2.58410282</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> hp          -0.03257525 -0.0452037 -0.02130444</span>
 </code></pre></div>
     </div>
   </div>
@@ -86,7 +96,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

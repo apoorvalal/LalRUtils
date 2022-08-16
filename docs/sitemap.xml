@@ -43,6 +43,9 @@
     <loc>/reference/classifEval.html</loc>
   </url>
   <url>
+    <loc>/reference/clip.html</loc>
+  </url>
+  <url>
     <loc>/reference/convert_all_to_csv.html</loc>
   </url>
   <url>
@@ -100,6 +103,9 @@
     <loc>/reference/index.html</loc>
   </url>
   <url>
+    <loc>/reference/interSparseM.html</loc>
+  </url>
+  <url>
     <loc>/reference/label_extractor.html</loc>
   </url>
   <url>
@@ -145,6 +151,9 @@
     <loc>/reference/naOmitList.html</loc>
   </url>
   <url>
+    <loc>/reference/newtonRoot.html</loc>
+  </url>
+  <url>
     <loc>/reference/nmiss_nun.html</loc>
   </url>
   <url>
@@ -158,6 +167,9 @@
   </url>
   <url>
     <loc>/reference/panel_treat_plot.html</loc>
+  </url>
+  <url>
+    <loc>/reference/polySieveM.html</loc>
   </url>
   <url>
     <loc>/reference/prepBMatrix.html</loc>
@@ -215,5 +227,8 @@
   </url>
   <url>
     <loc>/reference/ttsplit.html</loc>
+  </url>
+  <url>
+    <loc>/reference/vnorm.html</loc>
   </url>
 </urlset>

@@ -6,6 +6,15 @@
 nunique = \(x) length(unique(x))
 
 
+# %%
+#' t-norm of a vector
+#' @param x vector
+#' @param t integer
+#' @export
+vnorm = \(x, t = 2) norm(matrix(x, ncol=1), t)
+
+
+
 # %% ####################################################
 #' Timestamp with no spaces for filenames
 #' @return character with time stamp in format ff
@@ -21,6 +30,14 @@ timeStamp = \(ff = "%d_%m_%Y__%H%M") format(Sys.time(), ff)
 #' @export
 expit = \(x) exp(x)/(1+exp(x))
 
+# %%
+#' clip vector to specified range (clone of np.clip)
+#' @param x vector
+#' @param l lower bound
+#' @param u upper bound
+#' @return clipped vector
+#' @export
+clip = \(x, l, u) pmax(pmin(x, u), l)
 
 # %% ####################################################
 #' last value

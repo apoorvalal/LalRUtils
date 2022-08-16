@@ -50,44 +50,83 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">reg_adjust</span><span class="op">(</span><span class="va">df</span>, <span class="va">w</span>, <span class="va">y</span>, <span class="va">xs</span>, estimand <span class="op">=</span> <span class="st">"ATT"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">reg_adjust</span><span class="op">(</span><span class="va">df</span>, <span class="va">w</span>, <span class="va">y</span>, <span class="va">xs</span>, estimand <span class="op">=</span> <span class="st">"ATT"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>df</dt>
 <dd><p>dataframe</p></dd>
+
+
 <dt>w</dt>
 <dd><p>treatment name</p></dd>
+
+
 <dt>y</dt>
 <dd><p>outcome name</p></dd>
+
+
 <dt>xs</dt>
 <dd><p>vector of covariate names</p></dd>
+
+
 <dt>estimand</dt>
 <dd><p>: runs Lin regression when "ATE" and Oaxaca-Blinder-Kitagawa when "ATT"</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>fixest model object with robust standard errors (can be summarised again with different clusters)</p>
+    
+
+<p>fixest model object with robust standard errors (can be summarised again with different clusters)</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">lalonde.psid</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">lalonde.exp</span><span class="op">)</span>;</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in data(lalonde.psid):</span> could not find function "data"</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in data(lalonde.exp):</span> could not find function "data"</span>
-<span class="r-in"><span class="va">y</span> <span class="op">=</span> <span class="st">"re78"</span>; <span class="va">w</span> <span class="op">=</span> <span class="st">"treat"</span>; <span class="va">xs</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html" class="external-link">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">lalonde.psid</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">w</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"ATE in experimental sample \n"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">lalonde.psid</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">lalonde.exp</span><span class="op">)</span>;</span></span>
+<span class="r-in"><span><span class="va">y</span> <span class="op">=</span> <span class="st">"re78"</span>; <span class="va">w</span> <span class="op">=</span> <span class="st">"treat"</span>; <span class="va">xs</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html" class="external-link">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">lalonde.psid</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">w</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"ATE in experimental sample \n"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ATE in experimental sample </span>
-<span class="r-in"><span class="fu">reg_adjust</span><span class="op">(</span><span class="va">lalonde.exp</span>, <span class="st">'treat'</span>, <span class="st">'re78'</span>, <span class="va">xs</span>, <span class="st">"ATE"</span><span class="op">)</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in as.formula(paste0(y, "~", w, "+", paste(xs, collapse = "+"),     "+", w, ":(", paste(colnames(Xdemeaned), collapse = "+"),     ")")):</span> could not find function "as.formula"</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">" --------------------------- \n"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">reg_adjust</span><span class="op">(</span><span class="va">lalonde.exp</span>, <span class="st">'treat'</span>, <span class="st">'re78'</span>, <span class="va">xs</span>, <span class="st">"ATE"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> OLS estimation, Dep. Var.: re78</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Observations: 445 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Standard-errors: Heteroskedasticity-robust </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Estimate Std. Error   t value Pr(&gt;|t|)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  7161.1626  3854.0114  1.858106 0.063848 .  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> treat        1583.4679   666.9396  2.374230 0.018031 *  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> age            40.7101    46.6679  0.872336 0.383520    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> education      82.1505   210.8259  0.389661 0.696984    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> black       -3131.3467  1349.7891 -2.319878 0.020823 *  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> hispanic     -927.3272  1631.2494 -0.568477 0.570013    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> married      -738.1153   976.8552 -0.755604 0.450307    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> nodegree     -168.8203  1079.3594 -0.156408 0.875786    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ... 14 coefficients remaining (display them with summary() or use argument n)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RMSE: 6,270.0   Adj. R2: 0.059553</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">" --------------------------- \n"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  --------------------------- </span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"ATT in obs sample \n"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"ATT in obs sample \n"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ATT in obs sample </span>
-<span class="r-in"><span class="fu">reg_adjust</span><span class="op">(</span><span class="va">lalonde.psid</span>, <span class="st">'treat'</span>, <span class="st">'re78'</span>, <span class="va">xs</span>, <span class="st">"ATT"</span><span class="op">)</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in as.formula(paste0(y, "~", w, "+", paste(xs, collapse = "+"),     "+", w, ":(", paste(colnames(Xdemeaned), collapse = "+"),     ")")):</span> could not find function "as.formula"</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">" --------------------------- \n"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">reg_adjust</span><span class="op">(</span><span class="va">lalonde.psid</span>, <span class="st">'treat'</span>, <span class="st">'re78'</span>, <span class="va">xs</span>, <span class="st">"ATT"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> OLS estimation, Dep. Var.: re78</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Observations: 2,675 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Standard-errors: Heteroskedasticity-robust </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error   t value   Pr(&gt;|t|)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -153.2337  1960.0359 -0.078179 9.3769e-01    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> treat        687.8221   897.2045  0.766628 4.4337e-01    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> age          -91.8914    25.1477 -3.654071 2.6312e-04 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> education    601.2658   129.0186  4.660302 3.3134e-06 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> black       -566.8557   459.8819 -1.232611 2.1783e-01    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> hispanic    2518.2101  1324.6798  1.900995 5.7411e-02 .  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> married     1378.8048   527.2069  2.615301 8.9654e-03 ** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> nodegree     787.1572   676.3425  1.163844 2.4459e-01    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ... 14 coefficients remaining (display them with summary() or use argument n)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RMSE: 10,008.9   Adj. R2: 0.586665</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">" --------------------------- \n"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  --------------------------- </span>
 </code></pre></div>
     </div>
@@ -103,7 +142,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

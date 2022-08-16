@@ -61,42 +61,59 @@ to learn more.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">csv_to_sqlite</span><span class="op">(</span>
-  <span class="va">csv_file</span>,
-  <span class="va">sqlite_file</span>,
-  <span class="va">table_name</span>,
-  delimiter <span class="op">=</span> <span class="st">","</span>,
-  pre_process_size <span class="op">=</span> <span class="fl">1000</span>,
-  chunk_size <span class="op">=</span> <span class="fl">50000</span>,
-  show_progress_bar <span class="op">=</span> <span class="cn">TRUE</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">csv_to_sqlite</span><span class="op">(</span></span>
+<span>  <span class="va">csv_file</span>,</span>
+<span>  <span class="va">sqlite_file</span>,</span>
+<span>  <span class="va">table_name</span>,</span>
+<span>  delimiter <span class="op">=</span> <span class="st">","</span>,</span>
+<span>  pre_process_size <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>  chunk_size <span class="op">=</span> <span class="fl">50000</span>,</span>
+<span>  show_progress_bar <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>csv_file</dt>
 <dd><p>Name of the text file to convert.</p></dd>
+
+
 <dt>sqlite_file</dt>
 <dd><p>Name of the newly created sqlite file.</p></dd>
+
+
 <dt>table_name</dt>
 <dd><p>Name of the table to store the data table in the sqlite
 database.</p></dd>
+
+
 <dt>pre_process_size</dt>
 <dd><p>Number of lines to check the data types of the
 individual columns (default 1000).</p></dd>
+
+
 <dt>chunk_size</dt>
 <dd><p>Number of lines to read for each chunk (default 50000).</p></dd>
+
+
 <dt>show_progress_bar</dt>
 <dd><p>Show progress bar (default TRUE).</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Further arguments to be passed to <code>read_delim</code>.</p></dd>
+
+
 <dt>delim</dt>
 <dd><p>Text file delimiter (default ",").</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a SQLite database</p>
+    
+
+<p>a SQLite database</p>
     </div>
     <div id="remark">
     <h2>Remark</h2>
@@ -119,7 +136,7 @@ to each chunk.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
