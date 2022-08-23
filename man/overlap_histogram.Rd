@@ -19,6 +19,7 @@ Histogram of pscore distributions in treatment and control groups
 }
 \examples{
 data(lalonde.exp)
-pscore = glm(treat ~ .-re78, lalonde.exp, family = binomial)$fitted.values
+pscore = glm(treat ~ . - re78, lalonde.exp, family = binomial)$fitted.values
 overlap_histogram(lalonde.exp$treat, pscore) + lal_plot_theme()
+
 }

@@ -21,8 +21,9 @@ formula_fixest(y, X, W = NULL, D = NULL, Z = NULL)
 Stitches together formula for use in fixest::feols
 }
 \examples{
-formula_fixest(y='mpg', X = c('hp', 'drat'), D = c('wt', 'vs'))
-formula_fixest(y='mpg', X = c('hp', 'drat'), W = 'gear', Z = c('cyl', 'carb'), D = c('wt', 'vs'))
+formula_fixest(y = 'mpg', X = c('hp', 'drat'), D = c('wt', 'vs'))
+formula_fixest(y = 'mpg', X = c('hp', 'drat'), W = 'gear', Z = c('cyl', 'carb'), D = c('wt', 'vs'))
+
 }
 \keyword{linear}
 \keyword{model}

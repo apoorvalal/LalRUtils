@@ -14,7 +14,7 @@ Replaces the standard errors (t and p vals)in FELM model object with robust SE
 }
 \examples{
 \dontrun{
-robustify(felm(y~x,data=df))
+robustify(felm(y ~ x, data = df))
 }
 }
 \keyword{hc0}

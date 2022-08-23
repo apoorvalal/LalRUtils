@@ -16,6 +16,7 @@ Loads a list of libraries, installs when necessary - Take 2
 \dontrun{
 libreq(tidyverse, lfe, estimatr)
 }
+
 }
 \keyword{install}
 \keyword{libraries}

@@ -20,8 +20,8 @@ Makes a Partial Residual plot
 \examples{
 
 data(stackloss)
-g <- lm(stack.loss ~ .,stackloss)
-prplot(g,1)
+g = lm(stack.loss ~ ., stackloss)
+prplot(g, 1)
 
 }
 \keyword{regression}

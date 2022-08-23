@@ -15,7 +15,7 @@
 
 subclassify = function(df, x, y = 're78', w = 'treat', debug = F){
   if (!data.table::is.data.table(df)) {
-    df <- data.table::as.data.table(df)
+    df = data.table::as.data.table(df)
   }
   N = nrow(df); N1 = sum(df[[w]])
   grpmeans = df[, list(grpmean = mean(get(y)), N = .N), by = c(x, w)]
@@ -39,30 +39,30 @@ subclassify = function(df, x, y = 're78', w = 'treat', debug = F){
 #' @export
 #' @examples
 #' \dontrun{
-#' dreg <- function(x,d){ cv.glmnet(x, d, alpha = 1) }
-#' yreg <- function(x,y){ cv.glmnet(x, y, alpha = 1) }
-#' res <- DMLReg( x=x, d=d, y=y, dreg=dreg, yreg=yreg, nfold=5)
+#' dreg = \(x,d) cv.glmnet(x, d, alpha = 1)
+#' yreg = \(x,y) cv.glmnet(x, y, alpha = 1)
+#' res = DMLReg(x=x, d=d, y=y, dreg=dreg, yreg=yreg, nfold=5)
 #' }
-DMLReg <- function(x, d, y, dreg, yreg, nfold=5) {
+DMLReg = function(x, d, y, dreg, yreg, nfold=5) {
   require(estimatr)
   # randomly split data into folds
-  nobs <- nrow(x)
-  foldid <- rep.int(1:nfold, times = ceiling(nobs/nfold))[sample.int(nobs)]
-  I <- split(1:nobs, foldid)
+  nobs = nrow(x)
+  foldid = rep.int(1:nfold, times = ceiling(nobs / nfold))[sample.int(nobs)]
+  I = split(1:nobs, foldid)
   # create residualized objects to fill
-  ytil <- dtil <- rep(NA, nobs)
+  ytil = dtil = rep(NA, nobs)
   # run the OOS orthogonalizations
   cat("fold: ")
   for(b in 1:length(I)){
-    dfit <- dreg(x[-I[[b]],], d[-I[[b]]])
-    yfit <- yreg(x[-I[[b]],], y[-I[[b]]])
-    dhat <- predict(dfit, x[I[[b]],], type="response")
-    yhat <- predict(yfit, x[I[[b]],], type="response")
-    dtil[I[[b]]] <- drop(d[I[[b]]] - dhat)
-    ytil[I[[b]]] <- drop(y[I[[b]]] - yhat)
+    dfit = dreg(x[-I[[b]], ], d[-I[[b]]])
+    yfit = yreg(x[-I[[b]], ], y[-I[[b]]])
+    dhat = predict(dfit, x[I[[b]], ], type = "response")
+    yhat = predict(yfit, x[I[[b]], ], type = "response")
+    dtil[I[[b]]] = drop(d[I[[b]]] - dhat)
+    ytil[I[[b]]] = drop(y[I[[b]]] - yhat)
     cat(b," ")
   }
-  rfit <- lm_robust(ytil ~ dtil)
+  rfit = lm_robust(ytil ~ dtil)
   effect_se = summary(rfit)$coefficients[2, 1:2]
   return( list(res = effect_se, dtil=dtil, ytil=ytil) )
 }

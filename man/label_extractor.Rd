@@ -16,6 +16,7 @@ extracts variable labels and returns a dataframe with varname-varlabel for DTA f
 \dontrun{
 label_extractor(df)
 }
+
 }
 \keyword{data}
 \keyword{labels}

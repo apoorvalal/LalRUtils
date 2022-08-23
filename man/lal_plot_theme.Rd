@@ -21,6 +21,7 @@ theme for nice looking plots with sensible defaults (no legend title, legend at 
 \dontrun{
 plot_ggp_object + lal_plot_theme()
 }
+
 }
 \keyword{ggplot}
 \keyword{plots}

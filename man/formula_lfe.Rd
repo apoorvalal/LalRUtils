@@ -23,8 +23,8 @@ formula_lfe(y, X, W = NULL, D = NULL, Z = NULL, C = NULL)
 Stitches together formula for use in felm
 }
 \examples{
-formula_lfe(y='mpg', X = c('hp', 'drat'), D = c('wt', 'vs'))
-formula_lfe(y='mpg', X = c('hp', 'drat'), W = 'gear', Z = c('cyl', 'carb'), D = c('wt', 'vs'), C = c('cyl', 'wt'))
+formula_lfe(y = 'mpg', X = c('hp', 'drat'), D = c('wt', 'vs'))
+formula_lfe(y = 'mpg', X = c('hp', 'drat'), W = 'gear', Z = c('cyl', 'carb'), D = c('wt', 'vs'), C = c('cyl', 'wt'))
 }
 \keyword{linear}
 \keyword{model}

@@ -22,6 +22,7 @@ plot binary treatment status for time series for panel dataset
 \dontrun{
 panel_treat_plot(california_prop99, Year, State, treated)
 }
+
 }
 \keyword{dataframe}
 \keyword{diff-in-diff}

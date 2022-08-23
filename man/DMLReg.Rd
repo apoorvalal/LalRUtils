@@ -26,9 +26,9 @@ Simple Double-ML implementation with cross-fitting
 }
 \examples{
 \dontrun{
-dreg <- function(x,d){ cv.glmnet(x, d, alpha = 1) }
-yreg <- function(x,y){ cv.glmnet(x, y, alpha = 1) }
-res <- DMLReg( x=x, d=d, y=y, dreg=dreg, yreg=yreg, nfold=5)
+dreg = \(x,d) cv.glmnet(x, d, alpha = 1)
+yreg = \(x,y) cv.glmnet(x, y, alpha = 1)
+res = DMLReg(x=x, d=d, y=y, dreg=dreg, yreg=yreg, nfold=5)
 }
 }
 \keyword{causal}

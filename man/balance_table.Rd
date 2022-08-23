@@ -20,6 +20,7 @@ Balance Check for observational studies
 \dontrun{
 balance_table(mtcars, treatvar = 'vs', bal_vars = c('mpg', 'cyl', 'disp'))
 }
+
 }
 \keyword{balance}
 \keyword{check}

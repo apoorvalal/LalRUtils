@@ -17,7 +17,8 @@ formula_stitcher(Y, X, factors = NULL)
 Stitches together formula for use in lm/glm
 }
 \examples{
-formula_stitcher('wage',c('age','experience','married'),c('ethnicity','sector'))
+formula_stitcher('wage', c('age', 'experience', 'married'), c('ethnicity', 'sector'))
+
 }
 \keyword{dataframe}
 \keyword{name}

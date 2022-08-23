@@ -29,7 +29,7 @@ one_sim = \(n = 100, control_prob = 0.1, rel_effect = 0.01) {
   cy = rbinom(n = n, size = 1, prob = control_prob)
   ty = rbinom(n = n, size = 1, prob = treat_prob)
   mean(ty) - mean(cy)
-  }
-  mcReplicate(10, one_sim(), mc.cores = 2)
+}
+mcReplicate(10, one_sim(), mc.cores = 2)
 
 }

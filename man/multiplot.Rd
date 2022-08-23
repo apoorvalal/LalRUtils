@@ -14,10 +14,13 @@ Stitches together multiple ggplot objects for export-ready graphs
 }
 \examples{
 \dontrun{
-plot1 = ggplot(data,aes(xvar1,yvar)) + geom_point()
-plot2 = ggplot(data,aes(xvar2,yvar)) + geom_point()
-multiplot(plot1,plot2,cols=2)
+plot1 = ggplot(data, aes(xvar1, yvar)) +
+  geom_point()
+plot2 = ggplot(data, aes(xvar2, yvar)) +
+  geom_point()
+multiplot(plot1, plot2, cols = 2)
 }
+
 }
 \keyword{graphs}
 \keyword{plots}

@@ -6,11 +6,15 @@
 matr = function(...) {
   # turn into string
   # args=deparse(substitute(rbind(cbind(...))))
-  args = ... |> cbind() |> rbind() |> substitute() |> deparse()
+  args = ... |>
+    cbind() |>
+    rbind() |>
+    substitute() |>
+    deparse()
   # create "rbind(cbind(.),cbind(.),.)" construct
-  args = gsub("\\|","),cbind(",args)
+  args = gsub("\\|", "),cbind(", args)
   # eval
-  eval(parse(text=args))
+  eval(parse(text = args))
 }
 
 
@@ -19,7 +23,9 @@ matr = function(...) {
 #' @param y list of elements
 #' @return y with NAs omitted
 #' @export
-naOmitList = function(y) { return(y[!sapply(y, function(x) all(is.na(x)))]) }
+naOmitList = function(y) {
+  return(y[!sapply(y, function(x) all(is.na(x)))])
+}
 
 
 # %% ####################################################
@@ -28,8 +34,10 @@ naOmitList = function(y) { return(y[!sapply(y, function(x) all(is.na(x)))]) }
 #' @return y with "contains" omitted
 #' @export
 listOmitIf = function(lst, contains) {
-  lst[lapply(lst,
-    function(x) length(grep(contains,x,value=FALSE))) == 0]
+  lst[lapply(
+    lst,
+    function(x) length(grep(contains, x, value = FALSE))
+  ) == 0]
 }
 
 # %% ####################################################
@@ -38,6 +46,6 @@ listOmitIf = function(lst, contains) {
 #' @param nth.element index of list to return
 #' @return list
 #' @export
-getNthElement = function(list.of.lists, nth.element){
+getNthElement = function(list.of.lists, nth.element) {
   sapply(list.of.lists, `[`, nth.element)
 }

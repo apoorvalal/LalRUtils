@@ -14,7 +14,7 @@ downloads and unzips file if it is not found in current wdir
 }
 \examples{
 \dontrun{
-get_and_unzip('url','qob.txt')
+get_and_unzip('url', 'qob.txt')
 }
 }
 \keyword{download}

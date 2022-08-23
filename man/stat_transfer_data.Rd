@@ -19,8 +19,9 @@ Populates a stat-transfer script to convert files to CSV
 }
 \examples{
 \dontrun{
-stat_transfer_data(path='C:/data/data1.sas7bdat',outpath='C:/working/')
+stat_transfer_data(path = 'C:/data/data1.sas7bdat', outpath = 'C:/working/')
 }
+
 }
 \keyword{convert}
 \keyword{reader}

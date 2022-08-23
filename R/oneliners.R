@@ -11,7 +11,7 @@ nunique = \(x) length(unique(x))
 #' @param x vector
 #' @param t integer
 #' @export
-vnorm = \(x, t = 2) norm(matrix(x, ncol=1), t)
+vnorm = \(x, t = 2) norm(matrix(x, ncol = 1), t)
 
 
 
@@ -28,7 +28,7 @@ timeStamp = \(ff = "%d_%m_%Y__%H%M") format(Sys.time(), ff)
 #' @param x vector
 #' @return vector with e(x)/[1+e(x)]
 #' @export
-expit = \(x) exp(x)/(1+exp(x))
+expit = \(x) exp(x) / (1 + exp(x))
 
 # %%
 #' clip vector to specified range (clone of np.clip)
@@ -56,7 +56,7 @@ dataPkg = \(pkg) data(package = pkg)$results[, 3:4]
 # %% ####################################################
 #' not.in function
 #' @export
-'%!in%' = \(x,y)!('%in%'(x,y))
+'%!in%' = \(x, y)!('%in%'(x, y))
 
 # %% ####################################################
 #' coerce to string

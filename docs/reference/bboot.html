@@ -76,12 +76,14 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span> <span class="op">+</span> <span class="va">hp</span>, <span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">bboot</span><span class="op">(</span>reps <span class="op">=</span> <span class="fl">1e3</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span> <span class="op">+</span> <span class="va">hp</span>, <span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">bboot</span><span class="op">(</span>reps <span class="op">=</span> <span class="fl">1e3</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: fixest</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                    mean   conf.low  conf.upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 37.24067242 33.4469177 41.05109195</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> wt          -3.86640291 -5.1388178 -2.58410282</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> hp          -0.03257525 -0.0452037 -0.02130444</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    mean    conf.low  conf.upper</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 37.29668893 33.58656664 40.96330988</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> wt          -3.88155725 -5.06126323 -2.66055601</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> hp          -0.03254681 -0.04625353 -0.02138256</span>
 </code></pre></div>
     </div>
   </div>

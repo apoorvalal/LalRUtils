@@ -10,8 +10,8 @@
 #'   cy = rbinom(n = n, size = 1, prob = control_prob)
 #'   ty = rbinom(n = n, size = 1, prob = treat_prob)
 #'   mean(ty) - mean(cy)
-#'   }
-#'   mcReplicate(10, one_sim(), mc.cores = 2)
+#' }
+#' mcReplicate(10, one_sim(), mc.cores = 2)
 #'
 #' @returns  A vector, matrix, or list of length `n`.
 #' @import parallel
@@ -20,17 +20,17 @@
 mcReplicate = function(n, expr, mc.cores = 4, refresh = 0.1) {
   show_progress = \(i_) {
     intervaln = floor(n * refresh)
-    if (floor(i_/intervaln) == i_/intervaln) cat(paste("[", i_, "/", n, "]\r"))
+    if (floor(i_ / intervaln) == i_ / intervaln) cat(paste("[", i_, "/", n, "]\r"))
   }
   result = simplify2array(parallel::mclapply(1:n,
     eval.parent(substitute(
-        \(i_, ...) {
-          if (refresh > 0) show_progress(i_)
-          expr
-        })
-    ),
-    mc.cores = mc.cores)
-  )
+      \(i_, ...) {
+        if (refresh > 0) show_progress(i_)
+        expr
+      }
+    )),
+    mc.cores = mc.cores
+  ))
   if (refresh > 0) cat("\n")
   result
 }

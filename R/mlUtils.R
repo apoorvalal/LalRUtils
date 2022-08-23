@@ -4,10 +4,10 @@
 #' @param k share of data obs in train
 #' @return list with test and train
 #' @export
-ttsplit = function(df, k = 0.75){
+ttsplit = function(df, k = 0.75) {
   # sample k% of obs
-  trainid <- sample(nrow(df), nrow(df) * k, replace=FALSE)
-  list(train = df[trainid,], test = df[-trainid,])
+  trainid = sample(nrow(df), nrow(df) * k, replace = FALSE)
+  list(train = df[trainid, ], test = df[-trainid, ])
 }
 
 # %% ####################################################
@@ -16,22 +16,24 @@ ttsplit = function(df, k = 0.75){
 #' @param nf Number of folds
 #' @return list with indices for each fold in first element, and fold assignment vector in second element
 #' @export
-createFolds = function(df, nf = 10){
+createFolds = function(df, nf = 10) {
   n = nrow(df)
-  foldid = rep.int(1:nf, times = ceiling(n/nf))[sample.int(n)]
-  list(fold_assignments = split(1:n, foldid),
-       fold_indices = foldid)
+  foldid = rep.int(1:nf, times = ceiling(n / nf))[sample.int(n)]
+  list(
+    fold_assignments = split(1:n, foldid),
+    fold_indices = foldid
+  )
 }
 
 # %% ####################################################
 #' min-max scale (maps continuous variable to [0, 1])
 #' @param X vector
 #' @export
-mMscale = function(X){
+mMscale = function(X) {
   X = as.matrix(X)
-  mins = apply(X,2,min)
-  maxs = apply(X,2,max)
-  return(scale(X, center=mins, scale=maxs-mins))
+  mins = apply(X, 2, min)
+  maxs = apply(X, 2, max)
+  return(scale(X, center = mins, scale = maxs - mins))
 }
 
 # %%
@@ -41,16 +43,16 @@ mMscale = function(X){
 #' @param predicted vector of predicted labels
 #' @return list of classification accuracy metrics
 #' @export
-classifEval = function(actual, predicted){
+classifEval = function(actual, predicted) {
   cm = as.matrix(table(Actual = actual, Predicted = predicted))
-  n       = sum(cm)           # number of instances
-  nc      = nrow(cm)          # number of classes
-  diag    = diag(cm)          # number of correctly classified instances per class
+  n = sum(cm) # number of instances
+  nc = nrow(cm) # number of classes
+  diag = diag(cm) # number of correctly classified instances per class
 
   rowsums = apply(cm, 1, sum) # number of instances per class
   colsums = apply(cm, 2, sum) # number of predictions per class
-  p       = rowsums / n       # distribution of instances over the actual classes
-  q       = colsums / n       # distribution of instances over the predicted classes
+  p = rowsums / n # distribution of instances over the actual classes
+  q = colsums / n # distribution of instances over the predicted classes
 
   list(
     accuracy  = sum(diag) / n,

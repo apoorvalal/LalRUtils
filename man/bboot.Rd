@@ -20,5 +20,7 @@ bboot object
 Bayesian bootstrap for linear regression
 }
 \examples{
-lm(mpg ~ wt + hp, mtcars) |> bboot(reps = 1e3) |> summary()
+lm(mpg ~ wt + hp, mtcars) |>
+  bboot(reps = 1e3) |>
+  summary()
 }

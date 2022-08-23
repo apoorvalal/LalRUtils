@@ -24,37 +24,44 @@
 #' @param ... Further arguments to be passed to \code{read_delim}.
 #' @return a SQLite database
 #' @export
-csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
+csv_to_sqlite = function(csv_file, sqlite_file, table_name,
                           delimiter = ",",
                           pre_process_size = 1000, chunk_size = 50000,
                           show_progress_bar = TRUE, ...) {
-    require(dplyr); require(DBI); require(lubridate); require(readr)
-    # init connection
-    con <- dbConnect(SQLite(), dbname = sqlite_file)
-    # read a first chunk of data to extract the colnames and types
-    # to figure out the date and the datetime columns
-    df <- read_delim(csv_file, delim = delimiter, n_max = pre_process_size, ...)
-    names = colnames(df)
-    date_cols <- df %>% select_if(is.Date) %>% colnames()
-    datetime_cols <- df %>% select_if(is.POSIXt) %>% colnames()
-    # write the first batch of lines to SQLITE table, converting dates to string
-    # representation
-    df <- df %>%
-      mutate_at(.vars = date_cols, .funs = as.character.Date) %>%
-      mutate_at(.vars = datetime_cols, .funs = as.character.POSIXt)
-    dbWriteTable(con, table_name, df, overwrite = TRUE)
-    # readr chunk functionality
-    read_delim_chunked(
-      csv_file,
-      callback = append_to_sqlite(con = con,
-                            table_name = table_name,
-                            date_cols = date_cols,
-                            datetime_cols = datetime_cols),
-      delim = delimiter,
-      skip = pre_process_size, chunk_size = chunk_size,
-      progress = show_progress_bar,
-      col_names = names, ...)
-    dbDisconnect(con)
+  require(dplyr); require(DBI); require(lubridate); require(readr)
+  # init connection
+  con = dbConnect(SQLite(), dbname = sqlite_file)
+  # read a first chunk of data to extract the colnames and types
+  # to figure out the date and the datetime columns
+  df = read_delim(csv_file, delim = delimiter, n_max = pre_process_size, ...)
+  names = colnames(df)
+  date_cols = df %>%
+    select_if(is.Date) %>%
+    colnames()
+  datetime_cols = df %>%
+    select_if(is.POSIXt) %>%
+    colnames()
+  # write the first batch of lines to SQLITE table, converting dates to string
+  # representation
+  df = df %>%
+    mutate_at(.vars = date_cols, .funs = as.character.Date) %>%
+    mutate_at(.vars = datetime_cols, .funs = as.character.POSIXt)
+  dbWriteTable(con, table_name, df, overwrite = TRUE)
+  # readr chunk functionality
+  read_delim_chunked(
+    csv_file,
+    callback = append_to_sqlite(
+      con = con,
+      table_name = table_name,
+      date_cols = date_cols,
+      datetime_cols = datetime_cols
+    ),
+    delim = delimiter,
+    skip = pre_process_size, chunk_size = chunk_size,
+    progress = show_progress_bar,
+    col_names = names, ...
+  )
+  dbDisconnect(con)
 }
 
 #' Callback function that appends new sections to the SQLite table.
@@ -65,12 +72,12 @@ csv_to_sqlite <- function(csv_file, sqlite_file, table_name,
 #' @param datetime_cols Name of columns containint POSIXt objects.
 #'
 #' @keywords internal
-append_to_sqlite <- function(con, table_name,
+append_to_sqlite = function(con, table_name,
                              date_cols, datetime_cols) {
   #' @param x Data.frame we are reading from.
   function(x, pos) {
-    x <- as.data.frame(x)
-    x <- x %>%
+    x = as.data.frame(x)
+    x = x %>%
       mutate_at(.vars = date_cols, .funs = as.character.Date) %>%
       mutate_at(.vars = datetime_cols, .funs = as.character.POSIXt)
     # append data frame to table
@@ -88,15 +95,15 @@ append_to_sqlite <- function(con, table_name,
 #' \dontrun{
 #' convert_all_to_csv(dataframes, path)
 #' }
-
+#'
 ####################################
 # writes all dataframes to csv
 ####################################
-
-convert_all_to_csv <- function(dataframes, path) {
-    for (file in dataframes){
-        write.csv(mget(file, .GlobalEnv), paste0(path,'/',file,'.csv'))
-    }
+#'
+convert_all_to_csv = function(dataframes, path) {
+  for (file in dataframes) {
+    write.csv(mget(file, .GlobalEnv), paste0(path, '/', file, '.csv'))
+  }
 }
 
 # %%
@@ -108,8 +115,8 @@ convert_all_to_csv <- function(dataframes, path) {
 #' \dontrun{
 #' dta_vlabs(df)
 #' }
-
-dta_vlabs <- \(dta) sapply(dta, function(x) attr(x, "label"))
+#'
+dta_vlabs = \(dta) sapply(dta, function(x) attr(x, "label"))
 
 # %%
 
@@ -121,8 +128,8 @@ dta_vlabs <- \(dta) sapply(dta, function(x) attr(x, "label"))
 #' \dontrun{
 #' label_extractor(df)
 #' }
-
-label_extractor = function(df, colnames = c('names', 'var.labels')){
+#'
+label_extractor = function(df, colnames = c('names', 'var.labels')) {
   info = data.frame(attributes(df)[colnames])
   return(info)
 }
@@ -135,33 +142,31 @@ label_extractor = function(df, colnames = c('names', 'var.labels')){
 #' @keywords read stata sas spss
 #' @examples
 #' \dontrun{
-#' read_all_files(extension='dta',path='~/data/')
+#' read_all_files(extension = 'dta', path = '~/data/')
 #' }
-
-
-read_all_files <- function(extension,location){
-    suppressMessages(library(fread))
-    suppressMessages(library(haven))
-    setwd(location)
-    file_pattern = paste0("\\.",extension,"$")
-    obj          = list.files(pattern=file_pattern)
-    pos          = regexpr(extension,obj)
-    objs         = substr(obj,1,pos-2)
-    if(extension=='Rdata'){
-        df=lapply(obj,load,envir=.GlobalEnv)
-    } else if(extension=='csv'){
-        df=lapply(obj,fread,envir=.GlobalEnv)
-    } else if(extension=='dta'){
-        for (n in 1:length(objs)){
-            assign(paste0(objs[n]),haven::read_dta(obj[n]),envir = .GlobalEnv)
-        }
+#'
+read_all_files = function(extension, location) {
+  suppressMessages(library(fread))
+  suppressMessages(library(haven))
+  setwd(location)
+  file_pattern = paste0("\\.", extension, "$")
+  obj = list.files(pattern = file_pattern)
+  pos = regexpr(extension, obj)
+  objs = substr(obj, 1, pos - 2)
+  if (extension == 'Rdata') {
+    df = lapply(obj, load, envir = .GlobalEnv)
+  } else if (extension == 'csv') {
+    df = lapply(obj, fread, envir = .GlobalEnv)
+  } else if (extension == 'dta') {
+    for (n in 1:length(objs)) {
+      assign(paste0(objs[n]), haven::read_dta(obj[n]), envir = .GlobalEnv)
     }
-    else if(extension=='sav'){
-        for (n in 1:length(objs)){
-            assign(paste0(objs[n]),haven::read_sav(obj[n]),envir = .GlobalEnv)
-        }
+  } else if (extension == 'sav') {
+    for (n in 1:length(objs)) {
+      assign(paste0(objs[n]), haven::read_sav(obj[n]), envir = .GlobalEnv)
     }
-    return(objs)
+  }
+  return(objs)
 }
 
 
@@ -174,13 +179,13 @@ read_all_files <- function(extension,location){
 #' @keywords download
 #' @examples
 #' \dontrun{
-#' get_and_unzip('url','qob.txt')
+#' get_and_unzip('url', 'qob.txt')
 #' }
-get_and_unzip <- function(url, filename){
-    if (!file.exists(filename)) {
-        download.file(url, "zipped.zip", mode="wb")
-        unzip(zipfile="zipped.zip",files=filename)
-    }
+get_and_unzip = function(url, filename) {
+  if (!file.exists(filename)) {
+    download.file(url, "zipped.zip", mode = "wb")
+    unzip(zipfile = "zipped.zip", files = filename)
+  }
 }
 
 
@@ -190,43 +195,45 @@ get_and_unzip <- function(url, filename){
 #' @keywords stat_transfer convert reader
 #' @examples
 #' \dontrun{
-#' stat_transfer_data(path='C:/data/data1.sas7bdat',outpath='C:/working/')
+#' stat_transfer_data(path = 'C:/data/data1.sas7bdat', outpath = 'C:/working/')
 #' }
-
+#'
 ############################################
 # runs stat-transfer from R - tested on Windows 10
 ############################################
 # alternative to the package readr when files are very large + you have access to stat-transfer
-stat_transfer_data <- function(path,
-              stat.transfer.path = '\"C:\\Program Files\\StatTransfer12-64\\st.exe\"',
-              out.ext='csv',
-              outpath)
-                {
-    library(tools)
-    inp.ext = file_ext(path)
-    if(missing(outpath)) {
-        path.out = gsub(inp.ext,out.ext,path)
-        print(c('Writing to ', path.out))
-    }else{
-        fn = basename(path)
-        fn.out = gsub(inp.ext,out.ext,fn)
-        path.out = paste0(outpath,'\\',fn.out)
-        print(c('Writing to ', path.out))
-    }
-    target = 'conv_script.stcmd'
-    target_full = paste0(temp.path,'conv_script.stcmd')
-    sink(target_full)
-    cat("SET VAR_CASE_CS        lower \n")
-    cat('copy \"',path,'\"  ', '\"',path.out,'\"', '  -y \n', sep="")
-    cat('quit \n')
-    cat('\n')
-    sink()
-    command = readlines(target_full)
-    print(command)
-    transfer_command = paste0(stat.transfer.path,
-                                ' \"',target_full,'\" \\e')
-    system(transfer_command,
-        wait=TRUE,
-        invisible=FALSE,
-        show.output.on.console=TRUE)
+stat_transfer_data = function(path,
+                               stat.transfer.path = '\"C:\\Program Files\\StatTransfer12-64\\st.exe\"',
+                               out.ext = 'csv',
+                               outpath) {
+  library(tools)
+  inp.ext = file_ext(path)
+  if (missing(outpath)) {
+    path.out = gsub(inp.ext, out.ext, path)
+    print(c('Writing to ', path.out))
+  } else {
+    fn = basename(path)
+    fn.out = gsub(inp.ext, out.ext, fn)
+    path.out = paste0(outpath, '\\', fn.out)
+    print(c('Writing to ', path.out))
+  }
+  target = 'conv_script.stcmd'
+  target_full = paste0(temp.path, 'conv_script.stcmd')
+  sink(target_full)
+  cat("SET VAR_CASE_CS        lower \n")
+  cat('copy \"', path, '\"  ', '\"', path.out, '\"', '  -y \n', sep = "")
+  cat('quit \n')
+  cat('\n')
+  sink()
+  command = readlines(target_full)
+  print(command)
+  transfer_command = paste0(
+    stat.transfer.path,
+    ' \"', target_full, '\" \\e'
+  )
+  system(transfer_command,
+    wait = TRUE,
+    invisible = FALSE,
+    show.output.on.console = TRUE
+  )
 }

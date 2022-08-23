@@ -55,6 +55,7 @@ R implementation of binned scatterplot and CEF plotter, with added options for c
 }
 \examples{
 binscatter('Sepal.Length ~ Petal.Length + Petal.Width|Species', key_var = 'Petal.Width', iris)
+
 }
 \keyword{bins}
 \keyword{cef}

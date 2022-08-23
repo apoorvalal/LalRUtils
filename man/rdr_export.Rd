@@ -17,9 +17,10 @@ Summary table for Rdrobust estimates to export using kableExtra
 \examples{
 \dontrun{
 rdrobust(df$vote, df$margin, all = T) \%>\% rdr_export -> rdre
-rdre \%>\% kable(, format = "latex", booktabs = T) \%>\%
-     collapse_rows(columns = 1, latex_hline = "major", valign = "middle") \%>\%
-     cat(., file = "table.tex")
+rdre \%>\%
+  kable(, format = "latex", booktabs = T) \%>\%
+  collapse_rows(columns = 1, latex_hline = "major", valign = "middle") \%>\%
+  cat(., file = "table.tex")
 }
 }
 \keyword{export}
