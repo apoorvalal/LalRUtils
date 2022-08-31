@@ -5,6 +5,10 @@
 #' @export
 nunique = \(x) length(unique(x))
 
+# %%
+#' Hex codes for portal game colours (blue and orange)
+#' @export
+portal_hexcodes = \() c("#ff9a00", "#00a2ff", "#ff5d00", "#0065ff")
 
 # %%
 #' t-norm of a vector
