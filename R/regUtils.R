@@ -85,6 +85,7 @@ prplot = function(g, i) {
 #' @param m                order of functions: defaults to quadratic functions
 #' @param raw              raw or orthogonal bases
 #' @return                 data.frame with base terms and interactions + basis
+#' @importFrom glue glue
 #' @export
 
 polySieveM = function(dat,
@@ -93,7 +94,7 @@ polySieveM = function(dat,
                       corr_cut = 0.90,
                       k = 2,
                       m = 2,
-                      raw = F) {
+                      raw = TRUE) {
   # coerce to df
   dat = as.data.frame(dat)
   nuniqs = apply(dat, 2, function(x) length(unique(x)))
@@ -103,31 +104,38 @@ polySieveM = function(dat,
   # concat names
   controls = c(dummies, continuouses)
   data = dat[, controls]
-  if (!is.null(continuouses)) { # if there are any continous variables
-    # functional form changes for continuous vars
-    # polynomials (orthogonal by default)
-    polyfml = paste(paste0(
-      "poly(", continuouses, ",", m,
-      ", raw=", raw, ")"
-    ), collapse = " + ")
-    # model matrix with sieve polynomial basis
-    powmat = model.matrix(as.formula(paste0("~ -1 + ", polyfml)), dat[, continuouses])
-    # log variables with all positives
-    loggable = apply(dat[, continuouses], 2, function(x) sum(x < 0) == 0)
-    if (sum(loggable) > 0) {
-      logmat = log1p(dat[, loggable]) %>% as.matrix()
-      colnames(logmat) = paste0("log1p_", names(which(loggable == TRUE)))
-      powmat = cbind(powmat, logmat)
+  ############################################################
+  # basis
+  ############################################################
+  if (m > 1) {
+    if (!is.null(continuouses)) { # if there are any continous variables
+      # functional form changes for continuous vars
+      # polynomials (orthogonal by default)
+      polyfml = paste(paste0(
+        "poly(", continuouses, ",", m,
+        ", raw=", raw, ")"
+      ), collapse = " + ")
+      # model matrix with sieve polynomial basis
+      powmat = model.matrix(
+        as.formula(paste0("~ -1 + ", polyfml)),
+        dat[, continuouses]
+      )
+      # cbind base terms with smooth fns
+      data = cbind(data, powmat)
     }
-    # cbind base terms with smooth fns
-    data = cbind(data, powmat)
   }
+  ############################################################
+  # interactions
+  ############################################################
   if (k > 1) {
     # all n-way interactions with polynomials and dummies
-    X = model.matrix(as.formula(glue("~.^{k} - 1")), data)
+    X = model.matrix(as.formula(glue::glue("~.^{k} - 1")), data)
   } else {
     X = as.matrix(data)
   }
+  ############################################################
+  # final cleanup
+  ############################################################
   # drop non-varying Xs (e.g. interactions bw mutually exclusive dummies)
   varyvar = apply(X, 2, function(col) length(unique(col)) > 1)
   X = X[, varyvar]
@@ -143,11 +151,12 @@ polySieveM = function(dat,
 #' @param data              data table / dataframe
 #' @param k                order of interactions: defaults to pairwise interactions
 #' @return                matrix with interactions
+#' @importFrom glue glue
 #' @export
 
 interSparseM = function(data, k, corr_cut = 0.9) {
   X = Matrix::sparse.model.matrix(
-    as.formula(glue("~.^{k} - 1")),
+    as.formula(glue::glue("~.^{k} - 1")),
     data
   )
   # drop non-varying Xs (e.g. interactions bw mutually exclusive dummies)

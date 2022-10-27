@@ -1,6 +1,11 @@
 template:
-  params:
-    bootswatch: darkly
+  bootstrap: 5
+  bootswatch: yeti
+  bslib:
+    base_font: {google: "Roboto"}
+    heading_font: {google: "Roboto Slab"}
+    code_font: {google: "JetBrains Mono"}
 repo:
   url:
     home: https://github.com/apoorvalal/LalRUtils/
+

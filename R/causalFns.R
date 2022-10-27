@@ -8,12 +8,16 @@
 #' @export
 #' @examples
 #' data(lalonde.psid); setDT(lalonde.psid)
-#' subclassify(lalonde.psid, x = c("u74", "u75"),
-#'   y = "re78", w = "treat")
-#' subclassify(lalonde.psid, x = c("married", "black", "hispanic", "u74", "u75"),
-#'   y = "re78", w = "treat")
-
-subclassify = function(df, x, y = 're78', w = 'treat', debug = F){
+#' subclassify(lalonde.psid,
+#'   x = c("u74", "u75"),
+#'   y = "re78", w = "treat"
+#' )
+#' subclassify(lalonde.psid,
+#'   x = c("married", "black", "hispanic", "u74", "u75"),
+#'   y = "re78", w = "treat"
+#' )
+#'
+subclassify = function(df, x, y = 're78', w = 'treat', debug = F) {
   if (!data.table::is.data.table(df)) {
     df = data.table::as.data.table(df)
   }
@@ -22,7 +26,7 @@ subclassify = function(df, x, y = 're78', w = 'treat', debug = F){
   fml = as.formula(paste0(paste(x, collapse = "+"), "~", w))
   strata_level = dcast(grpmeans, fml, value.var = c("grpmean", "N"))
   strata_level[, `:=`(DiM = grpmean_1 - grpmean_0, N_k = N_1 + N_0)]
-  ATE = strata_level[, sum(DiM * (N_k/N))]; ATT = strata_level[, sum(DiM * (N_1/N1))]
+  ATE = strata_level[, sum(DiM * (N_k / N))]; ATT = strata_level[, sum(DiM * (N_1 / N1))]
   return(list(est = data.frame(ATE = ATE, ATT = ATT), table = strata_level))
 }
 
@@ -39,11 +43,11 @@ subclassify = function(df, x, y = 're78', w = 'treat', debug = F){
 #' @export
 #' @examples
 #' \dontrun{
-#' dreg = \(x,d) cv.glmnet(x, d, alpha = 1)
-#' yreg = \(x,y) cv.glmnet(x, y, alpha = 1)
-#' res = DMLReg(x=x, d=d, y=y, dreg=dreg, yreg=yreg, nfold=5)
+#' dreg = \(x, d) cv.glmnet(x, d, alpha = 1)
+#' yreg = \(x, y) cv.glmnet(x, y, alpha = 1)
+#' res = DMLReg(x = x, d = d, y = y, dreg = dreg, yreg = yreg, nfold = 5)
 #' }
-DMLReg = function(x, d, y, dreg, yreg, nfold=5) {
+DMLReg = function(x, d, y, dreg, yreg, nfold = 5) {
   require(estimatr)
   # randomly split data into folds
   nobs = nrow(x)
@@ -53,18 +57,18 @@ DMLReg = function(x, d, y, dreg, yreg, nfold=5) {
   ytil = dtil = rep(NA, nobs)
   # run the OOS orthogonalizations
   cat("fold: ")
-  for(b in 1:length(I)){
+  for (b in 1:length(I)) {
     dfit = dreg(x[-I[[b]], ], d[-I[[b]]])
     yfit = yreg(x[-I[[b]], ], y[-I[[b]]])
     dhat = predict(dfit, x[I[[b]], ], type = "response")
     yhat = predict(yfit, x[I[[b]], ], type = "response")
     dtil[I[[b]]] = drop(d[I[[b]]] - dhat)
     ytil[I[[b]]] = drop(y[I[[b]]] - yhat)
-    cat(b," ")
+    cat(b, " ")
   }
   rfit = lm_robust(ytil ~ dtil)
   effect_se = summary(rfit)$coefficients[2, 1:2]
-  return( list(res = effect_se, dtil=dtil, ytil=ytil) )
+  return(list(res = effect_se, dtil = dtil, ytil = ytil))
 }
 
 # %%
@@ -75,7 +79,7 @@ DMLReg = function(x, d, y, dreg, yreg, nfold=5) {
 #' @return Regression vector beta of length ncol(X).
 #' @export
 #' @import car
-OLSw = function(y, X, w){
+OLSw = function(y, X, w) {
   XtWX = car::wcrossprod(X, w = w)
   XtWy = car::wcrossprod(X, y, w = w)
   solve(XtWX) %*% XtWy
@@ -100,20 +104,25 @@ OLSw = function(y, X, w){
 #' cat("ATT in obs sample \n")
 #' reg_adjust(lalonde.psid, 'treat', 're78', xs, "ATT")
 #' cat(" --------------------------- \n")
-
-reg_adjust = function(df, w, y, xs, estimand = "ATT"){
+reg_adjust = function(df, w, y, xs, estimand = c("ATT", "ATE")) {
+  estimand = match.arg(estimand)
   # for ATE, sweep out overall means, else sweep out treatment means
-  if(estimand == "ATE"){ d = df[, xs] } else {d = df[df[[w]] == 1, xs]}
+  if (estimand == "ATE") {
+    d = df[, xs]
+  } else {
+    d = df[df[[w]] == 1, xs]
+  }
   # take out means
   Xbar = apply(d[, xs], 2, mean); Xdemeaned = sweep(df[, xs], 2, Xbar)
   colnames(Xdemeaned) = paste0(colnames(Xdemeaned), "_dem")
   # concat columns
   regdf = cbind(df[, c(y, w)], df[, xs], Xdemeaned)
   # interacted regression
-  f = as.formula(paste0(y, "~", w, "+",
-      paste(xs, collapse = "+"), "+",                           # controls effects
-      w, ":(", paste(colnames(Xdemeaned), collapse = "+"), ")"  # treat effects
-      ))
+  f = as.formula(paste0(
+    y, "~", w, "+",
+    paste(xs, collapse = "+"), "+", # controls effects
+    w, ":(", paste(colnames(Xdemeaned), collapse = "+"), ")" # treat effects
+  ))
   m = fixest::feols(f, data = regdf, vcov = 'hc1')
   m
 }

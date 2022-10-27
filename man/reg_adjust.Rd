@@ -4,7 +4,7 @@
 \alias{reg_adjust}
 \title{Regression Adjustment estimation of ATE or ATT}
 \usage{
-reg_adjust(df, w, y, xs, estimand = "ATT")
+reg_adjust(df, w, y, xs, estimand = c("ATT", "ATE"))
 }
 \arguments{
 \item{df}{dataframe}

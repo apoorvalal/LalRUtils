@@ -25,8 +25,13 @@ Compute subclassification ATT and ATE
 }
 \examples{
 data(lalonde.psid); setDT(lalonde.psid)
-subclassify(lalonde.psid, x = c("u74", "u75"),
-  y = "re78", w = "treat")
-subclassify(lalonde.psid, x = c("married", "black", "hispanic", "u74", "u75"),
-  y = "re78", w = "treat")
+subclassify(lalonde.psid,
+  x = c("u74", "u75"),
+  y = "re78", w = "treat"
+)
+subclassify(lalonde.psid,
+  x = c("married", "black", "hispanic", "u74", "u75"),
+  y = "re78", w = "treat"
+)
+
 }

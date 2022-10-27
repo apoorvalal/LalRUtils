@@ -25,9 +25,9 @@
 #' @return a SQLite database
 #' @export
 csv_to_sqlite = function(csv_file, sqlite_file, table_name,
-                          delimiter = ",",
-                          pre_process_size = 1000, chunk_size = 50000,
-                          show_progress_bar = TRUE, ...) {
+                         delimiter = ",",
+                         pre_process_size = 1000, chunk_size = 50000,
+                         show_progress_bar = TRUE, ...) {
   require(dplyr); require(DBI); require(lubridate); require(readr)
   # init connection
   con = dbConnect(SQLite(), dbname = sqlite_file)
@@ -73,7 +73,7 @@ csv_to_sqlite = function(csv_file, sqlite_file, table_name,
 #'
 #' @keywords internal
 append_to_sqlite = function(con, table_name,
-                             date_cols, datetime_cols) {
+                            date_cols, datetime_cols) {
   #' @param x Data.frame we are reading from.
   function(x, pos) {
     x = as.data.frame(x)
@@ -203,9 +203,9 @@ get_and_unzip = function(url, filename) {
 ############################################
 # alternative to the package readr when files are very large + you have access to stat-transfer
 stat_transfer_data = function(path,
-                               stat.transfer.path = '\"C:\\Program Files\\StatTransfer12-64\\st.exe\"',
-                               out.ext = 'csv',
-                               outpath) {
+                              stat.transfer.path = '\"C:\\Program Files\\StatTransfer12-64\\st.exe\"',
+                              out.ext = 'csv',
+                              outpath) {
   library(tools)
   inp.ext = file_ext(path)
   if (missing(outpath)) {
