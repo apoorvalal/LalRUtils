@@ -6,6 +6,17 @@
 nunique = \(x) length(unique(x))
 
 # %%
+#' Source all R scripts in directory
+#' @param p path string
+#' @export
+sourceDir = \(p) {
+  invisible(lapply(
+    list.files(p, full.names = TRUE, pattern = "*.R"),
+    source
+  ))
+}
+
+# %%
 #' Hex codes for portal game colours (blue and orange)
 #' @export
 portal_hexcodes = \() c("#ff9a00", "#00a2ff", "#ff5d00", "#0065ff")

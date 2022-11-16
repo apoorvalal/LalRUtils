@@ -4,7 +4,7 @@
 \alias{interSparseM}
 \title{prepare sparse X matrix with interactions}
 \usage{
-interSparseM(data, k, corr_cut = 0.9)
+interSparseM(data, k = 2, corr_cut = 0.9)
 }
 \arguments{
 \item{data}{data table / dataframe}

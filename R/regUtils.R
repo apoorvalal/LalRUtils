@@ -154,8 +154,8 @@ polySieveM = function(dat,
 #' @importFrom glue glue
 #' @export
 
-interSparseM = function(data, k, corr_cut = 0.9) {
-  X = Matrix::sparse.model.matrix(
+interSparseM = function(data, k = 2, corr_cut = 0.9) {
+  X = model.matrix(
     as.formula(glue::glue("~.^{k} - 1")),
     data
   )
