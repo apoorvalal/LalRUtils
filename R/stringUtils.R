@@ -12,6 +12,6 @@ fuzzy_match = function(a, b) {
   # find the closest match for each
   match = apply(distance, 1, which.min)
   values = b[match] # slice b using match index
-  df = tibble(key = as.character(a), values = as.character(values))
+  df = data.frame(key = as.character(a), values = as.character(values))
   return(df)
 }
