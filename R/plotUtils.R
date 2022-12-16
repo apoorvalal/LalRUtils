@@ -1,4 +1,14 @@
 # %% ####################################################
+#' ggplot with frame
+#' @param g geom
+#' @param aes ggplot2 aesthetic
+#' @param d dataframe
+#' @return populated geom
+#' @import ggplot2
+#' @export
+withFrame = \(g, aes, d, ...) do.call(g, c(list(aes, data = d), list(...)))
+
+# %% ####################################################
 #' Histogram of pscore distributions in treatment and control groups
 #' @param w treatment vector
 #' @param ps propensity score vector

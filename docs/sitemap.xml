@@ -118,6 +118,12 @@
     <loc>/reference/lal_plot_theme_d.html</loc>
   </url>
   <url>
+    <loc>/reference/lalonde.exp.html</loc>
+  </url>
+  <url>
+    <loc>/reference/lalonde.psid.html</loc>
+  </url>
+  <url>
     <loc>/reference/libreq.html</loc>
   </url>
   <url>
@@ -164,6 +170,9 @@
   </url>
   <url>
     <loc>/reference/overlap_histogram.html</loc>
+  </url>
+  <url>
+    <loc>/reference/panelMatrices.html</loc>
   </url>
   <url>
     <loc>/reference/panel_treat_plot.html</loc>
@@ -236,5 +245,8 @@
   </url>
   <url>
     <loc>/reference/vnorm.html</loc>
+  </url>
+  <url>
+    <loc>/reference/withFrame.html</loc>
   </url>
 </urlset>
