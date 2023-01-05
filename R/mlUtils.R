@@ -62,3 +62,22 @@ classifEval = function(actual, predicted) {
   )
 }
 # %%
+#' plot calibration
+#' @param y    true value (vector)
+#' @param yhat predicted value (vector)
+#' @param nbins number of bins (defaults to 10)
+#' @return ggplot of calibration
+#' @export
+calibPlot = function(y, yhat, nbins = 10){
+  df = data.table(y, yhat)
+  df[, ppbin := cut(yhat, seq(0,1,,nbins), include.lowest = TRUE)]
+  # agged
+  pdf = df[, .(avg_real = mean(y), avg_pred = mean(yhat)), ppbin]
+  # fig
+  ggplot(pdf,aes(x=avg_pred,y=avg_real)) +
+    geom_point(color="dodgerblue") + geom_line(color="dodgerblue") +
+    geom_abline(intercept = 0,slope=1,linetype=2) +
+    xlim(0,1) + ylim(0,1) +
+    xlab("Mean Predicted Value") + ylab("Fraction of Positives")
+}
+# %%
