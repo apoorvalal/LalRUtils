@@ -6,6 +6,13 @@
 nunique = \(x) length(unique(x))
 
 # %%
+#' Shorter length
+#' @param x object
+#' @return scalar with length
+#' @export
+len = \(x) length(x)
+
+# %%
 #' Source all R scripts in directory
 #' @param p path string
 #' @export
