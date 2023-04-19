@@ -52,7 +52,7 @@ timeStamp = \(ff = "%d_%m_%Y__%H%M") format(Sys.time(), ff)
 #' @export
 expit = \(x) exp(x) / (1 + exp(x))
 
-# %%
+# %% ####################################################
 #' clip vector to specified range (clone of np.clip)
 #' @param x vector
 #' @param l lower bound
@@ -66,6 +66,15 @@ clip = \(x, l, u) pmax(pmin(x, u), l)
 #' @return last value
 #' @export
 lv = \() .Last.value
+
+# %% ####################################################
+#' mask a matrix using another matrix
+#' @param A matrix
+#' @param M Mask matrix (must be same dimensions with a rectangular subset of TRUEs)
+#' @return masked matrix
+#' @export
+maskMatrix = \(A, M)  A[rowSums(M) > 0, colSums(M) > 0]
+
 
 
 # %% ####################################################
