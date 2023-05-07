@@ -34,3 +34,22 @@ mcReplicate = function(n, expr, mc.cores = 4, refresh = 0.1) {
   if (refresh > 0) cat("\n")
   result
 }
+
+#' Multi-core sapply
+#' Use multiple cores for simplifying apply.
+#' @param X input vector to iterate over
+#' @param FUN function
+#' @param mc.cores number of cores to use.
+#' @returns  A vector, matrix, or list of length `n`.
+#' @import parallel
+#' @export
+
+mcSapply = function(X, FUN, mc.cores = 6, ...,
+    simplify = TRUE) {
+  FUN = match.fun(FUN)
+  answer = parallel::mclapply(X = X, FUN = FUN, ...)
+  if (is.null(names(answer))) names(answer) = as.character(X)
+  if (!isFALSE(simplify) && length(answer))
+    simplify2array(answer, higher = (simplify == "array"))
+  else answer
+}

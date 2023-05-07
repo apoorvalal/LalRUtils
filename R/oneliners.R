@@ -73,7 +73,7 @@ lv = \() .Last.value
 #' @param M Mask matrix (must be same dimensions with a rectangular subset of TRUEs)
 #' @return masked matrix
 #' @export
-maskMatrix = \(A, M)  A[rowSums(M) > 0, colSums(M) > 0]
+maskMatrix = \(A, M)  A[rowSums(M) > 0, colSums(M) > 0, drop = FALSE]
 
 
 
