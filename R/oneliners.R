@@ -18,10 +18,11 @@ len = \(x) length(x)
 #' @export
 sourceDir = \(p) {
   invisible(lapply(
-    list.files(p, full.names = TRUE, pattern = "*.R"),
+    list.files(p, full.names = TRUE, pattern = "\\.r$|\\.R$"),
     source
   ))
 }
+
 
 # %%
 #' Hex codes for portal game colours (blue and orange)
